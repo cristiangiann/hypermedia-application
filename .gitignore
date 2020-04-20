@@ -1,7 +1,8 @@
 
 design-document/DD.pdf
 design-document/DD.synctex.gz
-design-document/DD.toc
-design-document/DD.out
-design-document/DD.aux
-design-document/DD.log
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc
