@@ -4,7 +4,6 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[parfill]{parskip}
 
-
 \usepackage{listings}
 \usepackage{color}
 
@@ -31,15 +30,8 @@
 
 % SECTION COMMANDS: here we include the commands for formatting and other purposes
 \newcommand\todo[1]{\textcolor{red}{#1}}
-
-%\renewcommand{\headrulewidth}{0pt} % erases the rule under the header
-%\renewcommand{\footrulewidth}{0.3pt} % erases the rule under the header
-
-
 \newcommand{\sups}[1]{\ensuremath{^{\textrm{#1}}}}
-
 \newcommand{\subs}[1]{\ensuremath{_{\textrm{#1}}}}
-
 \newcommand{\ic}[1]{\textit{#1}}
 
 \newcommand{\image}[4]{
@@ -73,18 +65,6 @@
 
 \graphicspath{{Images/}}
 
-%\title{
-%\small Politecnico di Milano\\
-%\small AA 2019-2020\\
-%\large Computer Science and Engineering\\
-%\Large Hypermedia Applications\\
-%\huge Design Document
-%}
-
-%\date{2020-04-22}
-%\author{
-%\large Formicola Stefano, Giannetti Cristian}
-
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\color{gray}{\normalsize{TITOLO- Design Document - 1.0}}}
@@ -105,15 +85,19 @@
 			\huge Design Document\\[4ex]
 
 			\normalsize Formicola Stefano, Giannetti Cristian\\[1.5ex]
-			\normalsize 22 April 2020 \\[1.5ex]
+			\normalsize 24 April 2020\\[1.5ex]
 			\normalsize Version 1.0
 		}
-		
+
 	\end{titlepage}
 	%\maketitle
 
 	\newpage
 	\pagenumbering{arabic}
+
+	\subfile{0.Abstract/Abstract.tex}
+	\addtocounter{page}{1}
+
 	\tableofcontents
 	\thispagestyle{fancy}
 %	\let\tableofcontents\relax
@@ -121,9 +105,9 @@
 	\newpage
 	
 	\subfile{1.Introduction/Introduction.tex}
-	\subfile{2.InteractiveDialogueModels/InteractiveDialogueModels.tex}
-	\subfile{3.Scenarios/Scenarios.tex}
-	\subfile{4.DesignInTheSmall/DesignInTheSmall.tex}
+	\subfile{2.DesignInTheLarge/DesignInTheLarge.tex}
+	\subfile{3.DesignInTheSmall/DesignInTheSmall.tex}
+	\subfile{4.Scenarios/Scenarios.tex}
 	\subfile{5.DatabaseDesign/DatabaseDesign.tex}
 	\thispagestyle{fancy}
 
