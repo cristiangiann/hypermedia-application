@@ -1,3 +1,8 @@
 
 design-document/DD.pdf
 design-document/DD.synctex.gz
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc
