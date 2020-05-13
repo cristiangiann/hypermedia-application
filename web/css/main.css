@@ -1,0 +1,43 @@
+body {
+    font-size: 16px;
+    background: #F9F5EC;
+}
+
+.footer {
+    font-size: 1.0em;
+    white-space: nowrap;
+    color: #326273;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #326273;
+    font-size: 1.25em;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #5C9EAD;
+}
+
+a.footer-social-button:hover {
+    color: transparent;
+}
+
+.border-md-right {
+    border-right: 1px solid #326273;
+}
+
+.body-hr {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #A2AEBB;
+}
+
+#mainNavbar {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .border-md-right {
+        border-right: none;
+    }
+}
