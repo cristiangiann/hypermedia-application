@@ -22,11 +22,12 @@ a:hover {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -77px;
+    margin: 0 auto -43px;
 }
 
 #push, #footer {
     height: 43px;
+    margin-top: 0.5rem;
 }
 
 #footer {
@@ -40,7 +41,8 @@ a:hover {
     font-size: 1.25em;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .active > .nav-link {
     color: #5C9EAD;
 }
 
