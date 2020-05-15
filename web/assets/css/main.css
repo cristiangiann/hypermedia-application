@@ -8,12 +8,17 @@ body {
     background: #F9F5EC;
 }
 
+h3, p {
+    font-weight: 200;
+}
+
 a {
     color: #071013;
 }
 
 a:hover {
     color: #071013;
+    text-decoration: unset;
 }
 
 /* Wrapper for page content to push down footer */
