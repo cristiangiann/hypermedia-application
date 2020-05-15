@@ -1,0 +1,96 @@
+.banner h1, h2, h3, h4, h5, h6, p{
+    font-weight: 200 !important;
+}
+
+.carousel-badge {
+    position: absolute;
+    bottom: 192px;
+    left: 10%;
+}
+
+.carousel-badge .btn {
+    position: absolute;
+    border-radius: 0;
+    border: none;
+    white-space: nowrap;
+    font-size: 1.25em;
+    font-weight: 200;
+}
+
+.association-name-badge {
+    background: #EEEEEE;
+}
+
+.find-more-badge {
+    margin-top: 3.5rem;
+    background: #F5DC10;
+}
+
+.img-banner {
+    position: relative;
+    z-index: 2;
+}
+
+.img-banner-background {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.card-img-overlay {
+    z-index: 2;
+}
+
+@media (max-width: 1024px) {
+    .carousel-badge {
+        bottom: 90px;
+    }
+    .find-more-badge {
+        margin-top: 2.5rem;
+    }
+    .carousel-badge .btn {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 770px) {
+    .card-img-overlay {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .card-title {
+        margin-bottom: .25rem;
+    }
+    h2.card-title {
+        width: 55%;
+        font-size: 1rem;
+    }
+    h3.card-title {
+        width: 55%;
+        margin-bottom: 1px;
+        font-size: 0.75rem;
+    }
+    .card-text {
+        width: 55%;
+        margin-top: 1px;
+        font-size: 0.5rem;
+    }
+}
+
+@media (min-width: 770px) and (max-width: 992px) {
+    h2.card-title {
+        width: 55%;
+        font-size: 1.5rem;
+    }
+    h3.card-title {
+        width: 55%;
+        font-size: 1.0rem;
+        margin-bottom: 1px;
+    }
+    .card-text {
+        width: 55%;
+        font-size: 0.75rem;
+        margin-top: 1px;
+    }
+}
