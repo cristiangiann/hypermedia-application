@@ -21,6 +21,11 @@ a:hover {
     text-decoration: unset;
 }
 
+#back-button {
+    color: #5C9EAD;
+    font-size: 1.25rem;
+}
+
 /* Wrapper for page content to push down footer */
 #page-content {
     min-height: 100%;
@@ -36,14 +41,14 @@ a:hover {
 }
 
 #footer {
-    font-size: 0.75em;
+    font-size: 0.75rem;
     white-space: nowrap;
     color: #326273;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: #326273;
-    font-size: 1.25em;
+    font-size: 1.25rem;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
