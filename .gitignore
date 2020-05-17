@@ -7,3 +7,4 @@ design-document/DD.synctex.gz
 *.out
 *.toc
 .idea
+*.env
