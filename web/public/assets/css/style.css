@@ -8,8 +8,12 @@ body {
     background: #F9F5EC;
 }
 
-h3, h4, p {
+h2, h3, h4, h5, h6, p {
     font-weight: 200;
+}
+
+p {
+    margin-bottom: 0px !important;
 }
 
 a {
@@ -64,10 +68,18 @@ a.footer-social-button:hover {
     border-right: 1px solid #326273;
 }
 
+.border-lg-right {
+    border-right: 1px solid #071013;
+}
+
 .body-hr {
     border-width: 1px;
     border-style: solid;
     border-color: #A2AEBB;
+}
+
+.nowrap {
+    word-wrap: normal !important;
 }
 
 #mainNavbar {
@@ -75,7 +87,7 @@ a.footer-social-button:hover {
 }
 
 @media (max-width: 992px) {
-    .border-md-right {
+    .border-md-right, .border-lg-right {
         border-right: none !important;
     }
 }
