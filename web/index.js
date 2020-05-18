@@ -8,9 +8,9 @@ const dotenv = require('dotenv').config();
 var con = mysql.createPool({
   connectionLimit : process.env.DB_CONLIMIT,
   host            : process.env.DB_HOST,
-  user            : process.env.DB_USER ,
-  password        : process.env.DB_PASSWORD ,
-  database        : process.env.DB_DATABASE 
+  user            : process.env.DB_USER,
+  password        : process.env.DB_PASSWORD,
+  database        : process.env.DB_DATABASE
 });
 
 function validId(id){
@@ -23,39 +23,41 @@ function validId(id){
 }
 
 app.get("/", function(req, res) {
-} )
+})
 
 app.get("/association", function(req, res) {
     res.sendFile(__dirname + "/public/pages/association.html");
-} )
+})
 
 app.get("/people", function(req, res) {
-  res.sendFile(__dirname + "/public/pages/people.html");
-} )
+  var id = req.query.id;
+  if(id == null) res.sendFile(__dirname + "/public/pages/people.html");
+  else res.sendFile(__dirname + "/public/pages/person.html")
+})
 
 app.get("/musical-instruments", function(req, res) {
-  res.sendFile(__dirname + "/public/pages/musical-instruments.html");
-} )
+  var id = req.query.id;
+  if(id == null) res.sendFile(__dirname + "/public/pages/musical-instruments.html");
+  else res.sendFile(__dirname + "/public/pages/musical-instrument.html")
+})
 
 app.get("/courses", function(req, res) {
-
-    con.query('SELECT * FROM Musical_Instrument', function(err, result, fields){
-        if(err) {
-          console.log("errore")
-          res.send(err);
-        }
-        if(result) res.send(result);
-    })
-    con.end();
+  var id = req.query.id;
+  if(id == null) res.sendFile(__dirname + "/public/pages/courses.html");
+  else res.sendFile(__dirname + "/public/pages/course.html");
 })
 
 app.get("/events", function(req, res) {
-  res.sendFile(__dirname + "/public/pages/events.html");
-} )
+  var id = req.query.id;
+  if(id == null) res.sendFile(__dirname + "/public/pages/events.html");
+  else res.sendFile(__dirname + "/public/pages/event.html");
+})
 
 app.get("/contacts", function(req, res) {
   res.sendFile(__dirname + "/public/pages/contacts.html");
-} )
+})
+
+// API
 
 app.get("/api/people", function(req, res) {
   con.query('SELECT * FROM Person', function(err, result, fields){
@@ -65,7 +67,7 @@ app.get("/api/people", function(req, res) {
     }
     if(result) res.send(result);
   })
-} )
+})
 
 app.get("/api/people/:id", function(req, res) {
   id = req.params.id;
@@ -83,7 +85,7 @@ app.get("/api/people/:id", function(req, res) {
   else{
     res.send("Object not found");
   }
-} )
+})
 
 app.get("/api/courses", function(req, res) {
   con.query('SELECT * FROM Course', function(err, result, fields){
@@ -93,7 +95,7 @@ app.get("/api/courses", function(req, res) {
     }
     if(result) res.send(result);
   })
-} )
+})
 
 app.get("/api/courses/:id", function(req, res) {
   id = req.params.id;
@@ -110,7 +112,7 @@ app.get("/api/courses/:id", function(req, res) {
   else{
     res.send("Object not found");
   }
-} )
+})
 
 app.get("/api/events", function(req, res) {
   con.query('SELECT * FROM Event', function(err, result, fields){
@@ -119,7 +121,7 @@ app.get("/api/events", function(req, res) {
     }
     if(result) res.send(result);
   })
-} )
+})
 
 app.get("/api/events/:id", function(req, res) {
   id = req.params.id;
@@ -136,7 +138,7 @@ app.get("/api/events/:id", function(req, res) {
   else{
     res.send("Object not found");
   }
-} )
+})
 
 app.get("/api/musical-instruments", function(req, res) {
   con.query('SELECT * FROM Musical_Instrument', function(err, result, fields){
@@ -146,7 +148,7 @@ app.get("/api/musical-instruments", function(req, res) {
     }
     if(result) res.send(result);
   })
-} )
+})
 
 app.get("/api/musical-instruments/:id", function(req, res) {
   id = req.params.id;
@@ -163,7 +165,7 @@ app.get("/api/musical-instruments/:id", function(req, res) {
   else{
     res.send("Object not found");
   }
-} )
+})
 
 app.get("/api/*", function(req, res){
   res.send("404 API not found");
