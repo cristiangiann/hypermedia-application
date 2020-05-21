@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta name="keywords" content="contacts">
+
+    <title>Contact us</title>
+</head>
+<body>
+    <div id="page-content">
+        <div class="container mt-2">
+            <div class="row col">
+                <h3>Contact us</h3>
+            </div>
+
+            <div class="row mt-3">
+                <form action="/api/send-email" method="post" class="col col-md-7 col-lg-5">
+                    <div class="form-group">
+                        <input type="email" class="form-control custom-form" id="email" name="email" placeholder="Your email">
+                        <label class="sr-only" for="email">Email address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control custom-form" id="subject" name="subject" placeholder="Subject">
+                        <label class="sr-only" for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="body" id="text" class="form-control custom-form" placeholder="Insert your message here" style="height: 150px;"></textarea>
+                        <label for="text" class="sr-only">Insert your text here</label>
+                    </div>
+                    <button class="btn custom-form custom-btn mt-4 float-right" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="row col mt-5">
+                <a href="contacts/where-we-are">Discover where we are</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="../assets/js/favicon.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
+</body>
+</html>
