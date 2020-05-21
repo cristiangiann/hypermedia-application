@@ -1,6 +1,8 @@
 
 design-document/DD.pdf
 design-document/DD.synctex.gz
+node_modules/
+package-lock.json
 .DS_Store
 *.aux
 *.log
