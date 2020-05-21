@@ -1,180 +1,55 @@
-var express = require("express");
-var app = express();
-app.use(express.static('public'));
+'use strict';
 
-const mysql = require('mysql');
-const dotenv = require('dotenv').config();
+var fs = require('fs'),
+    path = require('path'),
+    http = require('http');
 
-var con = mysql.createPool({
-  connectionLimit : process.env.DB_CONLIMIT,
-  host            : process.env.DB_HOST,
-  user            : process.env.DB_USER,
-  password        : process.env.DB_PASSWORD,
-  database        : process.env.DB_DATABASE
-});
+var app = require('connect')();
+var swaggerTools = require('swagger-tools');
+var jsyaml = require('js-yaml');
+var serverPort = 8080;
+var serveStatic = require('serve-static');
 
-function validId(id){
-  var letters = /^[0-9]+$/;
-  if(id.match(letters)) return true;
-  else{
-    console.log("error in id: " + id);
-    return false;
-  }
-}
+let { setupDataLayer } = require("./service/DataLayer");
 
-app.get("/", function(req, res) {
-})
+// swaggerRouter configuration
+var options = {
+  swaggerUi: path.join(__dirname, '/swagger.json'),
+  controllers: path.join(__dirname, './controllers'),
+  useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
+};
 
-app.get("/association", function(req, res) {
-    res.sendFile(__dirname + "/public/pages/association.html");
-})
+// The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
+var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
+var swaggerDoc = jsyaml.safeLoad(spec);
 
-app.get("/people", function(req, res) {
-  var id = req.query.id;
-  if(id == null) res.sendFile(__dirname + "/public/pages/people.html");
-  else res.sendFile(__dirname + "/public/pages/person.html")
-})
+// Initialize the Swagger middleware
+swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
-app.get("/musical-instruments", function(req, res) {
-  var id = req.query.id;
-  if(id == null) res.sendFile(__dirname + "/public/pages/musical-instruments.html");
-  else res.sendFile(__dirname + "/public/pages/musical-instrument.html")
-})
+  // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
+  app.use(middleware.swaggerMetadata());
 
-app.get("/courses", function(req, res) {
-  var id = req.query.id;
-  if(id == null) res.sendFile(__dirname + "/public/pages/courses.html");
-  else res.sendFile(__dirname + "/public/pages/course.html");
-})
+  // Validate Swagger requests
+  app.use(middleware.swaggerValidator());
 
-app.get("/events", function(req, res) {
-  var id = req.query.id;
-  if(id == null) res.sendFile(__dirname + "/public/pages/events.html");
-  else res.sendFile(__dirname + "/public/pages/event.html");
-})
+  // Route validated requests to appropriate controller
+  app.use(middleware.swaggerRouter(options));
 
-app.get("/contacts", function(req, res) {
-  res.sendFile(__dirname + "/public/pages/contacts.html");
-})
+  // Serve the Swagger documents and Swagger UI
+  app.use(middleware.swaggerUi());
 
-// API
-
-app.get("/api/people", function(req, res) {
-  con.query('SELECT * FROM Person', function(err, result, fields){
-    if(err) {
-      console.log("errore")
-      res.send(err);
-    }
-    if(result) res.send(result);
-  })
-})
-
-app.get("/api/people/:id", function(req, res) {
-  id = req.params.id;
-  if(validId(id)){
-    query = "SELECT * FROM Person WHERE id = " + req.params.id;
-    console.log(query);
-    con.query(query, function(err, result, fields){
-      if(err) {
-        console.log("errore")
-        res.send(err);
-      }
-      if(result) res.send(result);
-    })
-  }
-  else{
-    res.send("Object not found");
-  }
-})
-
-app.get("/api/courses", function(req, res) {
-  con.query('SELECT * FROM Course', function(err, result, fields){
-    if(err) {
-      console.log("errore")
-      res.send(err);
-    }
-    if(result) res.send(result);
-  })
-})
-
-app.get("/api/courses/:id", function(req, res) {
-  id = req.params.id;
-  if(validId(id)){
-    query = "SELECT * FROM Course WHERE id = " + req.params.id;
-    con.query(query, function(err, result, fields){
-      if(err) {
-        console.log("errore")
-        res.send(err);
-      }
-      if(result) res.send(result);
-    })
-  }
-  else{
-    res.send("Object not found");
-  }
-})
-
-app.get("/api/events", function(req, res) {
-  con.query('SELECT * FROM Event', function(err, result, fields){
-    if(err) {
-      res.send(err);
-    }
-    if(result) res.send(result);
-  })
-})
-
-app.get("/api/events/:id", function(req, res) {
-  id = req.params.id;
-  if(validId(id)){
-    query = "SELECT * FROM Event WHERE id = " + req.params.id;
-    con.query(query, function(err, result, fields){
-      if(err) {
-        console.log("errore")
-        res.send(err);
-      }
-      if(result) res.send(result);
-    })
-  }
-  else{
-    res.send("Object not found");
-  }
-})
-
-app.get("/api/musical-instruments", function(req, res) {
-  con.query('SELECT * FROM Musical_Instrument', function(err, result, fields){
-    if(err) {
-      console.log("errore")
-      res.send(err);
-    }
-    if(result) res.send(result);
-  })
-})
-
-app.get("/api/musical-instruments/:id", function(req, res) {
-  id = req.params.id;
-  if(validId(id)){
-    query = "SELECT * FROM Musical_Instrument WHERE id = " + id;
-    con.query(query, function(err, result, fields){
-      if(err) {
-        console.log("errore")
-        res.send(err);
-      }
-      if(result) res.send(result);
-    })
-  }
-  else{
-    res.send("Object not found");
-  }
-})
-
-app.get("/api/*", function(req, res){
-  res.send("404 API not found");
-})
-
-app.get("*", function(req, res){
-    res.send("404 not found");
-})
-
-app.listen(3000, process.env.IP, function() {
-    console.log("Sever is listening");
+  app.use(serveStatic(path.join(__dirname + "/public"), {
+    'extensions': ['html']
+  }));
+  app.use(serveStatic(path.join(__dirname, "/public/pages"), {
+    'extensions': ['html']
+  }));
+  
+  setupDataLayer().then( () => {
+    // Start the server
+      http.createServer(app).listen(serverPort, function () {
+        console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+        console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
+      });
+    });
 });
