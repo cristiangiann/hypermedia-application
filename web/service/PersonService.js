@@ -3,7 +3,7 @@
 
 /**
  * List of people
- * LONG DESCRIPTION
+ * All the people who held a course
  *
  * returns List
  **/

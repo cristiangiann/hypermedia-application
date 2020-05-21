@@ -28,7 +28,7 @@ paths:
       tags:
       - "Person"
       summary: "List of people"
-      description: "LONG DESCRIPTION"
+      description: "All the people who held a course"
       operationId: "peopleGET"
       produces:
       - "application/json"
@@ -127,7 +127,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Person"
+              $ref: "#/definitions/MusicalInstrument"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "MusicalInstrument"
@@ -171,7 +171,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/MusicalInstrument"
+              $ref: "#/definitions/Course"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "Course"
