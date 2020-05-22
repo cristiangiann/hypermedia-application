@@ -1,5 +1,20 @@
 'use strict';
 
+let sqlDb;
+var personTable = "Person"
+
+exports.personDbSetup = function(connection) {
+  sqlDb = connection;
+  console.log("Checking if " + personTable + " table exists");
+  return sqlDb.schema.hasTable(personTable).then(exists => {
+    if(!exists) {
+      console.log(personTable + " table does not exists");
+      return false;
+    }else{
+      console.log(personTable + " table exists");
+    }
+  });
+};
 
 /**
  * List of people
@@ -8,33 +23,12 @@
  * returns List
  **/
 exports.peopleGET = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "surname" : "Sinalefe",
-  "image_path" : "/people/pina_sinalefe.jpg",
-  "name" : "Pina",
-  "telephone" : "02 679",
-  "id" : 1,
-  "biography" : "<p>Pina is a 27 years old cinema student, passionate about acting, singing and movies. Since she was 4, she’s been playing musical instruments like the piano and acoustic guitar, while only in the last three years she found interest in old musical instruments from her region.</p>\n<p>Pina joined the Association in 2017 when she was curious on learning more about the putipù founded in her grandma’s basement. Since then, she became first a student then a volountary, teaching music to beginners.</p>\n<p>Today Pina is our youngest teacher, bringing joy and happiness at every event.</p>",
-  "email" : "pina-sinalefe1@tiscali.it"
-}, {
-  "surname" : "Sinalefe",
-  "image_path" : "/people/pina_sinalefe.jpg",
-  "name" : "Pina",
-  "telephone" : "02 679",
-  "id" : 1,
-  "biography" : "<p>Pina is a 27 years old cinema student, passionate about acting, singing and movies. Since she was 4, she’s been playing musical instruments like the piano and acoustic guitar, while only in the last three years she found interest in old musical instruments from her region.</p>\n<p>Pina joined the Association in 2017 when she was curious on learning more about the putipù founded in her grandma’s basement. Since then, she became first a student then a volountary, teaching music to beginners.</p>\n<p>Today Pina is our youngest teacher, bringing joy and happiness at every event.</p>",
-  "email" : "pina-sinalefe1@tiscali.it"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb(personTable)
+  .then(data => {
+    console.log(data);
+    return data;
   });
 }
-
 
 /**
  * Gets a person by id
@@ -44,22 +38,9 @@ exports.peopleGET = function() {
  * returns Person
  **/
 exports.peopleIdGET = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "surname" : "Sinalefe",
-  "image_path" : "/people/pina_sinalefe.jpg",
-  "name" : "Pina",
-  "telephone" : "02 679",
-  "id" : 1,
-  "biography" : "<p>Pina is a 27 years old cinema student, passionate about acting, singing and movies. Since she was 4, she’s been playing musical instruments like the piano and acoustic guitar, while only in the last three years she found interest in old musical instruments from her region.</p>\n<p>Pina joined the Association in 2017 when she was curious on learning more about the putipù founded in her grandma’s basement. Since then, she became first a student then a volountary, teaching music to beginners.</p>\n<p>Today Pina is our youngest teacher, bringing joy and happiness at every event.</p>",
-  "email" : "pina-sinalefe1@tiscali.it"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return sqlDb(personTable)
+    .where('id', id).then(results => {
+      if(results.length == 0) return {};
+      return results[0];
+    });
 }
-

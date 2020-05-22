@@ -1,21 +1,23 @@
 'use strict';
 
 let sqlDb;
+var messageTable = "Message"
+
 
 exports.contactsDbSetup = function(connection) {
   sqlDb = connection;
-  console.log("Checking if the contacts table exists");
-  return sqlDb.schema.hasTable("contacts").then( (exists) => {
+  console.log("Checking if the " + messageTable + " table exists");
+  return sqlDb.schema.hasTable(messageTable).then( (exists) => {
     if(!exists) {
-      console.log("The table contacts does not exist");
-      return sqlDb.schema.createTable("contacts", table => {
+      console.log("The table " + messageTable + " does not exist");
+      return sqlDb.schema.createTable(messageTable, table => {
         table.increments();
         table.text("sender_email");
         table.text("subject");
         table.text("body");
       });
     } else {
-      console.log("The table contacts exists");
+      console.log("The table " + messageTable + " exists");
     }
   });
 };
@@ -36,6 +38,5 @@ exports.send_emailPOST = function(email,subject,body) {
 }
 
 exports.send_emailPOST = function(email,subject,body) {
-  return sqlDb("contacts")
+  return sqlDb(messageTable)
 }
-
