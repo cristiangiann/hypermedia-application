@@ -23,7 +23,12 @@ exports.courseDbSetup = function(connection) {
  * returns List
  **/
 exports.coursesGET = function() {
-  return sqlDb(courseTable);
+  return sqlDb(courseTable)
+  .select('id', 'name', 'image_path')
+  .then(data => {
+    console.log(data);
+    return data;
+  });
 }
 
 /**
@@ -35,7 +40,10 @@ exports.coursesGET = function() {
  **/
 exports.coursesIdGET = function(id) {
   return sqlDb(courseTable)
-  .where('id', id).then(results => {
+  .leftJoin('Musical_Instrument', 'Course.id', '=', 'Musical_Instrument.id')
+  .select('Course.id', 'Course.name', 'Course.info', 'Course.description', 'Course.image_path', 'Musical_Instrument.id as musical_instrument_id',
+    'Musical_Instrument.name as musical_instrument_name', 'Musical_Instrument.image_path as musical_instrument_image_path')
+  .where('Course.id', id).then(results => {
     if(results.length == 0) return {};
     return results[0];
   });
