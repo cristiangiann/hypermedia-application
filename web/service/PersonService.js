@@ -24,6 +24,7 @@ exports.personDbSetup = function(connection) {
  **/
 exports.peopleGET = function() {
   return sqlDb(personTable)
+  .select('id', 'name', 'surname', 'image_path')
   .then(data => {
     console.log(data);
     return data;
@@ -39,8 +40,13 @@ exports.peopleGET = function() {
  **/
 exports.peopleIdGET = function(id) {
   return sqlDb(personTable)
-    .where('id', id).then(results => {
+    .where('Person.id', id)
+    .leftJoin('Course_Instructor', 'Person.id', '=', 'Course_Instructor.person_id')
+    .leftJoin('Course', 'Course_Instructor.course_id', '=', 'Course.id')
+    .select('Person.id', 'Person.name', 'Person.surname', 'Person.biography', 'Person.telephone', 'Person.email',
+      'Person.image_path', 'Course.id', 'Course.image_path as course_image_path' )
+    .then(results => {
       if(results.length == 0) return {};
       return results[0];
-    });
+    })
 }
