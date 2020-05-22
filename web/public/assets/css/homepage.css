@@ -17,6 +17,10 @@
     font-weight: 200;
 }
 
+.carousel-control-next, .carousel-control-prev {
+    width: 10%;
+}
+
 .association-name-badge {
     background: #EEEEEE;
 }
