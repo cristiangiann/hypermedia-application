@@ -82,6 +82,10 @@ a.footer-social-button:hover {
     border: 1px solid #F5DC10;
 }
 
+.custom-btn {
+    background: linear-gradient(#F9F5EC, #EEEEEE);
+}
+
 .nowrap {
     word-wrap: normal !important;
 }
