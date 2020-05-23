@@ -68,8 +68,6 @@ $(document).ready( () =>{
     $("#types-list, #regions-list").change(function() {
         const type = $("#types-list > option:selected").attr("value");
         const region = $("#regions-list > option:selected").attr("value");
-        console.log(type);
-        console.log(region);
         drawInstruments(type, region);
     })
 })
