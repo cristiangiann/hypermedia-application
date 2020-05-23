@@ -97,7 +97,7 @@ exports.relatedInstrumentGET = function(regionId, typeId, instrumentId) {
     .where('italian_region_id', regionId)
     .whereNot('id', instrumentId)
     .orWhere('instrument_type_id', typeId)
-//    .whereNot('id', instrumentId)
+    .whereNot('id', instrumentId)
     .select('id', 'name', 'image_path')
     .then(data => {
       console.log(data);
