@@ -26,10 +26,10 @@ exports.musicalInstrumentDbSetup = function(connection) {
  **/
 exports.instrument_typesGET = function() {
   return sqlDb(typeTableName)
-  .then(data => {
-    console.log(data);
-    return data;
-  });
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
 
 /**
@@ -38,13 +38,13 @@ exports.instrument_typesGET = function() {
  *
  * returns List
  **/
-exports.musical_instrumentsGET = function() {
+exports.musicalInstrumentsGET = function() {
   return sqlDb(instrumentTableName)
-  .select('id', 'name', 'image_path', 'instrument_type_id', 'italian_region_id')
-  .then(data => {
-    console.log(data);
-    return data;
-  });
+    .select('id', 'name', 'image_path', 'instrument_type_id', 'italian_region_id')
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
 
 /**
@@ -54,15 +54,17 @@ exports.musical_instrumentsGET = function() {
  * id Long Musical instrument ID
  * returns MusicalInstrument
  **/
-exports.musical_instrumentsIdGET = function(id) {
+exports.completeMusicalInstrumentByIdGET = function(id) {
   return sqlDb(instrumentTableName)
-  .leftJoin('Italian_Region', 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
-  .leftJoin('Instrument_Type', 'Instrument_Type.id', '=', 'Musical_Instrument.instrument_type_id')
-  .select('Musical_Instrument.id', 'Musical_Instrument.name', 'description', 'history', 'image_path', 'Instrument_Type.name as type', 'Italian_Region.name as region')
-  .where('Musical_Instrument.id', id).then(results => {
-    if(results.length == 0) return {};
-    return results[0];
-  });
+    .leftJoin('Italian_Region', 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
+    .leftJoin('Instrument_Type', 'Instrument_Type.id', '=', 'Musical_Instrument.instrument_type_id')
+    .select('Musical_Instrument.id', 'Musical_Instrument.name', 'description', 'history', 'image_path', 'instrument_type_id', 'italian_region_id', 'Instrument_Type.name as type', 'Italian_Region.name as region')
+    .where('Musical_Instrument.id', id)
+    .then(data => {
+      console.log(data);
+      if(data.length == 0) return {};
+      return data[0];
+    });
 }
 
 /**
@@ -73,8 +75,32 @@ exports.musical_instrumentsIdGET = function(id) {
  **/
 exports.regionsGET = function() {
   return sqlDb(regionTableName)
-  .then(data => {
-    console.log(data);
-    return data;
-  });
+    .then(data => {
+      console.log(data);
+      return data;
+    });
+}
+
+exports.instrumentByIdGET = function(id){
+  return sqlDb('Musical_Instrument')
+    .where('id', id)
+    .select('id', 'name', 'image_path')
+    .then(results => {
+      if(results.length == 0) return {};
+      return results[0];
+    });
+}
+
+exports.relatedInstrumentGET = function(regionId, typeId, instrumentId) {
+  console.log(instrumentId)
+  return sqlDb(instrumentTableName)
+    .where('italian_region_id', regionId)
+    .whereNot('id', instrumentId)
+    .orWhere('instrument_type_id', typeId)
+//    .whereNot('id', instrumentId)
+    .select('id', 'name', 'image_path')
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }

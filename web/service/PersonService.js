@@ -24,11 +24,11 @@ exports.personDbSetup = function(connection) {
  **/
 exports.peopleGET = function() {
   return sqlDb(personTable)
-  .select('id', 'name', 'surname', 'image_path')
-  .then(data => {
-    console.log(data);
-    return data;
-  });
+    .select('id', 'name', 'surname', 'image_path')
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
 
 /**
@@ -38,15 +38,29 @@ exports.peopleGET = function() {
  * id Long Person ID
  * returns Person
  **/
-exports.peopleIdGET = function(id) {
+exports.completePersonByIdGET = function(id) {
   return sqlDb(personTable)
     .where('Person.id', id)
-    .leftJoin('Course_Instructor', 'Person.id', '=', 'Course_Instructor.person_id')
-    .leftJoin('Course', 'Course_Instructor.course_id', '=', 'Course.id')
-    .select('Person.id', 'Person.name', 'Person.surname', 'Person.biography', 'Person.telephone', 'Person.email',
-      'Person.image_path', 'Course.id', 'Course.image_path as course_image_path' )
+    .select('Person.id', 'Person.name', 'Person.surname', 'Person.biography', 'Person.telephone', 'Person.email', 'Person.image_path')
     .then(results => {
       if(results.length == 0) return {};
       return results[0];
     })
+}
+
+exports.personByIdGET = function(id) {
+  return sqlDb(personTable)
+    .where('id', id)
+    .select('id', 'name', 'surname', 'image_path')
+    .then(results => {
+      if(results.length == 0) return {};
+      return results[0];
+    });
+}
+
+exports.peopleByCourseIdGET = function(courseId) {
+  return sqlDb('Course_Instructor')
+    .where('course_id', courseId)
+    .leftJoin('Person', 'Course_Instructor.person_id', '=', 'Person.id')
+    .select('Person.id', 'Person.image_path', 'Person.name', 'Person.surname')
 }
