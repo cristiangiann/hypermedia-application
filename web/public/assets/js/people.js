@@ -8,7 +8,7 @@ function fetchPeople() {
     $.get("/api/people", (data) => {
         data.forEach( person => {
             let personNameSurname = person.name + " " + person.surname;
-            let personImgPath = person.image_path;
+            let personImgPath = "../assets/imgs" + person.image_path;
             let personId = person.id;
 
             let htmlString = 
