@@ -2,6 +2,8 @@
 design-document/DD.pdf
 design-document/DD.synctex.gz
 node_modules/
+.swagger-codegen/
+.swagger-codegen-ignore
 package-lock.json
 .DS_Store
 *.aux

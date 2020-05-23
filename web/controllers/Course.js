@@ -2,6 +2,8 @@
 
 var utils = require('../utils/writer.js');
 var Course = require('../service/CourseService');
+var Person = require('../service/PersonService');
+var MusicalInstrument = require('../service/MusicalInstrumentService');
 
 module.exports.coursesGET = function coursesGET (req, res, next) {
   Course.coursesGET()
@@ -15,9 +17,21 @@ module.exports.coursesGET = function coursesGET (req, res, next) {
 
 module.exports.coursesIdGET = function coursesIdGET (req, res, next) {
   var id = req.swagger.params['id'].value;
-  Course.coursesIdGET(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
+  var coursePromise = Course.completeCourseByIdGET(id);
+  var teacherPromise = Person.peopleByCourseIdGET(id);
+  Promise.all([coursePromise, teacherPromise])
+    .then(function (responses) {
+      var response = responses[0];
+      response['teachers'] = responses[1];
+      if(response.musical_instrument_id != null){
+        MusicalInstrument.instrumentByIdGET(response.musical_instrument_id)
+          .then(function(instrument) {
+            response['musical_instrument'] = instrument;
+            utils.writeJson(res, response);
+          })
+      } else {
+        utils.writeJson(res, response);
+      }
     })
     .catch(function (response) {
       utils.writeJson(res, response);
