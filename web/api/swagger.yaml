@@ -70,25 +70,63 @@ paths:
         "404":
           description: "Person with selected ID not found"
       x-swagger-router-controller: "Person"
-  /events:
+  /nextEvents:
     get:
       tags:
       - "Event"
-      summary: "List of events"
-      description: "All the past and next events organised by Lemon Peel association"
-      operationId: "eventsGET"
+      summary: "List of next events"
+      description: "All next events organised by Lemon Peel association"
+      operationId: "nextEventsGET"
       produces:
       - "application/json"
       parameters: []
       responses:
         "200":
-          description: "List of all the events"
+          description: "List of all the next events"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/EventPreview"
         "404":
           description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Event"
+  /pastEvents:
+    get:
+      tags:
+      - "Event"
+      summary: "List of past events"
+      description: "All past events organised by Lemon Peel association"
+      operationId: "pastEventsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of all the past events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/EventPreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Event"
+  /nextEvent:
+    get:
+      tags:
+      - "Event"
+      summary: "Gets the very next event"
+      description: "Basic information about the next event"
+      operationId: "nextEventGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Very next event organised by Lemon Peel association"
+          schema:
+            $ref: "#/definitions/EventPreview"
+        "404":
+          description: "Event with selected ID not found"
       x-swagger-router-controller: "Event"
   /events/{id}:
     get:

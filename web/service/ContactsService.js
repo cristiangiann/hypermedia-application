@@ -38,5 +38,5 @@ exports.send_emailPOST = function(email,subject,body) {
 }
 
 exports.send_emailPOST = function(email,subject,body) {
-  return sqlDb(messageTable).insert({email: email, subject: subject, body: body, timestamp: Date.now()})
+  return sqlDb(messageTable).insert({email: email, subject: subject, body: body, timestamp: new Date().toISOString()})
 }

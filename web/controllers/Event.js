@@ -5,13 +5,37 @@ var Event = require('../service/EventService');
 var Course = require('../service/CourseService');
 var Person = require('../service/PersonService');
 
-module.exports.eventsGET = function eventsGET (req, res, next) {
-  Event.eventsGET()
+module.exports.nextEventsGET = function eventsGET (req, res, next) {
+  Event.nextEventsGET()
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
+    });
+};
+
+module.exports.pastEventsGET = function eventsGET (req, res, next) {
+  Event.pastEventsGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.nextEventGET = function eventsGET (req, res, next) {
+  Event.nextEventsGET()
+    .then(function (response) {
+      utils.writeJson(res, response.reduce(function(prev, curr) {
+        console.log(prev);
+
+        return prev["date"] < curr["date"] ? prev : curr;
+      }));
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response)
     });
 };
 
