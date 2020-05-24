@@ -1,7 +1,11 @@
 .event-item img {
-    width: 9em;
-    height: 9em;
-    
+    width: inherit;
+    height: auto;
+}
+
+.event-item {
+    padding-bottom: 0.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .event-description {

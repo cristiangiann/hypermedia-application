@@ -17,7 +17,7 @@
         <div class="container mt-3">
             <div class="form-row justify-content-between px-1">
                 <h3 class="col-sm-8">Events</h3>
-                <select class="custom-select custom-form-borders col-auto col-sm-4 col-lg-3">
+                <select class="custom-select custom-form-borders col-auto col-sm-4 col-lg-3" id="month-select">
                     <option value="all-months" selected>Select month</option>
                     <option value="1">January</option>
                     <option value="2">February</option>
@@ -33,39 +33,24 @@
                     <option value="12">December</option>
                 </select>
             </div>
-            <!-- Next events -->
+            <!-- Next events control-->
             <div class="row col mt-2 justify-content-start mx-0">
-                <a href="#collapseNextEvents" class="row " data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseNextEvents">
+                <a href="#collapseNextEvents" class="row" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseNextEvents">
                     <svg class="bi bi-chevron-right" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd">
                     </svg>
                     Next events
                 </a>
             </div>
-            <div class="collapse row col mt-3 show" id="collapseNextEvents">
-                <div class="container" id="next-events-container">
-                    <!-- Event item -->
-                    <div class="row mx-0 px-0 event-item">
-                        <img src="../assets/imgs/event-image.jpg" alt="" class="col-md-2 order-2 order-md-1">
-                        <div class="row col-md-10 order-1 order-md-2 ml-md-2 px-0 event-details">
-                            <div class="row mx-0 event-name text-center"><h3 class="text-center">Presentation of Spring Courses 2020</h3></div>
-                            <div class="row mx-0">
-                                <div class="col-md-1 text-center order-2 order-md-1 px-0 event-date">
-                                    <h2>24</h2>
-                                    <h6>Apr 2020</h6>
-                                </div>
-                                <div class="col-md-11 order-1 order-md-2 event-description">
-                                    Four dollar toast fixie gentrify tattooed freegan PBR&B vape. Tousled disrupt fanny pack, humblebrag af lumbersexual hammock viral. <br> 
-                                        Tbh dreamcatcher jean shorts, 8-bit skateboard selvage kitsch kickstarter gentrify hashtag palo santo. Viral shaman quinoa tumblr literally brooklyn. Cornhole chillwave lomo wolf readymade biodiesel viral small batch. Viral bicycle rights dreamcatcher trust fund lomo tattooed chillwave portland raw denim squid sartorial woke tote bag hella listicle.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Next events section -->
+            <div class="collapse row col mt-3 px-1 mx-1 show" id="collapseNextEvents">
+                <div class="container-fluid" id="next-events-container">
+                    
                 </div>
             </div>
 
-            <!-- Past events -->
-            <div class="row col mt-2 justify-content-start mx-0">
+            <!-- Past events control-->
+            <div class="row col mt-3 justify-content-start mx-0">
                 <a href="#collapsePastEvents" class="row " data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapsePastEvents">
                     <svg class="bi bi-chevron-right" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd">
@@ -74,24 +59,9 @@
                 </a>
             </div>
             <div class="collapse row col mt-3" id="collapsePastEvents">
-                <div class="container" id="next-events-container">
+                <div class="container" id="past-events-container">
                     <!-- Event item -->
-                    <div class="row mx-0 px-0 event-item">
-                        <img src="../assets/imgs/event-image.jpg" alt="" class="col-md-2 order-2 order-md-1">
-                        <div class="row col-md-10 order-1 order-md-2 ml-md-2 px-0 event-details">
-                            <div class="row mx-0 event-name text-center"><h3 class="text-center">Past event of 2020</h3></div>
-                            <div class="row mx-0">
-                                <div class="col-md-1 text-center order-2 order-md-1 px-0 event-date">
-                                    <h2>18</h2>
-                                    <h6>Apr 2020</h6>
-                                </div>
-                                <div class="col-md-11 order-1 order-md-2 event-description">
-                                    Four dollar toast fixie gentrify tattooed freegan PBR&B vape. Tousled disrupt fanny pack, humblebrag af lumbersexual hammock viral. <br> 
-                                        Tbh dreamcatcher jean shorts, 8-bit skateboard selvage kitsch kickstarter gentrify hashtag palo santo. Viral shaman quinoa tumblr literally brooklyn. Cornhole chillwave lomo wolf readymade biodiesel viral small batch. Viral bicycle rights dreamcatcher trust fund lomo tattooed chillwave portland raw denim squid sartorial woke tote bag hella listicle.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             
@@ -104,6 +74,6 @@
     <script src="../assets/js/favicon.js"></script>
     <script src="../assets/js/header.js"></script>
     <script src="../assets/js/footer.js"></script>
-    <script src="../assets/js/collapsible-button"></script>
+    <script src="../assets/js/events.js"></script>
 </body>
 </html>
