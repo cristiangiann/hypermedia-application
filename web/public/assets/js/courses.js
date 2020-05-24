@@ -10,7 +10,7 @@ function fetchCourses() {
         data.forEach( course => {
             const courseID = course.id;
             const courseName = course.name;
-            const courseImgPath = course.image_path;
+            const courseImgPath = "../assets/imgs" + course.image_path;
 
             htmlString += 
             '<a href="course?id="' + courseID + 'class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
