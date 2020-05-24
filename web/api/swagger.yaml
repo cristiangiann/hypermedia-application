@@ -1,7 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: "DESCRIPTION"
+  description: "Design of APIs used inside the Lemon Peel website, used to retrieve\
+    \ information about events, musical instruments, people and courses recorded into\
+    \ the database"
   version: "1.0.0"
   title: "LemonPeel"
   contact:
@@ -13,22 +15,23 @@ host: "ec2-15-161-138-118.eu-south-1.compute.amazonaws.com"
 basePath: "/api"
 tags:
 - name: "Event"
-  description: "Events"
+  description: "Event organised by Lemon Peel association"
 - name: "Course"
-  description: "Events"
+  description: "Musical course about folk instruments, songs and dances organised\
+    \ by Lemon Peel association"
 - name: "Musical instrument"
-  description: "Musical Instruments"
+  description: "Old folk musical instrument used in the traditional italian music"
 - name: "Person"
-  description: "Person"
+  description: "Teacher of some courses"
 - name: "Contacts"
-  description: "Emails"
+  description: "Messages sent to the association"
 paths:
   /people:
     get:
       tags:
       - "Person"
       summary: "List of people"
-      description: "All the people who held a course"
+      description: "All the people who held at least a course"
       operationId: "peopleGET"
       produces:
       - "application/json"
@@ -39,7 +42,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Person"
+              $ref: "#/definitions/PersonPreview"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "Person"
@@ -48,7 +51,7 @@ paths:
       tags:
       - "Person"
       summary: "Gets a person by id"
-      description: "LONG DESCRIPTION"
+      description: "Gets all the information about a teacher and the courses she held"
       operationId: "peopleIdGET"
       produces:
       - "application/json"
@@ -72,18 +75,18 @@ paths:
       tags:
       - "Event"
       summary: "List of events"
-      description: "LONG DESCRIPTION"
+      description: "All the past and next events organised by Lemon Peel association"
       operationId: "eventsGET"
       produces:
       - "application/json"
       parameters: []
       responses:
         "200":
-          description: "People involved in the association"
+          description: "List of all the events"
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Event"
+              $ref: "#/definitions/EventPreview"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "Event"
@@ -92,7 +95,7 @@ paths:
       tags:
       - "Event"
       summary: "Gets an event by id"
-      description: "LONG DESCRIPTION"
+      description: "Information about an event and the courses presented during it"
       operationId: "eventsIdGET"
       produces:
       - "application/json"
@@ -105,7 +108,7 @@ paths:
         format: "int64"
       responses:
         "200":
-          description: "Event organised by the association"
+          description: "Event organised by Lemon Peel association"
           schema:
             $ref: "#/definitions/Event"
         "404":
@@ -116,7 +119,7 @@ paths:
       tags:
       - "Musical instrument"
       summary: "List of Musical Instrument"
-      description: "LONG DESCRIPTION"
+      description: "All the musical instruments that are relevant for Lemon Peel association"
       operationId: "musical_instrumentsGET"
       produces:
       - "application/json"
@@ -127,7 +130,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/MusicalInstrument"
+              $ref: "#/definitions/MusicalInstrumentPreview"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "MusicalInstrument"
@@ -136,7 +139,8 @@ paths:
       tags:
       - "Musical instrument"
       summary: "Gets a musical instrument by id"
-      description: "LONG DESCRIPTION"
+      description: "Information about the selected musical instrument, its course\
+        \ and its related instruments by region and type"
       operationId: "musical_instrumentsIdGET"
       produces:
       - "application/json"
@@ -160,7 +164,7 @@ paths:
       tags:
       - "Course"
       summary: "List of courses"
-      description: "LONG DESCRIPTION"
+      description: "All the courses organised by Lemon Peel association"
       operationId: "coursesGET"
       produces:
       - "application/json"
@@ -171,7 +175,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Course"
+              $ref: "#/definitions/CoursePreview"
         "404":
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "Course"
@@ -180,7 +184,8 @@ paths:
       tags:
       - "Course"
       summary: "Gets a course by id"
-      description: "LONG DESCRIPTION"
+      description: "Gets information about the selected course, the instrument taught\
+        \ and the teachers"
       operationId: "coursesIdGET"
       produces:
       - "application/json"
@@ -203,8 +208,8 @@ paths:
     post:
       tags:
       - "Contacts"
-      summary: "Send a message to the association"
-      description: "LONG DESCRIPTION"
+      summary: "Send message"
+      description: "Send a message to the association"
       operationId: "send_emailPOST"
       produces:
       - "application/json"
@@ -233,7 +238,8 @@ paths:
       tags:
       - "Musical instrument"
       summary: "List of instrument types"
-      description: "LONG DESCRIPTION"
+      description: "List of all the types of the musical instruments that are into\
+        \ the database"
       operationId: "instrument_typesGET"
       produces:
       - "application/json"
@@ -252,8 +258,8 @@ paths:
     get:
       tags:
       - "Musical instrument"
-      summary: "List of italian regions"
-      description: "LONG DESCRIPTION"
+      summary: "List of Italian regions"
+      description: "All the Italian regions and their identifiers"
       operationId: "regionsGET"
       produces:
       - "application/json"
@@ -269,6 +275,29 @@ paths:
           description: "UNESPECTED ERROR"
       x-swagger-router-controller: "MusicalInstrument"
 definitions:
+  PersonPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Pina"
+      surname:
+        type: "string"
+        example: "Sinalefe"
+      image_path:
+        type: "string"
+        example: "/people/pina_sinalefe.jpg"
+    title: "Person Preview"
+    description: "Basic information of a teacher of Lemon Peel association"
+    example:
+      id: 1
+      name: "Pina"
+      surname: "Sinalefe"
+      image_path: "/people/pina_sinalefe.jpg"
   Person:
     type: "object"
     properties:
@@ -301,8 +330,12 @@ definitions:
       image_path:
         type: "string"
         example: "/people/pina_sinalefe.jpg"
+      courses:
+        type: "array"
+        items:
+          $ref: "#/definitions/CoursePreview"
     title: "Person"
-    description: "Person who held a course"
+    description: "Complete information about the selected teacher, including her courses"
     example:
       surname: "Sinalefe"
       image_path: "/people/pina_sinalefe.jpg"
@@ -318,6 +351,61 @@ definitions:
         \ a student then a volountary, teaching music to beginners.</p>\n<p>Today\
         \ Pina is our youngest teacher, bringing joy and happiness at every event.</p>"
       email: "pina-sinalefe1@tiscali.it"
+      courses:
+      - id: 1
+        image_path: "/courses/ocarina.jpg"
+        name: "Ocarina course"
+  EventPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      date:
+        type: "string"
+        example: ""
+      time:
+        type: "string"
+        example: "61200"
+      description:
+        type: "string"
+        example: "<p>Come visit us for the presentation of the new courses held the\
+          \ following spring season! This year the Association has two new teachers\
+          \ who will introduce themselves and the courses they’ll teach.</p><p>Two\
+          \ new courses have been added to the already existing ones, related to,\
+          \ respectively, the ocarina and putipù instruments. Join this event to learn\
+          \ more about them and their  related teaching activities.</p><p>Remember\
+          \ that there’s no participation fee and anyone can attend this event. At\
+          \ the end, a small buffet with networking will be available for all the\
+          \ participants.</p>"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+      organiser_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+    title: "Event Preview"
+    description: "Basic information about an event"
+    example:
+      date: ""
+      image_path: "/events/spring_courses_2020.jpg"
+      name: "Presentation of Spring Courses 2020"
+      organiser_id: 1
+      description: "<p>Come visit us for the presentation of the new courses held\
+        \ the following spring season! This year the Association has two new teachers\
+        \ who will introduce themselves and the courses they’ll teach.</p><p>Two new\
+        \ courses have been added to the already existing ones, related to, respectively,\
+        \ the ocarina and putipù instruments. Join this event to learn more about\
+        \ them and their  related teaching activities.</p><p>Remember that there’\
+        s no participation fee and anyone can attend this event. At the end, a small\
+        \ buffet with networking will be available for all the participants.</p>"
+      id: 1
+      time: "61200"
   Event:
     type: "object"
     properties:
@@ -352,10 +440,16 @@ definitions:
         type: "integer"
         format: "int64"
         example: 1
+      presentedCourses:
+        type: "array"
+        items:
+          $ref: "#/definitions/CoursePreview"
+      organiser:
+        $ref: "#/definitions/PersonPreview"
     title: "Event"
-    description: "Event organized by Lemon Peel association"
+    description: "Complete event organized by Lemon Peel association"
     example:
-      date: ""
+      date: "2020-03-12"
       image_path: "/events/spring_courses_2020.jpg"
       name: "Presentation of Spring Courses 2020"
       organiser_id: 1
@@ -369,6 +463,45 @@ definitions:
         \ buffet with networking will be available for all the participants.</p>"
       id: 1
       time: "61200"
+      presentedCourses:
+      - id: 1
+        name: "Ocarina course"
+        image_path: "/courses/ocarina.jpg"
+      organiser:
+        id: 1
+        name: "Pina"
+        surname: "Sinalefe"
+        image_path: "/people/pina_sinalefe.jpg"
+  MusicalInstrumentPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Ocarina"
+      image_path:
+        type: "string"
+        example: "/instruments/ocarina.jpg"
+      instrument_type_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      italian_region_id:
+        type: "integer"
+        format: "int64"
+        example: 5
+    title: "Musical Intrument Preview"
+    description: "Basic information about an old italian musical instrument that is\
+      \ relevant for Lemon Peel association"
+    example:
+      id: 1
+      image_path: "/instruments/ocarina.jpg"
+      name: "Ocarina"
+      instrument_type_id: 1
+      italian_region_id: 5
   MusicalInstrument:
     type: "object"
     properties:
@@ -414,8 +547,15 @@ definitions:
         type: "integer"
         format: "int64"
         example: 5
+      related_instruments:
+        type: "array"
+        items:
+          $ref: "#/definitions/MusicalInstrumentPreview"
+      course:
+        $ref: "#/definitions/CoursePreview"
     title: "Musical Intrument"
-    description: "Old italian musical instrument that is relevant for Lemon Peel association"
+    description: "Complete information about old italian musical instrument that is\
+      \ relevant for Lemon Peel association"
     example:
       image_path: "/instruments/ocarina.jpg"
       name: "Ocarina"
@@ -440,6 +580,36 @@ definitions:
         \ the body. It is traditionally made from clay or ceramic, but other materials\
         \ are also used—such as plastic, wood, glass, metal, or bone."
       italian_region_id: 5
+      related_instruments:
+      - id: 3
+        name: "Piva"
+        image_path: "/instruments/piva.jpg"
+      - id: 8
+        name: "Müsa"
+        image_path: "/instruments/musa.jpg"
+      course:
+        id: 1
+        image_path: "/courses/Ocarina.jpg"
+        name: "Ocarina course"
+  CoursePreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+    title: "Course Preview"
+    description: "Basic information about a course organised by Lemon Peel association"
+    example:
+      id: 1
+      image_path: "/courses/Oracina.jpg"
+      name: "Ocarina course"
   Course:
     type: "object"
     properties:
@@ -471,8 +641,15 @@ definitions:
         type: "integer"
         format: "int64"
         example: 1
+      teachers:
+        type: "array"
+        items:
+          $ref: "#/definitions/PersonPreview"
+      musical_instrument:
+        $ref: "#/definitions/MusicalInstrumentPreview"
     title: "Course"
-    description: "Musical course organised by Lemon Peel association"
+    description: "Complete information about a musical course organised by Lemon Peel\
+      \ association"
     example:
       image_path: "/events/spring_courses_2020.jpg"
       name: "Presentation of Spring Courses 2020"
@@ -488,6 +665,15 @@ definitions:
       id: 1
       musical_instrument_id: 1
       info: "Every monday at 5PM"
+      teachers:
+      - id: 1
+        image_path: "/people/pina_sinalefe.jpg"
+        name: "Pina"
+        surname: "Sinalefe"
+      musical_instrument:
+        id: 1
+        name: "Ocarina"
+        image_path: "/instruments/ocarina.jpg"
   InstrumentType:
     type: "object"
     properties:
