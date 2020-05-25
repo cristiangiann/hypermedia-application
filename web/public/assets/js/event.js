@@ -16,11 +16,11 @@ function fetchEvent(id) {
         $("#event-organiser-link").attr("href", "/person?id="+event.organiser.id.toString());
         $("#event-organiser-img").attr("src", "../assets/imgs"+event.organiser.image_path);
         $("#event-organiser-name").text(event.organiser.name + " " + event.organiser.surname);
-        $("#presented-courses").html(getPresentedCourses(event));
+        $("#presented-courses").html(getPresentedCoursesHTML(event));
     });
 }
 
-function getPresentedCourses(event) {
+function getPresentedCoursesHTML(event) {
     let htmlString = "";
     event.presentedCourses.forEach(course => {
         htmlString += 
