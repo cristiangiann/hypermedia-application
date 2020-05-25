@@ -22,25 +22,10 @@ exports.eventDbSetup = function(connection) {
  *
  * returns List
  **/
-exports.eventsGET = function() {
-  return sqlDb(eventTable)
-  .whereNot('date', '<', new Date().toISOString())
-  .select('id', 'name', 'date', 'time', 'description', 'image_path', 'organiser_id')
-  .then(data => {
-    console.log(data);
-    return data;
-  });
-}
-
-/**
- * List of events
- * LONG DESCRIPTION
- *
- * returns List
- **/
 exports.nextEventsGET = function() {
   return sqlDb(eventTable)
     .whereNot('date', '<', new Date().toISOString())
+    .orderBy('date')
     .select('id', 'name', 'date', 'time', 'description', 'image_path', 'organiser_id')
     .then(data => {
       console.log(data);
@@ -57,6 +42,7 @@ exports.nextEventsGET = function() {
 exports.pastEventsGET = function() {
   return sqlDb(eventTable)
     .where('date', '<', new Date().toISOString())
+    .orderBy('date', 'DESC')
     .select('id', 'name', 'date', 'time', 'description', 'image_path', 'organiser_id')
     .then(data => {
       console.log(data);
