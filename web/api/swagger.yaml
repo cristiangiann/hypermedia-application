@@ -251,24 +251,26 @@ paths:
       operationId: "send_emailPOST"
       produces:
       - "application/json"
+      consumes:
+        - "application/x-www-form-urlencoded"
       parameters:
       - name: "email"
-        in: "header"
+        in: "formData"
         description: "email address of the sender"
         required: true
         type: "string"
       - name: "subject"
-        in: "header"
+        in: "formData"
         description: "subject of the message"
         required: true
         type: "string"
       - name: "body"
-        in: "header"
+        in: "formData"
         description: "body of the message"
         required: true
         type: "string"
       responses:
-        "200":
+        "204":
           description: "Message sent"
       x-swagger-router-controller: "Contacts"
   /instrument-types:

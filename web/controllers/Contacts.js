@@ -9,6 +9,9 @@ module.exports.send_emailPOST = function send_emailPOST (req, res, next) {
   var body = req.swagger.params['body'].value;
   Contacts.send_emailPOST(email,subject,body)
     .then(function (response) {
+		console.log(response);
+	  res.status(204);
+	  		console.log(res);
       utils.writeJson(res, response);
     })
     .catch(function (response) {
