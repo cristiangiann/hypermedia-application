@@ -10,7 +10,8 @@ function fetchEvent(id) {
         const eventImgPath = "../assets/imgs" + event.image_path;
 
         $("#event-image").attr("src", eventImgPath);
-        $("head > title, #event-title").html(event.name);
+        $("head > title").html(event.name + " - Lemon Peel Association");
+        $("#event-title").html(event.name);
         $("#event-description").html(event.description);
         $("#event-details").text(eventDate.toDateString() + " at " + event.time.substring(0, 5));
         $("#event-organiser-link").attr("href", "/person?id="+event.organiser.id.toString());

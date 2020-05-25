@@ -8,7 +8,8 @@ function fetchCourse(id) {
     $.get(getURL, (course) => {
         const courseImgPath = "../assets/imgs" + course.image_path;
 
-        $("head > title, #course-title").html(course.name);
+        $("head > title").html(course.name + " - Lemon Peel Association");
+        $("#course-title").html(course.name);
         $("#course-image").attr("src", courseImgPath);
         $("#course-description").html(course.description);
         $("#course-details").text(course.info);

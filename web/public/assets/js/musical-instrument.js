@@ -15,7 +15,8 @@ function fetchInstrument(id) {
         const courseID = instrument.course.id;
         const relatedInstruments = instrument.related_instruments;
 
-        $("head > title, #instrument-title").text(instrumentName);
+        $("head > title").html(instrumentName + " - Lemon Peel Association");
+        $("#instrument-title").text(instrumentName);
         $("#instrument-image").attr("src", instrumentImgPath);
         $("#instrument-image").attr("alt", instrumentName);
         $("#instrument-description").html(instrumentDescription);

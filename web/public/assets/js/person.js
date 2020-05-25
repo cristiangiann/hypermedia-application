@@ -13,7 +13,8 @@ function fetchPerson(id) {
         const personEmail = person.email;
         const personBiography = person.biography;
 
-        $("head > title, #person-name").text(personNameSurname);
+        $("head > title").html(personNameSurname + " - Lemon Peel Association");
+        $("#person-name").text(personNameSurname);
         $("#person-image").attr("src", personImgPath);
         $("#person-image").attr("alt", personNameSurname);
         $("#person-bio").html(personBiography);
