@@ -9,7 +9,7 @@ function fetchPerson(id) {
     $.get(getURL, (person) => {
 
         const personNameSurname = person.name + " " + person.surname;
-        const personImgPath = person.image_path;
+        const personImgPath = "../assets/imgs" + person.image_path;
         const personTel = person.telephone;
         const personEmail = person.email;
         const personBiography = person.biography;
