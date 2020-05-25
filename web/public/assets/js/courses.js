@@ -8,12 +8,12 @@ function fetchCourses() {
     $.get("/api/courses", (data) => {
         let htmlString = "";
         data.forEach( course => {
-            const courseID = course.id;
+            const courseURL = "/course?id=" + course.id.toString();
             const courseName = course.name;
             const courseImgPath = "../assets/imgs" + course.image_path;
 
             htmlString += 
-            '<a href="course?id="' + courseID + 'class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
+            '<a href="' + courseURL + '"' + 'class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
             '   <div class="course-item my-2 card border-0 bg-transparent">' +
             '       <img src="'+ courseImgPath +'" class="card-img-top" alt="' + courseName + '">' +
             '       <div class="card-body p-0 text-center">' +
