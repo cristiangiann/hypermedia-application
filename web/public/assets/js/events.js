@@ -17,19 +17,24 @@ function fetchEvents() {
     $.get(getPastEventsURL, (data) => {
         data.forEach(ev => {ev.date = new Date(ev.date);});
         pastEvents = data;
-        drawPastEvents();
+        drawPastEvents("all-months");
     })
 }
 
 function drawNextEvents(filter) {
-    let filteredArray = (filter === "all-months") ? nextEvents : nextEvents.filter(event => event.date.getMonth() == filter-1);
+    let filteredArray = filterEventsByMonth(nextEvents, filter);
     let htmlString = drawEvents(filteredArray);
     $("#next-events-container").html(htmlString);
 }
 
-function drawPastEvents() {
-    let htmlString = drawEvents(pastEvents);
+function drawPastEvents(filter) {
+    let filteredArray = filterEventsByMonth(pastEvents, filter);
+    let htmlString = drawEvents(filteredArray);
     $("#past-events-container").html(htmlString);
+}
+
+function filterEventsByMonth(events, month) {
+    return (month === "all-months") ? events : events.filter(event => event.date.getMonth() == month-1);
 }
 
 function drawEvents(events) {
@@ -79,5 +84,6 @@ $(document).ready( () =>{
     $("#month-select").change(function() {
         let month = $("#month-select > option:selected").attr("value");
         drawNextEvents(month);
+        drawPastEvents(month);
     })
 })
