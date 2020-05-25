@@ -35,7 +35,7 @@ function drawPastEvents() {
 function drawEvents(events) {
     let htmlString = "";
     events.forEach( event => {
-        const eventID = event.id;
+        const eventURL = "/event?id=" + event.id.toString();
         const eventName = event.name;
         const eventDate = event.date;
         const eventDescription = event.description;
@@ -51,13 +51,13 @@ function drawEvents(events) {
                     '<div class="row mx-0 event-item align-items-center">' +
                     '    <!-- Image -->' +
                     '    <div class="col-md-2 order-2 order-md-1 px-3 px-sm-0">' +
-                    '        <img src="' + eventImgPath + '" alt="' + eventName + '">' +
+                    '        <img src="' + eventImgPath + '" alt="' + eventName + '" loading="lazy">' +
                     '    </div>' +
                     '    <!-- Title, date and description -->' +
                     '    <div class="col-md-10 order-1 order-md-2 event-details pl-md-1">' +
                     '        <div class="container-fluid">' +
                     '            <div class="row mx-0 event-name text-center">' +
-                    '                <h3 class="text-center">' + eventName + '</h3>' +
+                    '                <a href="' + eventURL + '"> <h3 class="text-center">' + eventName + '</h3> </a>' +
                     '            </div>' +
                     '            <div class="row mx-0 mt-lg-2">' +
                     '                <div class="col-md-1 text-center order-1 px-0 align-self-center event-date">' +
