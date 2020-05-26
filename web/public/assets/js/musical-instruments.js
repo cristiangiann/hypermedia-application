@@ -1,18 +1,24 @@
 "use strict";
 
 
-let instruments = [];
+let instruments = sessionStorage.instruments;
+let instrumentTypes = sessionStorage.instrumentTypes;
+let regions = sessionStorage.regions;
 
 // Fetching instruments
 function fetchInstruments() {
     const getURL = "/api/musical-instruments";
-    // AJAX call
-    $.get(getURL, (data) => {
-        data.forEach( instrument => {
-            instruments.push(instrument);
+    if (instruments == null) {
+        // AJAX call
+        $.get(getURL, (data) => {
+            instruments = data;
+            sessionStorage.instruments = JSON.stringify(instruments);
+            drawInstruments("all-types", "all-regions");
         });
+    } else {
+        instruments = JSON.parse(instruments);
         drawInstruments("all-types", "all-regions");
-    });
+    }
 }
 
 function drawInstruments(type, region) {
@@ -37,27 +43,49 @@ function drawInstruments(type, region) {
 // Fetching Italian Regions from APIs
 function fetchRegions() {
     const getURL = "/api/regions";
-    // AJAX call
-    $.get(getURL, (data) => {
-        let htmlString = "";
-        data.forEach( region => {
-            htmlString += '<option value="' + region.id.toString() +'">' + region.name + '</option>';
+    if (regions == null) {
+        // AJAX call
+        $.get(getURL, (data) => {
+            regions = data;
+            sessionStorage.regions = JSON.stringify(regions);
+            drawRegions();
         });
-        $("#regions-list").append(htmlString);
+    } else {
+        regions = JSON.parse(regions);
+        drawRegions();
+    }
+}
+
+function drawRegions() {
+    let htmlString = "";
+    regions.forEach( region => {
+        htmlString += '<option value="' + region.id.toString() +'">' + region.name + '</option>';
     });
+    $("#regions-list").append(htmlString);
 }
 
 // Fetching instrument types
 function fetchInstrumentTypes() {
     const getURL = "/api/instrument-types"
-    // AJAX call
-    $.get(getURL, (data) => {
-        let htmlString = "";
-        data.forEach( type => {
-            htmlString += '<option value="' + type.id.toString() + '">' + type.name + '</option>';
+    if (instrumentTypes == null) {
+        // AJAX call
+        $.get(getURL, (data) => {
+            instrumentTypes = data;
+            sessionStorage.instrumentTypes = JSON.stringify(instrumentTypes);
+            drawInstrumentTypes();
         });
-        $("#types-list").append(htmlString);
+    } else {
+        instrumentTypes = JSON.parse(instrumentTypes);
+        drawInstrumentTypes();
+    }
+}
+
+function drawInstrumentTypes() {
+    let htmlString = "";
+    instrumentTypes.forEach( type => {
+        htmlString += '<option value="' + type.id.toString() + '">' + type.name + '</option>';
     });
+    $("#types-list").append(htmlString);
 }
 
 $(document).ready( () =>{
