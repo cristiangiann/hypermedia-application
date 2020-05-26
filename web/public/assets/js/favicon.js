@@ -1,3 +1,6 @@
+"use strict";
+
+
 $(document).ready(function () {
     $("head").append("<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/assets/favicon_io/apple-touch-icon.png\"\>");
     $("head").append("<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicon_io/favicon-32x32.png\">");

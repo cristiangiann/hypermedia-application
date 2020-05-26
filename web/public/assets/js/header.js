@@ -1,3 +1,6 @@
+"use strict";
+
+
 let addHeader = function(completionHandler = function() {}) {
     $.get("../../pages/header.html", function (data) {
         $("#page-content").prepend("<!-- Content -->\n");
