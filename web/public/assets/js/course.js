@@ -14,7 +14,15 @@ function fetchCourse(id) {
         $("#course-description").html(course.description);
         $("#course-details").text(course.info);
         $("#teachers").append(getTeachersHTML(course.teachers));
-        $("#instrument").append(getMusicalInstrumentHTML(course.musical_instrument));
+
+        if (course.musical_instrument_id !== null) {
+            $("#instrument").append(getMusicalInstrumentHTML(course.musical_instrument));
+        } else {
+            // hide the section
+            $("#discover-instrument-section").addClass("d-none");
+            $("#teachers-section").addClass("pl-0");
+            console.log("hidden")
+        }
     });
 }
 
