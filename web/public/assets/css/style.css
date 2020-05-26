@@ -78,6 +78,18 @@ a.footer-social-button:hover {
     border-color: #A2AEBB;
 }
 
+.btn-info {
+	color: #fff;
+	background-color: #326273;
+	border-color: #326273;
+}
+
+.btn-info:hover {
+	color: #fff;
+	background-color: #5C9EAD;
+	border-color: #5C9EAD;
+}
+
 .custom-form-borders {
     border: 1px solid #F5DC10;
 }
