@@ -10,7 +10,7 @@ module.exports.instrument_typesGET = function instrument_typesGET (req, res, nex
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -20,7 +20,7 @@ module.exports.musical_instrumentsGET = function musical_instrumentsGET (req, re
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -30,17 +30,21 @@ module.exports.musical_instrumentsIdGET = function musical_instrumentsIdGET (req
   var coursePromise = Course.courseByInstrumentIdGET(id)
   Promise.all([musicalInstrumentPromise, coursePromise])
     .then(function (responses) {
-      var response = responses[0];
-      response['course'] = responses[1];
-      MusicalInstrument.relatedInstrumentGET(response.italian_region_id, response.instrument_type_id, id)
-        .then(function(relatedInstruments) {
-          response['related_instruments'] = relatedInstruments;
-          utils.writeJson(res, response);
-        })
+      if(responses[0]['id'] == id){
+        var response = responses[0];
+        response['course'] = responses[1];
+        MusicalInstrument.relatedInstrumentGET(response.italian_region_id, response.instrument_type_id, id)
+          .then(function(relatedInstruments) {
+            response['related_instruments'] = relatedInstruments;
+            utils.writeJson(res, response);
+          })
+      } else {
+        utils.writeJson(res, responses[0], 404);
+      }
     })
     .catch(function (response) {
       console.log('error')
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -50,6 +54,6 @@ module.exports.regionsGET = function regionsGET (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };

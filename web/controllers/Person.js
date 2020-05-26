@@ -10,7 +10,7 @@ module.exports.peopleGET = function peopleGET (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -20,11 +20,15 @@ module.exports.peopleIdGET = function peopleIdGET (req, res, next) {
   var teacherOfPromise = Course.courseByPeopleIdGET(id);
   Promise.all([personPromise, teacherOfPromise])
     .then(function (responses) {
-      var response = responses[0];
-      response['courses'] = responses[1];
-      utils.writeJson(res, response);
+      if(responses[0]['id'] == id){
+        var response = responses[0];
+        response['courses'] = responses[1];
+        utils.writeJson(res, response);
+      } else {
+        utils.writeJson(res, responses[0], 404);
+      }
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };

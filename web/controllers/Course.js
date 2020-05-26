@@ -21,19 +21,23 @@ module.exports.coursesIdGET = function coursesIdGET (req, res, next) {
   var teacherPromise = Person.peopleByCourseIdGET(id);
   Promise.all([coursePromise, teacherPromise])
     .then(function (responses) {
-      var response = responses[0];
-      response['teachers'] = responses[1];
-      if(response.musical_instrument_id != null){
-        MusicalInstrument.instrumentByIdGET(response.musical_instrument_id)
-          .then(function(instrument) {
-            response['musical_instrument'] = instrument;
-            utils.writeJson(res, response);
-          })
+      if(responses[0]['id'] == id){
+        var response = responses[0];
+        response['teachers'] = responses[1];
+        if(response.musical_instrument_id != null){
+          MusicalInstrument.instrumentByIdGET(response.musical_instrument_id)
+            .then(function(instrument) {
+              response['musical_instrument'] = instrument;
+              utils.writeJson(res, response);
+            })
+        } else {
+          utils.writeJson(res, response);
+        }
       } else {
-        utils.writeJson(res, response);
+        utils.writeJson(res, responses[0], 404);
       }
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };

@@ -11,7 +11,7 @@ module.exports.nextEventsGET = function eventsGET (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -21,7 +21,7 @@ module.exports.pastEventsGET = function eventsGET (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -29,13 +29,11 @@ module.exports.nextEventGET = function eventsGET (req, res, next) {
   Event.nextEventsGET()
     .then(function (response) {
       utils.writeJson(res, response.reduce(function(prev, curr) {
-        console.log(prev);
-
         return prev["date"] < curr["date"] ? prev : curr;
       }));
     })
     .catch(function (response) {
-      utils.writeJson(res, response)
+      utils.writeJson(res, response, 500)
     });
 };
 
@@ -45,16 +43,20 @@ module.exports.eventsIdGET = function eventsIdGET (req, res, next) {
   var presentedCoursesPromise = Course.coursesByEventIdGET(id);
   Promise.all([eventPromise, presentedCoursesPromise])
     .then(function (responses) {
-      var response = responses[0];
-      response['presentedCourses'] = responses[1];
-      Person.personByIdGET(response.organiser_id)
-        .then(function(organiser) {
-          response['organiser'] = organiser;
-          utils.writeJson(res, response);
-          console.log(response);
-        })
+      if(responses[0]['id'] == id){
+        var response = responses[0];
+        response['presentedCourses'] = responses[1];
+        Person.personByIdGET(response.organiser_id)
+          .then(function(organiser) {
+            response['organiser'] = organiser;
+            utils.writeJson(res, response);
+            console.log(response);
+          })
+      } else {
+        utils.writeJson(res, responses[0], 404);
+      }
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
