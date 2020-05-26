@@ -5,7 +5,8 @@ function fillNextEventSection() {
     const getURL = "/api/nextEvent";
     $.get(getURL, event => {
         const eventURL = "/event?id=" + event.id.toString();
-        const eventImgPath = "/assets/imgs" + event.image_path;
+		const imageExtension = event.image_path.split(".")[1];
+		const eventImgPath = "/assets/imgs" + event.image_path.split(".")[0] + "_large." + imageExtension;
         const eventDate = new Date(event.date);
 
         $("#next-event-a-tag").attr("href", eventURL);
