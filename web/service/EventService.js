@@ -1,7 +1,7 @@
 'use strict';
 
 let sqlDb;
-var eventTable = "Event"
+var eventTable = "Event";
 
 exports.eventDbSetup = function(connection) {
   sqlDb = connection;
@@ -17,8 +17,8 @@ exports.eventDbSetup = function(connection) {
 };
 
 /**
- * List of events
- * LONG DESCRIPTION
+ * List of next events
+ * All next events organised by Lemon Peel association
  *
  * returns List
  **/
@@ -34,8 +34,8 @@ exports.nextEventsGET = function() {
 }
 
 /**
- * List of events
- * LONG DESCRIPTION
+ * List of past events
+ * All past events organised by Lemon Peel association
  *
  * returns List
  **/
@@ -52,7 +52,7 @@ exports.pastEventsGET = function() {
 
 /**
  * Gets an event by id
- * LONG DESCRIPTION
+ * All the information about the selected event
  *
  * id Long Event ID
  * returns Event
@@ -65,14 +65,4 @@ exports.completeEventByIdGET = function(id) {
       if(results.length == 0) return {};
       return results[0];
   });
-}
-
-exports.eventOrganiserGET = function(id) {
-  return sqlDb('Person')
-    .where('id', id)
-    .select('id', 'name', 'surname', 'image_path')
-    .then(results => {
-      if(results.length == 0) return {};
-      return results[0];
-    });
 }

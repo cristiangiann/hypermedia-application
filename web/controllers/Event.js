@@ -28,9 +28,7 @@ module.exports.pastEventsGET = function eventsGET (req, res, next) {
 module.exports.nextEventGET = function eventsGET (req, res, next) {
   Event.nextEventsGET()
     .then(function (response) {
-      utils.writeJson(res, response.reduce(function(prev, curr) {
-        return prev["date"] < curr["date"] ? prev : curr;
-      }));
+      utils.writeJson(res, response[0]);
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500)
