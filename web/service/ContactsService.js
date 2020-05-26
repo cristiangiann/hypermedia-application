@@ -23,8 +23,8 @@ exports.contactsDbSetup = function(connection) {
 };
 
 /**
+ * Send a message
  * Send a message to the association
- * LONG DESCRIPTION
  *
  * email String email address of the sender
  * subject String subject of the message

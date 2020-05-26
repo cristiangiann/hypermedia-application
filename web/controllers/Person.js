@@ -17,7 +17,7 @@ module.exports.peopleGET = function peopleGET (req, res, next) {
 module.exports.peopleIdGET = function peopleIdGET (req, res, next) {
   var id = req.swagger.params['id'].value;
   var personPromise = Person.completePersonByIdGET(id);
-  var teacherOfPromise = Course.courseByPeopleIdGET(id);
+  var teacherOfPromise = Course.coursesByPeopleIdGET(id);
   Promise.all([personPromise, teacherOfPromise])
     .then(function (responses) {
       if(responses[0]['id'] == id){

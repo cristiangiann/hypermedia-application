@@ -18,7 +18,7 @@ exports.personDbSetup = function(connection) {
 
 /**
  * List of people
- * All the people who held a course
+ * All the people who held at least a course
  *
  * returns List
  **/
@@ -33,7 +33,7 @@ exports.peopleGET = function() {
 
 /**
  * Gets a person by id
- * LONG DESCRIPTION
+ * Gets all the information about the selected teacher
  *
  * id Long Person ID
  * returns Person
@@ -48,6 +48,13 @@ exports.completePersonByIdGET = function(id) {
     })
 }
 
+/**
+ * Gets a person by id
+ * Gets basic information about the selected person
+ *
+ * id Long Person ID
+ * returns Person preview
+ **/
 exports.personByIdGET = function(id) {
   return sqlDb(personTable)
     .where('id', id)
@@ -58,6 +65,13 @@ exports.personByIdGET = function(id) {
     });
 }
 
+/**
+ * Gets people by Course id
+ * Gets basic information about the people who teach a specific course
+ *
+ * id Long Course ID
+ * returns List
+ **/
 exports.peopleByCourseIdGET = function(courseId) {
   return sqlDb('Course_Instructor')
     .where('course_id', courseId)

@@ -20,7 +20,7 @@ exports.musicalInstrumentDbSetup = function(connection) {
 
 /**
  * List of instrument types
- * LONG DESCRIPTION
+ * List of all the types of the musical instruments that are into the database
  *
  * returns List
  **/
@@ -34,7 +34,7 @@ exports.instrument_typesGET = function() {
 
 /**
  * List of Musical Instrument
- * LONG DESCRIPTION
+ * Preview of all the musical instruments that are relevant for Lemon Peel association
  *
  * returns List
  **/
@@ -49,7 +49,7 @@ exports.musicalInstrumentsGET = function() {
 
 /**
  * Gets a musical instrument by id
- * LONG DESCRIPTION
+ * All the information about the selected musical instrument, with region and type
  *
  * id Long Musical instrument ID
  * returns MusicalInstrument
@@ -69,7 +69,7 @@ exports.completeMusicalInstrumentByIdGET = function(id) {
 
 /**
  * List of italian regions
- * LONG DESCRIPTION
+ * All the Italian regions and their identifiers
  *
  * returns List
  **/
@@ -81,6 +81,13 @@ exports.regionsGET = function() {
     });
 }
 
+/**
+ * Gets an instrument by id
+ * Preview of the selected Musical Instrument
+ *
+ * id Long MusicalInstrument ID
+ * returns MusicalInstrument preview
+ **/
 exports.instrumentByIdGET = function(id){
   return sqlDb('Musical_Instrument')
     .where('id', id)
@@ -91,6 +98,15 @@ exports.instrumentByIdGET = function(id){
     });
 }
 
+/**
+ * Gets the related musical instrument of an instrument
+ * Preview of the musical instrument that are similar (by type or region) a selected one
+ *
+ * id Long Region ID
+ * id Long Type ID
+ * id Long MusicalInstrument ID
+ * returns List
+ **/
 exports.relatedInstrumentGET = function(regionId, typeId, instrumentId) {
   console.log(instrumentId)
   return sqlDb(instrumentTableName)

@@ -12,6 +12,6 @@ module.exports.send_emailPOST = function send_emailPOST (req, res, next) {
       utils.writeJson(res, response, 204);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };

@@ -18,7 +18,7 @@ exports.courseDbSetup = function(connection) {
 
 /**
  * List of courses
- * LONG DESCRIPTION
+ * All the courses organised by Lemon Peel association
  *
  * returns List
  **/
@@ -33,7 +33,7 @@ exports.coursesGET = function() {
 
 /**
  * Gets a course by id
- * LONG DESCRIPTION
+ * Gets information about the selected course
  *
  * id Long Course ID
  * returns Course
@@ -48,6 +48,13 @@ exports.completeCourseByIdGET = function(id) {
     });
 }
 
+/**
+ * Gets a course by Instrument id
+ * Gets basic information about the course of a specific musical instrument
+ *
+ * id Long Musical Instrument ID
+ * returns Course
+ **/
 exports.courseByInstrumentIdGET = function(instrumentId) {
   return sqlDb('Course')
     .where('musical_instrument_id', instrumentId)
@@ -59,6 +66,13 @@ exports.courseByInstrumentIdGET = function(instrumentId) {
     });
 }
 
+/**
+ * Gets a course by Event id
+ * Gets basic information about the course presented during the selected event
+ *
+ * id Long Event ID
+ * returns Course
+ **/
 exports.coursesByEventIdGET = function(eventId){
   return sqlDb('Course_Presentation')
     .where('event_id', eventId)
@@ -66,7 +80,14 @@ exports.coursesByEventIdGET = function(eventId){
     .select('id', 'name', 'image_path');
 }
 
-exports.courseByPeopleIdGET = function(personId) {
+/**
+ * Gets courses by Person id
+ * Gets basic information about the courses taught by a specific person
+ *
+ * id Long Person ID
+ * returns List
+ **/
+exports.coursesByPeopleIdGET = function(personId) {
   return sqlDb('Course_Instructor')
     .where('person_id', personId)
     .leftJoin('Course', 'Course_Instructor.course_id', '=', 'Course.id')
