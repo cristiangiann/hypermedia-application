@@ -4,6 +4,8 @@
 let instruments = sessionStorage.instruments;
 let instrumentTypes = sessionStorage.instrumentTypes;
 let regions = sessionStorage.regions;
+const allTypesValue = "all-types";
+const allRegionsValue = "all-regions";
 
 // Fetching instruments
 function fetchInstruments() {
@@ -13,31 +15,30 @@ function fetchInstruments() {
         $.get(getURL, (data) => {
             instruments = data;
             sessionStorage.instruments = JSON.stringify(instruments);
-            drawInstruments("all-types", "all-regions");
+            drawInstruments(allTypesValue, allRegionsValue);
         });
     } else {
         instruments = JSON.parse(instruments);
-        drawInstruments("all-types", "all-regions");
+        drawInstruments(allTypesValue, allRegionsValue);
     }
 }
 
 function drawInstruments(type, region) {
-    let filteredArray = (type === "all-types") ? instruments : instruments.filter(instrument => (instrument.instrument_type_id == type));
-        filteredArray = (region === "all-regions") ? filteredArray : filteredArray.filter(instrument => (instrument.italian_region_id == region));
-    let htmlString = "";
+    let filteredArray = (type === allTypesValue) ? instruments : instruments.filter(instrument => (instrument.instrument_type_id == type));
+        filteredArray = (region === allRegionsValue) ? filteredArray : filteredArray.filter(instrument => (instrument.italian_region_id == region)); 
+    
+    let template = $("#instrument-item").html();
 
     filteredArray.forEach( instrument => {
-        htmlString += 
-        '<a href="/musical-instrument?id=' + instrument.id.toString() + '" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
-        '    <div class="course-item my-2 card border-0 bg-transparent">' +
-        '        <img src="../assets/imgs' + instrument.image_path + '" class="card-img-top" alt="' + instrument.name + '">' +
-        '        <div class="card-body p-0 text-center">' +
-        '            <h5 class="card-text">' + instrument.name +'</h5>' +
-        '        </div>' +
-        '    </div>' +
-        '</a>';
+        let $row = $(template);
+        let $img = $row.find("img")
+        $row.find("a").attr("href", "/musical-instrument?id="+instrument.id.toString());
+        $row.find("h5").text(instrument.name);
+        $img.attr("src", "../assets/imgs" + instrument.image_path);
+        $img.attr("alt", instrument.name);
+
+        $("#instruments-section").append($row);
     });
-    $("#instruments-section").html(htmlString);
 }
 
 // Fetching Italian Regions from APIs
@@ -57,11 +58,14 @@ function fetchRegions() {
 }
 
 function drawRegions() {
-    let htmlString = "";
+    let template = $("#select-rows").html();
+
     regions.forEach( region => {
-        htmlString += '<option value="' + region.id.toString() +'">' + region.name + '</option>';
+        let $row = $(template);
+        $row.find("option").attr("value", region.id.toString());
+        $row.text(region.name);
+        $("#regions-list").append($row);
     });
-    $("#regions-list").append(htmlString);
 }
 
 // Fetching instrument types
@@ -81,11 +85,14 @@ function fetchInstrumentTypes() {
 }
 
 function drawInstrumentTypes() {
-    let htmlString = "";
+    let template = $("#select-rows").html();
+
     instrumentTypes.forEach( type => {
-        htmlString += '<option value="' + type.id.toString() + '">' + type.name + '</option>';
+        let $row = $(template);
+        $row.find("option").attr("value", type.id.toString());
+        $row.text(type.name);
+        $("#types-list").append($row);
     });
-    $("#types-list").append(htmlString);
 }
 
 $(document).ready( () =>{
