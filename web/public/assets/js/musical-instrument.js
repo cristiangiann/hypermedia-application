@@ -12,7 +12,7 @@ function fetchInstrument(id) {
         const instrumentDescription = instrument.description;
         const instrumentHistory = instrument.history;
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
-        const courseID = instrument.course.id.toString();
+        const courseID = instrument.course.id;
         const relatedInstruments = instrument.related_instruments;
 
         $("head > title").html(instrumentName + " - Lemon Peel Association");
@@ -22,7 +22,7 @@ function fetchInstrument(id) {
         $("#instrument-description").html(instrumentDescription);
         $("#instrument-history").html(instrumentHistory);
         $("#related-instruments").html(getRelatedMusicalInstrumentsHTML(relatedInstruments));
-        if (courseID !== null || courseID !== undefined) $("#instrument-course-link").html('<a href="/course?id=' + courseID + '" type="button" class="btn btn-info" >Go to course</a>');
+        if (courseID !== null && courseID !== undefined) $("#instrument-course-link").html('<a href="/course?id=' + courseID.toString() + '" type="button" class="btn btn-info" >Go to course</a>');
     });
 }
 
