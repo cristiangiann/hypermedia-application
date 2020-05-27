@@ -32,7 +32,7 @@ function drawTeachersSection(teachers) {
         const teacherURL = "/person?id=" + teacher.id.toString();
         const teacherImgPath = "../assets/imgs" + teacher.image_path;
         const teacherNameSurname = teacher.name + " " + teacher.surname;
-        $teacherItem.find("a").attr("href", teacherURL);
+        $teacherItem.attr("href", teacherURL);
         $teacherItem.find("img").attr("src", teacherImgPath);
         $teacherItem.find("img").attr("alt", teacherNameSurname);
         $teacherItem.find("h6").text(teacherNameSurname);
@@ -46,7 +46,7 @@ function drawMusicalInstrumentSection(instrument) {
     
     let template = $("#musical-instrument-template").html();
     let $instrumentItem = $(template);
-    $instrumentItem.find("a").attr("href", instrumentURL);
+    $instrumentItem.attr("href", instrumentURL);
     $instrumentItem.find("img").attr("src", instrumentImgPath);
     $instrumentItem.find("img").attr("alt", instrument.name);
     $instrumentItem.find("#instrument-name").text(instrument.name);
