@@ -17,30 +17,26 @@ function fetchEvent(id) {
         $("#event-organiser-link").attr("href", "/person?id="+event.organiser.id.toString());
         $("#event-organiser-img").attr("src", "../assets/imgs"+event.organiser.image_path);
         $("#event-organiser-name").text(event.organiser.name + " " + event.organiser.surname);
-        $("#presented-courses").html(getPresentedCoursesHTML(event));
+        drawPresentedCourses(event);
     });
 }
 
-function getPresentedCoursesHTML(event) {
-    let htmlString = "";
+function drawPresentedCourses(event) {
+    let template = $("#presented-course-template").html();
     event.presentedCourses.forEach(course => {
-        htmlString += 
-        '<!-- Presented courses card -->' +
-        '<a href="/course?id=' + course.id.toString() + '" id="event-course-link" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
-        '    <div class="my-2 card border-0 bg-transparent">' +
-        '        <img src="../assets/imgs' + course.image_path + '" id="event-course-img" class="card-img-top" alt="' + course.name + '">' +
-        '        <div class="card-body p-0 text-center">' +
-        '            <h6 id="event-course-name" class="card-text nowrap">' + course.name + '</h6>' +
-        '        </div>' +
-        '    </div>' +
-        '</a>' +
-        '\n';
+        let $presentedCourseItem = $(template);
+        let courseLink = "/course?id=" + course.id.toString();
+        let courseImgPath = "../assets/imgs" + course.image_path;
+
+        $presentedCourseItem.attr("href", courseLink);
+        $presentedCourseItem.find("img").attr("src", courseImgPath).attr("alt", course.name);
+        $presentedCourseItem.find("h6").text(course.name);
+        $("#presented-courses").append($presentedCourseItem);
     });
-    return htmlString;
 }
 
 $(document).ready( () =>{
     const params = new URLSearchParams(location.search);
     const key = 'id';
     if (params.has(key)) fetchEvent(params.get(key));
-})
+});
