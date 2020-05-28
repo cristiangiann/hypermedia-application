@@ -13,7 +13,9 @@ function fetchInstrument(id) {
         const instrumentHistory = instrument.history;
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
         const courseID = instrument.course.id;
+        const courseLink = courseID ? ('course?id=' + courseID.toString()) : ""
         const relatedInstruments = instrument.related_instruments;
+        const $courseButton = $("#instrument-course-link");
 
         $("head > title").html(instrumentName + " - Lemon Peel Association");
         $("#instrument-title").text(instrumentName);
@@ -21,28 +23,30 @@ function fetchInstrument(id) {
         $("#instrument-image").attr("alt", instrumentName);
         $("#instrument-description").html(instrumentDescription);
         $("#instrument-history").html(instrumentHistory);
-        $("#related-instruments").html(getRelatedMusicalInstrumentsHTML(relatedInstruments));
-        if (courseID !== null && courseID !== undefined) $("#instrument-course-link").html('<a href="/course?id=' + courseID.toString() + '" type="button" class="btn btn-info" >Go to course</a>');
+        if (courseID != null && courseID != undefined) {
+            $courseButton.attr("href", courseLink);
+            $courseButton.toggle();
+        }
+        getRelatedMusicalInstrumentsHTML(relatedInstruments);
     });
 }
 
 function getRelatedMusicalInstrumentsHTML(instruments) {
-    let htmlString = "";
+    let template = $("#related-instrument-template").html();
+    
     instruments.forEach(instrument => {
         const instrumentLink = "/musical-instrument?id=" + instrument.id.toString();
         const instrumentName = instrument.name;
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
-        htmlString += 
-                    '<a href="' + instrumentLink + '" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">' +
-                    '   <div class="my-2 card border-0 bg-transparent">' + 
-                    '       <img src="' + instrumentImgPath + '" class="card-img-top img-fluid" alt="' + instrumentName + '">' +
-                    '       <div class="card-body p-0 text-center">' +
-                    '           <h6 class="card-text nowrap">' + instrumentName + '</h6>' +
-                    '       </div>' +
-                    '   </div>' +
-                    '</a>';
+
+        let $instrumentItem = $(template);
+        $instrumentItem.attr("href", instrumentLink);
+        $instrumentItem.find("img").attr("src", instrumentImgPath);
+        $instrumentItem.find("img").attr("alt", instrumentName);
+        $instrumentItem.find("h6").text(instrumentName);
+        console.log($instrumentItem);
+        $("#related-instruments").append($instrumentItem);
     });
-    return htmlString;
 }
 
 $(document).ready( () =>{
