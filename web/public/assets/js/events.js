@@ -8,17 +8,19 @@ let pastEvents = [];
 function fetchEvents() {
     const getNextEventsURL = "/api/nextEvents";
     const getPastEventsURL = "/api/pastEvents";
-    // AJAX call
-    $.get(getNextEventsURL, (data) => {
-        data.forEach(ev => {ev.date = new Date(ev.date);});
-        nextEvents = data;
-        drawNextEvents("all-months");
-    });
-    $.get(getPastEventsURL, (data) => {
-        data.forEach(ev => {ev.date = new Date(ev.date);});
-        pastEvents = data;
-        drawPastEvents("all-months");
-    })
+    // AJAX calls
+    $.when(
+        $.get(getNextEventsURL, (data) => {
+            data.forEach(ev => {ev.date = new Date(ev.date);});
+            nextEvents = data;
+            drawNextEvents("all-months");
+        }),
+        $.get(getPastEventsURL, (data) => {
+            data.forEach(ev => {ev.date = new Date(ev.date);});
+            pastEvents = data;
+            drawPastEvents("all-months");
+        })).done(hideMonths);
+    
 }
 
 function drawNextEvents(filter) {
@@ -59,6 +61,21 @@ function drawEvents(events, containerName) {
         $eventItem.find(".event-description").html(eventDescription);
 
         $(containerName).append($eventItem);
+    });
+}
+
+function hideMonths() {
+    // hides months in the select form which haven't got an event associated
+    $("#month-select > option[value!='all-months']").each(function() {
+        // get only the months associated with an event, iterating the events arrays
+        // getting the month representation of each event date (starting from 0) and
+        // transforming it in the range [1...12], then transform into a string this number
+        // for a equality check with the attribute "value" of the <option> tag
+        let usefulMonths = nextEvents.map( event => (event.date.getMonth()+1).toString() )
+                                        .concat( 
+                                            pastEvents.map( event => (event.date.getMonth()+1).toString() ) 
+                                        );
+        if (!usefulMonths.includes($(this).attr("value"))) $(this).toggle();
     });
 }
 
