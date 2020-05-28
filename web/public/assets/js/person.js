@@ -6,7 +6,6 @@ function fetchPerson(id) {
     const getURL = "/api/people/"+id.toString();
     // AJAX call
     $.get(getURL, (person) => {
-
         const personNameSurname = person.name + " " + person.surname;
         const personImgPath = "../assets/imgs" + person.image_path;
         const personTel = person.telephone;
@@ -25,24 +24,23 @@ function fetchPerson(id) {
 }
 
 function getCoursesHTML(courses) {
-    let htmlString = "";
+    let template = $("#course-item-template").html();
     courses.forEach( course => {
-        htmlString += 
-                    '<div class="squared-image mx-2">' +
-                    '   <a href="/course?id=' + course.id.toString() + '">' +
-                    '       <img src="../assets/imgs' + course.image_path + '" class="img-fluid card-img-top">' +
-                    '       <div class="card-body p-0 text-center">' +
-                    '           <p>' + course.name + '</p>' +
-                    '       </div>' +
-                    '   </a>' +
-                    '</div>' +
-                    '\n';
+        let courseLink = "/course?id=" + course.id.toString();
+        let courseImgPath = "../assets/imgs" + course.image_path;
+        let courseName = course.name;
+        let $courseItem = $(template);
+
+        $courseItem.find("a").attr("href", courseLink);
+        $courseItem.find("img").attr("src", courseImgPath).attr("alt", "course image");
+        $courseItem.find("p").text(courseName);
+
+        $("#courses-section").append($courseItem);
     });
-    return htmlString;
 }
 
 $(document).ready( () =>{
     const params = new URLSearchParams(location.search);
     const key = 'id';
     if (params.has(key)) fetchPerson(params.get(key));
-})
+});
