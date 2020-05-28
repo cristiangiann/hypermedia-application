@@ -26,13 +26,13 @@ function fetchInstruments() {
 function drawInstruments(type, region) {
     let filteredArray = (type === allTypesValue) ? instruments : instruments.filter(instrument => (instrument.instrument_type_id == type));
         filteredArray = (region === allRegionsValue) ? filteredArray : filteredArray.filter(instrument => (instrument.italian_region_id == region)); 
-    
+    console.log(filteredArray);
     let template = $("#instrument-item").html();
-
+    $("#instruments-section").html(""); // clears the section, this is needed for filtering purposes
     filteredArray.forEach( instrument => {
         let $row = $(template);
         let $img = $row.find("img")
-        $row.find("a").attr("href", "/musical-instrument?id="+instrument.id.toString());
+        $row.attr("href", "/musical-instrument?id="+instrument.id.toString());
         $row.find("h5").text(instrument.name);
         $img.attr("src", "../assets/imgs" + instrument.image_path);
         $img.attr("alt", instrument.name);
@@ -62,7 +62,7 @@ function drawRegions() {
 
     regions.forEach( region => {
         let $row = $(template);
-        $row.find("option").attr("value", region.id.toString());
+        $row.attr("value", region.id.toString());
         $row.text(region.name);
         $("#regions-list").append($row);
     });
@@ -89,7 +89,7 @@ function drawInstrumentTypes() {
 
     instrumentTypes.forEach( type => {
         let $row = $(template);
-        $row.find("option").attr("value", type.id.toString());
+        $row.attr("value", type.id.toString());
         $row.text(type.name);
         $("#types-list").append($row);
     });
