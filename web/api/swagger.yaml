@@ -299,7 +299,7 @@ paths:
       tags:
       - "Musical instrument"
       summary: "List of Italian regions"
-      description: "Italian regions for which there exists at least an instrument and their identifiers
+      description: "Italian regions for which there exists at least an instrument and their identifiers"
       operationId: "regionsGET"
       produces:
       - "application/json"
