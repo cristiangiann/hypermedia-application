@@ -69,12 +69,15 @@ exports.completeMusicalInstrumentByIdGET = function(id) {
 
 /**
  * List of italian regions
- * All the Italian regions and their identifiers
+ * Italian regions for which there exists at least an instrument and their identifiers
  *
  * returns List
  **/
 exports.regionsGET = function() {
   return sqlDb(regionTableName)
+    .join(instrumentTableName, 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
+    .select('Italian_Region.id', 'Italian_Region.name')
+    .distinct()
     .then(data => {
       console.log(data);
       return data;
@@ -89,7 +92,7 @@ exports.regionsGET = function() {
  * returns MusicalInstrument preview
  **/
 exports.instrumentByIdGET = function(id){
-  return sqlDb('Musical_Instrument')
+  return sqlDb(instrumentTableName)
     .where('id', id)
     .select('id', 'name', 'image_path')
     .then(results => {
