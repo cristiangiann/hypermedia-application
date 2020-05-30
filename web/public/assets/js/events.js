@@ -19,7 +19,15 @@ function fetchEvents() {
             data.forEach(ev => {ev.date = new Date(ev.date);});
             pastEvents = data;
             drawPastEvents("all-months");
-        })).done(hideMonths);
+        })
+    ).done(hideMonths).then(function() {
+        $(".event-row").hover(function() {
+            $(this).find("a").css( "text-decoration", "underline" );
+            console.log("on");
+        }, function() {
+            $(this).find("a").css( "text-decoration", "none" );
+        });
+    });
     
 }
 
@@ -86,5 +94,5 @@ $(document).ready( () =>{
         let month = $("#month-select > option:selected").attr("value");
         drawNextEvents(month);
         drawPastEvents(month);
-    })
-})
+    });
+});

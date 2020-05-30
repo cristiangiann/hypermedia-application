@@ -33,7 +33,7 @@ function drawInstruments(type, region) {
         let $row = $(template);
         let $img = $row.find("img")
         $row.attr("href", "/musical-instrument?id="+instrument.id.toString());
-        $row.find("h5").text(instrument.name);
+        $row.find(".card-text").text(instrument.name);
         $img.attr("src", "../assets/imgs" + instrument.image_path);
         $img.attr("alt", instrument.name);
 

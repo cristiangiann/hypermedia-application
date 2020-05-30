@@ -15,7 +15,7 @@ function fetchPeople() {
             let $personItem = $(template);
             $personItem.attr("href", personLink);
             $personItem.find("img").attr("src", personImgPath);
-            $personItem.find("h5").text(personNameSurname);
+            $personItem.find(".card-text").text(personNameSurname);
             
             $("#people-section").append($personItem);
         });

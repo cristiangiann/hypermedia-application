@@ -17,7 +17,7 @@ function fetchCourses() {
             $courseItem.attr("href", courseURL);
             $courseItem.find("img").attr("src", courseImgPath);
             $courseItem.find("img").attr("alt", courseName);
-            $courseItem.find("h5").text(courseName);
+            $courseItem.find(".card-text").text(courseName);
             $("#courses-section").append($courseItem);
         });
     });

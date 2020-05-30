@@ -33,7 +33,7 @@ function getCoursesHTML(courses) {
 
         $courseItem.find("a").attr("href", courseLink);
         $courseItem.find("img").attr("src", courseImgPath).attr("alt", "course image");
-        $courseItem.find("p").text(courseName);
+        $courseItem.find(".card-text").text(courseName);
 
         $("#courses-section").append($courseItem);
     });

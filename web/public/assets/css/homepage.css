@@ -1,5 +1,5 @@
-.banner h1, h2, h3, h4, h5, h6, p{
-    font-weight: 200 !important;
+h2.card-title {
+    font-weight: 300;
 }
 
 .carousel-badge {
@@ -13,7 +13,7 @@
     border-radius: 0;
     border: none;
     white-space: nowrap;
-    font-size: 1.25em;
+    font-size: 1.5rem;
     font-weight: 200;
 }
 
