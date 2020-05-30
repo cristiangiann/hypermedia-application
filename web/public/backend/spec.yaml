@@ -1,0 +1,746 @@
+---
+swagger: "2.0"
+info:
+  description: "Design of APIs used inside the Lemon Peel website, used to retrieve\
+    \ information about events, musical instruments, people and courses recorded into\
+    \ the database"
+  version: "1.0.0"
+  title: "LemonPeel"
+  contact:
+    email: "cristian.giannetti@mail.polimi.it"
+  license:
+    name: "LemonPeel"
+    url: "http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/"
+host: "ec2-15-161-138-118.eu-south-1.compute.amazonaws.com"
+basePath: "/api"
+tags:
+- name: "Event"
+  description: "Event organised by Lemon Peel association"
+- name: "Course"
+  description: "Musical course about folk instruments, songs and dances organised\
+    \ by Lemon Peel association"
+- name: "Musical instrument"
+  description: "Old folk musical instrument used in the traditional italian music"
+- name: "Person"
+  description: "Teacher of some courses"
+- name: "Contacts"
+  description: "Messages sent to the association"
+paths:
+  /people:
+    get:
+      tags:
+      - "Person"
+      summary: "List of people"
+      description: "All the people who held at least a course"
+      operationId: "peopleGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "People involved in the association"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PersonPreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Person"
+  /people/{id}:
+    get:
+      tags:
+      - "Person"
+      summary: "Gets a person by id"
+      description: "Gets all the information about a teacher and the courses she held"
+      operationId: "peopleIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Person ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "People involved in the association"
+          schema:
+            $ref: "#/definitions/Person"
+        "404":
+          description: "Person with selected ID not found"
+      x-swagger-router-controller: "Person"
+  /nextEvents:
+    get:
+      tags:
+      - "Event"
+      summary: "List of next events"
+      description: "All next events organised by Lemon Peel association"
+      operationId: "nextEventsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of all the next events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/EventPreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Event"
+  /pastEvents:
+    get:
+      tags:
+      - "Event"
+      summary: "List of past events"
+      description: "All past events organised by Lemon Peel association"
+      operationId: "pastEventsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of all the past events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/EventPreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Event"
+  /nextEvent:
+    get:
+      tags:
+      - "Event"
+      summary: "Gets the very next event"
+      description: "Basic information about the next event"
+      operationId: "nextEventGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Very next event organised by Lemon Peel association"
+          schema:
+            $ref: "#/definitions/EventPreview"
+        "404":
+          description: "Event with selected ID not found"
+      x-swagger-router-controller: "Event"
+  /events/{id}:
+    get:
+      tags:
+      - "Event"
+      summary: "Gets an event by id"
+      description: "Information about an event and the courses presented during it"
+      operationId: "eventsIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Event ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Event organised by Lemon Peel association"
+          schema:
+            $ref: "#/definitions/Event"
+        "404":
+          description: "Event with selected ID not found"
+      x-swagger-router-controller: "Event"
+  /musical-instruments:
+    get:
+      tags:
+      - "Musical instrument"
+      summary: "List of Musical Instrument"
+      description: "All the musical instruments that are relevant for Lemon Peel association"
+      operationId: "musical_instrumentsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of musical intruments that are relevant for the association"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MusicalInstrumentPreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "MusicalInstrument"
+  /musical-instruments/{id}:
+    get:
+      tags:
+      - "Musical instrument"
+      summary: "Gets a musical instrument by id"
+      description: "Information about the selected musical instrument, its course\
+        \ and its related instruments by region and type"
+      operationId: "musical_instrumentsIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Musical instrument ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Musical intruments that are relevant for the association"
+          schema:
+            $ref: "#/definitions/MusicalInstrument"
+        "404":
+          description: "Musical instrument with selected ID not found"
+      x-swagger-router-controller: "MusicalInstrument"
+  /courses:
+    get:
+      tags:
+      - "Course"
+      summary: "List of courses"
+      description: "All the courses organised by Lemon Peel association"
+      operationId: "coursesGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "People involved in the association"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CoursePreview"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "Course"
+  /courses/{id}:
+    get:
+      tags:
+      - "Course"
+      summary: "Gets a course by id"
+      description: "Gets information about the selected course, the instrument taught\
+        \ and the teachers"
+      operationId: "coursesIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Course ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Musical course organised by the association"
+          schema:
+            $ref: "#/definitions/Course"
+        "404":
+          description: "Course with selected ID not found"
+      x-swagger-router-controller: "Course"
+  /send-email:
+    post:
+      tags:
+      - "Contacts"
+      summary: "Send message"
+      description: "Send a message to the association"
+      operationId: "send_emailPOST"
+      produces:
+      - "application/json"
+      consumes:
+        - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "email"
+        in: "formData"
+        description: "email address of the sender"
+        required: true
+        type: "string"
+      - name: "subject"
+        in: "formData"
+        description: "subject of the message"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "formData"
+        description: "body of the message"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "Message sent"
+      x-swagger-router-controller: "Contacts"
+  /instrument-types:
+    get:
+      tags:
+      - "Musical instrument"
+      summary: "List of instrument types"
+      description: "List of all the types of the musical instruments that are into\
+        \ the database"
+      operationId: "instrument_typesGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of instrument types"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/InstrumentType"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "MusicalInstrument"
+  /regions:
+    get:
+      tags:
+      - "Musical instrument"
+      summary: "List of Italian regions"
+      description: "Italian regions for which there exists at least an instrument and their identifiers"
+      operationId: "regionsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "List of italian regions"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ItalianRegion"
+        "404":
+          description: "UNESPECTED ERROR"
+      x-swagger-router-controller: "MusicalInstrument"
+definitions:
+  PersonPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Pina"
+      surname:
+        type: "string"
+        example: "Sinalefe"
+      image_path:
+        type: "string"
+        example: "/people/pina_sinalefe.jpg"
+    title: "Person Preview"
+    description: "Basic information of a teacher of Lemon Peel association"
+    example:
+      id: 1
+      name: "Pina"
+      surname: "Sinalefe"
+      image_path: "/people/pina_sinalefe.jpg"
+  Person:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Pina"
+      surname:
+        type: "string"
+        example: "Sinalefe"
+      biography:
+        type: "string"
+        example: "<p>Pina is a 27 years old cinema student, passionate about acting,\
+          \ singing and movies. Since she was 4, she’s been playing musical instruments\
+          \ like the piano and acoustic guitar, while only in the last three years\
+          \ she found interest in old musical instruments from her region.</p>\n<p>Pina\
+          \ joined the Association in 2017 when she was curious on learning more about\
+          \ the putipù founded in her grandma’s basement. Since then, she became first\
+          \ a student then a volountary, teaching music to beginners.</p>\n<p>Today\
+          \ Pina is our youngest teacher, bringing joy and happiness at every event.</p>"
+      telephone:
+        type: "string"
+        example: "02 679"
+      email:
+        type: "string"
+        example: "pina-sinalefe1@tiscali.it"
+      image_path:
+        type: "string"
+        example: "/people/pina_sinalefe.jpg"
+      courses:
+        type: "array"
+        items:
+          $ref: "#/definitions/CoursePreview"
+    title: "Person"
+    description: "Complete information about the selected teacher, including her courses"
+    example:
+      surname: "Sinalefe"
+      image_path: "/people/pina_sinalefe.jpg"
+      name: "Pina"
+      telephone: "02 679"
+      id: 1
+      biography: "<p>Pina is a 27 years old cinema student, passionate about acting,\
+        \ singing and movies. Since she was 4, she’s been playing musical instruments\
+        \ like the piano and acoustic guitar, while only in the last three years she\
+        \ found interest in old musical instruments from her region.</p>\n<p>Pina\
+        \ joined the Association in 2017 when she was curious on learning more about\
+        \ the putipù founded in her grandma’s basement. Since then, she became first\
+        \ a student then a volountary, teaching music to beginners.</p>\n<p>Today\
+        \ Pina is our youngest teacher, bringing joy and happiness at every event.</p>"
+      email: "pina-sinalefe1@tiscali.it"
+      courses:
+      - id: 1
+        image_path: "/courses/ocarina.jpg"
+        name: "Ocarina course"
+  EventPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      date:
+        type: "string"
+        example: ""
+      time:
+        type: "string"
+        example: "61200"
+      description:
+        type: "string"
+        example: "<p>Come visit us for the presentation of the new courses held the\
+          \ following spring season! This year the Association has two new teachers\
+          \ who will introduce themselves and the courses they’ll teach.</p><p>Two\
+          \ new courses have been added to the already existing ones, related to,\
+          \ respectively, the ocarina and putipù instruments. Join this event to learn\
+          \ more about them and their  related teaching activities.</p><p>Remember\
+          \ that there’s no participation fee and anyone can attend this event. At\
+          \ the end, a small buffet with networking will be available for all the\
+          \ participants.</p>"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+      organiser_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+    title: "Event Preview"
+    description: "Basic information about an event"
+    example:
+      date: ""
+      image_path: "/events/spring_courses_2020.jpg"
+      name: "Presentation of Spring Courses 2020"
+      organiser_id: 1
+      description: "<p>Come visit us for the presentation of the new courses held\
+        \ the following spring season! This year the Association has two new teachers\
+        \ who will introduce themselves and the courses they’ll teach.</p><p>Two new\
+        \ courses have been added to the already existing ones, related to, respectively,\
+        \ the ocarina and putipù instruments. Join this event to learn more about\
+        \ them and their  related teaching activities.</p><p>Remember that there’\
+        s no participation fee and anyone can attend this event. At the end, a small\
+        \ buffet with networking will be available for all the participants.</p>"
+      id: 1
+      time: "61200"
+  Event:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      date:
+        type: "string"
+        example: ""
+      time:
+        type: "string"
+        example: "61200"
+      description:
+        type: "string"
+        example: "<p>Come visit us for the presentation of the new courses held the\
+          \ following spring season! This year the Association has two new teachers\
+          \ who will introduce themselves and the courses they’ll teach.</p><p>Two\
+          \ new courses have been added to the already existing ones, related to,\
+          \ respectively, the ocarina and putipù instruments. Join this event to learn\
+          \ more about them and their  related teaching activities.</p><p>Remember\
+          \ that there’s no participation fee and anyone can attend this event. At\
+          \ the end, a small buffet with networking will be available for all the\
+          \ participants.</p>"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+      organiser_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      presentedCourses:
+        type: "array"
+        items:
+          $ref: "#/definitions/CoursePreview"
+      organiser:
+        $ref: "#/definitions/PersonPreview"
+    title: "Event"
+    description: "Complete event organized by Lemon Peel association"
+    example:
+      date: "2020-03-12"
+      image_path: "/events/spring_courses_2020.jpg"
+      name: "Presentation of Spring Courses 2020"
+      organiser_id: 1
+      description: "<p>Come visit us for the presentation of the new courses held\
+        \ the following spring season! This year the Association has two new teachers\
+        \ who will introduce themselves and the courses they’ll teach.</p><p>Two new\
+        \ courses have been added to the already existing ones, related to, respectively,\
+        \ the ocarina and putipù instruments. Join this event to learn more about\
+        \ them and their  related teaching activities.</p><p>Remember that there’\
+        s no participation fee and anyone can attend this event. At the end, a small\
+        \ buffet with networking will be available for all the participants.</p>"
+      id: 1
+      time: "61200"
+      presentedCourses:
+      - id: 1
+        name: "Ocarina course"
+        image_path: "/courses/ocarina.jpg"
+      organiser:
+        id: 1
+        name: "Pina"
+        surname: "Sinalefe"
+        image_path: "/people/pina_sinalefe.jpg"
+  MusicalInstrumentPreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Ocarina"
+      image_path:
+        type: "string"
+        example: "/instruments/ocarina.jpg"
+      instrument_type_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      italian_region_id:
+        type: "integer"
+        format: "int64"
+        example: 5
+    title: "Musical Intrument Preview"
+    description: "Basic information about an old italian musical instrument that is\
+      \ relevant for Lemon Peel association"
+    example:
+      id: 1
+      image_path: "/instruments/ocarina.jpg"
+      name: "Ocarina"
+      instrument_type_id: 1
+      italian_region_id: 5
+  MusicalInstrument:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Ocarina"
+      description:
+        type: "string"
+        example: "How an ocarina works: Air enters through the windway; Air strikes\
+          \ the labium, producing sound; Air pulses in and out of the ocarina, as\
+          \ the vessel resonates a specific pitch (see Helmholtz resonator); Covering\
+          \ holes lowers the pitch; uncovering holes raises the pitch; Blowing more\
+          \ softly lowers the pitch; blowing harder raises it. Breath force can change\
+          \ the pitch by three semitones. This is why ocarinas generally have no tuning\
+          \ mechanism or dynamic range, and why it is hard to learn to play one in\
+          \ tune."
+      history:
+        type: "string"
+        example: "The modern European ocarina dates back to the 19th century, when\
+          \ Giuseppe Donati from Budrio, a town near Bologna, Italy transformed the\
+          \ ocarina from a toy, which only played a few notes, into a more comprehensive\
+          \ instrument (known as the first \"classical\" ocarinas). The word ocarina\
+          \ in the Bolognese dialect of the Emiliano-Romagnolo language means \"little\
+          \ goose.\" The earlier form was known in Europe as a gemshorn, which was\
+          \ made from animal horns of the chamois (Dutch: gems). The ocarina is an\
+          \ ancient wind musical instrument—a type of vessel flute. Variations exist,\
+          \ but a typical ocarina is an enclosed space with four to twelve finger\
+          \ holes and a mouthpiece that projects from the body. It is traditionally\
+          \ made from clay or ceramic, but other materials are also used—such as plastic,\
+          \ wood, glass, metal, or bone."
+      image_path:
+        type: "string"
+        example: "/instruments/ocarina.jpg"
+      instrument_type_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      italian_region_id:
+        type: "integer"
+        format: "int64"
+        example: 5
+      related_instruments:
+        type: "array"
+        items:
+          $ref: "#/definitions/MusicalInstrumentPreview"
+      course:
+        $ref: "#/definitions/CoursePreview"
+    title: "Musical Intrument"
+    description: "Complete information about old italian musical instrument that is\
+      \ relevant for Lemon Peel association"
+    example:
+      image_path: "/instruments/ocarina.jpg"
+      name: "Ocarina"
+      description: "How an ocarina works: Air enters through the windway; Air strikes\
+        \ the labium, producing sound; Air pulses in and out of the ocarina, as the\
+        \ vessel resonates a specific pitch (see Helmholtz resonator); Covering holes\
+        \ lowers the pitch; uncovering holes raises the pitch; Blowing more softly\
+        \ lowers the pitch; blowing harder raises it. Breath force can change the\
+        \ pitch by three semitones. This is why ocarinas generally have no tuning\
+        \ mechanism or dynamic range, and why it is hard to learn to play one in tune."
+      instrument_type_id: 1
+      id: 1
+      history: "The modern European ocarina dates back to the 19th century, when Giuseppe\
+        \ Donati from Budrio, a town near Bologna, Italy transformed the ocarina from\
+        \ a toy, which only played a few notes, into a more comprehensive instrument\
+        \ (known as the first \"classical\" ocarinas). The word ocarina in the Bolognese\
+        \ dialect of the Emiliano-Romagnolo language means \"little goose.\" The earlier\
+        \ form was known in Europe as a gemshorn, which was made from animal horns\
+        \ of the chamois (Dutch: gems). The ocarina is an ancient wind musical instrument—\
+        a type of vessel flute. Variations exist, but a typical ocarina is an enclosed\
+        \ space with four to twelve finger holes and a mouthpiece that projects from\
+        \ the body. It is traditionally made from clay or ceramic, but other materials\
+        \ are also used—such as plastic, wood, glass, metal, or bone."
+      italian_region_id: 5
+      related_instruments:
+      - id: 3
+        name: "Piva"
+        image_path: "/instruments/piva.jpg"
+      - id: 8
+        name: "Müsa"
+        image_path: "/instruments/musa.jpg"
+      course:
+        id: 1
+        image_path: "/courses/Ocarina.jpg"
+        name: "Ocarina course"
+  CoursePreview:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+    title: "Course Preview"
+    description: "Basic information about a course organised by Lemon Peel association"
+    example:
+      id: 1
+      image_path: "/courses/Oracina.jpg"
+      name: "Ocarina course"
+  Course:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Presentation of Spring Courses 2020"
+      info:
+        type: "string"
+        example: "Every monday at 5PM"
+      description:
+        type: "string"
+        example: "<p>The ocarina is one of the easiest of all wind instruments to\
+          \ learn to play. In fact, getting a tone is as simple as blowing a whistle.\
+          \ You may be familiar with the ocarina as an instrument through a fandom\
+          \ of Nintendo's Zelda games.</p><p>Every lesson will be based first on a\
+          \ fingering chart on few songs and starts you out with a simple 'play by\
+          \ number' system that anyone can learn. </p><p>Numbers over the lyrics correspond\
+          \ to fingerings on the chart. Once memorized the scale by numbers, it's\
+          \ easy to play the songs, just add a little rhythm, and you'll be entertaining\
+          \ yourself in no time at all!</p>"
+      image_path:
+        type: "string"
+        example: "/events/spring_courses_2020.jpg"
+      musical_instrument_id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      teachers:
+        type: "array"
+        items:
+          $ref: "#/definitions/PersonPreview"
+      musical_instrument:
+        $ref: "#/definitions/MusicalInstrumentPreview"
+    title: "Course"
+    description: "Complete information about a musical course organised by Lemon Peel\
+      \ association"
+    example:
+      image_path: "/events/spring_courses_2020.jpg"
+      name: "Presentation of Spring Courses 2020"
+      description: "<p>The ocarina is one of the easiest of all wind instruments to\
+        \ learn to play. In fact, getting a tone is as simple as blowing a whistle.\
+        \ You may be familiar with the ocarina as an instrument through a fandom of\
+        \ Nintendo's Zelda games.</p><p>Every lesson will be based first on a fingering\
+        \ chart on few songs and starts you out with a simple 'play by number' system\
+        \ that anyone can learn. </p><p>Numbers over the lyrics correspond to fingerings\
+        \ on the chart. Once memorized the scale by numbers, it's easy to play the\
+        \ songs, just add a little rhythm, and you'll be entertaining yourself in\
+        \ no time at all!</p>"
+      id: 1
+      musical_instrument_id: 1
+      info: "Every monday at 5PM"
+      teachers:
+      - id: 1
+        image_path: "/people/pina_sinalefe.jpg"
+        name: "Pina"
+        surname: "Sinalefe"
+      musical_instrument:
+        id: 1
+        name: "Ocarina"
+        image_path: "/instruments/ocarina.jpg"
+  InstrumentType:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Aerofoni labiali"
+    title: "Instrument Type"
+    description: "Instrument Type"
+    example:
+      name: "Aerofoni labiali"
+      id: 1
+  ItalianRegion:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      name:
+        type: "string"
+        example: "Valle D'Aosta"
+    title: "Italian region"
+    description: "Italian region"
+    example:
+      name: "Valle D'Aosta"
+      id: 1
