@@ -97,14 +97,82 @@
                             <h4>3.2 - API</h4>
                             <div class="subSection">
                                 <h5>3.2.1 - REST compliance</h5>
+                                <p>
+                                    Checking online documentation about the REST principles, five main architectural constraints have been followed
+                                    to ensure the service to be considered REST:
+                                    <ul>
+                                        <li>
+                                            Every resource is retrievable from a unique URI and it contains a source to fetch related data,
+                                            in accordance with HATEOAS principles. All the resources are accessible through a HTTP GET request.
+                                        </li>
+                                        <li>
+                                            Client and server can be developed independently and evolve separately with no dependency from each other.
+                                        </li>
+                                        <li>
+                                            Interaction between client and server is stateless. The server does not store any information about the previous
+                                            requests and it is able to properly respond to one only by checking it. The server does not need any history
+                                            of received requests.
+                                        </li>
+                                        <li>
+                                            Resources are cacheable. It improves the performance both server and client side: the client does not need to wait
+                                            for a response and the server avoids wasting of computation.
+                                        </li>
+                                        <li>
+                                            The application architecture is composed by three layers: presentation, application and data.
+                                            Each layer can interact only with the following one, in order to divide responsibility among them
+                                            and making them focused on specific tasks.
+                                        </li>
+                                    </ul>
+                                </p>
                             </div>
                             <div class="subSection">
                                 <h5>3.2.2 - OpenAPI Resource models</h5>
+                                <p>
+                                    The model introduced for data uses resources that correspond to relevant items for Lemon Peel association.
+                                    For the first four entities, a second model has been introduced, called "preview" (Person preview, Event preview, ...),
+                                    that contains name and image of a specific item, used to be incorporated in the pages that contain a link to them,
+                                    so that the navigation is facilitated for the users. 
+                                    The resources are the following:
+                                    <ul>
+                                        <li>
+                                            Person: a teacher of Lemon Peel. It contains name, biography, contact info, an image and the courses she presents.
+                                        </li>
+                                        <li>
+                                            Event: has a name, a description, date and time, an image, an organiser and the presented courses
+                                        </li>
+                                        <li>
+                                            Musical Instrument: represents a traditional Italian musical instrument that is relevant for the association.
+                                            It has a name, a picture, a description, its history, an instrument type and a region where it has been invented.
+                                        </li>
+                                        <li>
+                                            Course: a musical course organised by Lemon Peel. It has a name, information about when it is taught, a description,
+                                            an image, the instrument it is referring to (it may not exist) and the teachers who held the course.
+                                        </li>
+                                        <li>
+                                            Intrument Type: it represents a group of instrument. It links id to a name.
+                                        </li>
+                                        <li>
+                                            Italian Region: self explanatory. It has an id and a name.
+                                        </li>
+                                    </ul>
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="section">
                         <h4>3.3 - Data Model</h4>
+                        <p>
+                            The following image represents the ER diagram used to build the database of the application.
+                            Intermediate tables have been used to break the n to n relations. The main resources are mapped to the table that has their name,
+                            and all the fields described into it, while the preview of the linked objects are taken from the relative tables.
+                        </p>
+                        <p class="example">
+                            <i>Example:</i> Course model has name, info, description and image fields that are all represented in the Course table.
+                            The musical instrument taught in that course (considered a preview) has name and image taken directly from the Musical Instrument table,
+                            because of the 0:1 - 0:1 relation. Preview information (name and image) about teachers of that course are retrieved from the Person table
+                            passing through the intermediate table that maps courses to people (due to 1:n - 1:n relation between them).
+                        </p>
+                        <img src="./img/er_diagram.jpg" class="img-fluid" alt="ER Diagram of Lemon Peel database">
                     </div>
                     <div class="chapter">
                         <h3>4 - Implementation</h3>
@@ -123,6 +191,30 @@
                         </div>
                         <div class="section">
                             <h4>4.2 - Discussion</h4>
+                            <ul>
+                                <li>
+                                    Swagger helped in the control of the APIs specified with OpenAPI editor. It validates the requests made by the client
+                                    checking if they respect the specification described in the yaml file. The resposes of GET requests reflect the structure
+                                    of database entities and are enriched with linked objects when needed. The concept of <i>preview</i> helped to easily maintain
+                                    the focus on the structure of the response, avoiding continuous checks on its many fields.
+                                    The only POST request of the website, used to send a message, is controlled by Swagger that checks if all the needed parameters
+                                    have been set.
+                                </li>
+                                <li>
+                                    To comply to REST specification, we divided static contents from data needed to fill the page sections.
+                                    The data are fetched with AJAX calls from the client; they are embedded in scripts among the static contents, retrieved
+                                    and executed in the client browser that makes a request to the server and waits a response to fill the page with the received data.
+                                </li>
+                                <li>
+                                    No session state has been used for the website.
+                                </li>
+                                <li>
+                                    A relational database has been used for the data layer. The used technology is an RDS MySQL, provided by AWS,
+                                    and the interaction with it is permitted only from the web server IP for security reasons. The the database queries has been
+                                    managed with <i>knex</i> node module, that prevents SQL injections and allows minimal changes if a future decision
+                                    will make replace the database.
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="chapter">
@@ -148,6 +240,14 @@
                         </div>
                         <div class="section">
                             <h4>5.2 - Analysis of existing API</h4>
+                            <p>
+                                Partial inspiration has been taken from Wired website that uses REST APIs to retrieve the latest news by category from the server.
+                                Even if Wired website is significantly different from Lemon Peel one, it has been useful to see how the data are structured
+                                in the response body and how they are used to compose a small part of the home page.
+                                In particular, information about the authors and the categories of the articles are ritrieved with the article data in their API response,
+                                their images links are included in the data and the content of the article contains html tags used in formatting.
+                                These information helped during the design process of Lemon Peel website.
+                            </p>
                         </div>
                         <div class="section">
                             <h4>5.3 - Learning outcome</h4>
