@@ -23,6 +23,8 @@ function fetchInstrument(id) {
         $("#instrument-image").attr("alt", instrumentName);
         $("#instrument-description").html(instrumentDescription);
         $("#instrument-history").html(instrumentHistory);
+        $("#instrument-type").text(instrument.type);
+        $("#instrument-region").text(instrument.region);
         if (courseID != null && courseID != undefined) {
             $courseButton.attr("href", courseLink);
             $courseButton.toggle();

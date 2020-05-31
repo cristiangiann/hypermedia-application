@@ -24,19 +24,23 @@
                 <!-- Instrument image -->
                 <div class="col-auto col-lg-5 mt-5 order-last order-lg-1 align-self-start">
                     <img src="" id="instrument-image" class="img-fluid mt-1" alt="">
+                    <div class="my-3">
+                        <h3>Details</h3>
+                        <p>Type: <span id="instrument-type"></span></p>
+                        <p>Region: <span id="instrument-region"></span></p>
+                    </div>
                     <h3 class="mt-5">Related musical instruments</h3>
-                    <div class="row" id="related-instruments">
+                    <div class="row row-cols-1 row-cols-sm-3 pr-md-3" id="related-instruments">
                         <!-- Related instruments row -->
-                        <!-- TODO: - by removing mx-sm-2 px-sm-2 you can center the card in smaller layouts (but some fixes are needed...) -->
                         
                     </div>  
                 </div>
                 <!-- Instrument title, description and link to course -->
                 <div class="col-auto col-lg-7 float-lg-right order-1 order-lg-2">
                     <h1 id="instrument-title" class="mb-2"></h1>
-                    <h4>Description</h4>
+                    <h3>Description</h3>
                     <p id="instrument-description"></p>
-                    <h4>History</h4>
+                    <h3>History</h3>
                     <p id="instrument-history"></p>
                     <div class="mt-3 col-auto p-0">
                         <a href="" type="button" class="btn btn-info" id="instrument-course-link" style="display: none;">Go to course</a>
@@ -55,7 +59,7 @@
     <script src="../assets/js/musical-instrument.js"></script>
 
     <template id="related-instrument-template">
-        <a href="' + instrumentLink + '" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+        <a href="' + instrumentLink + '" class="col mb-2">
             <div class="my-2 card border-0 bg-transparent">
                 <img src="' + instrumentImgPath + '" class="card-img-top rounded-0 img-fluid" alt="' + instrumentName + '">
                 <div class="card-body p-0 text-center">
