@@ -17,7 +17,8 @@ function fetchEvent(id) {
         $("#event-organiser-link").attr("href", "/person?id="+event.organiser.id.toString());
         $("#event-organiser-img").attr("src", "../assets/imgs"+event.organiser.image_path);
         $("#event-organiser-name").text(event.organiser.name + " " + event.organiser.surname);
-        drawPresentedCourses(event);
+        if (event.presentedCourses.length) drawPresentedCourses(event);
+        else hidePresentedCoursesSection();
     });
 }
 
@@ -33,6 +34,11 @@ function drawPresentedCourses(event) {
         $presentedCourseItem.find(".card-text").text(course.name);
         $("#presented-courses").append($presentedCourseItem);
     });
+}
+
+function hidePresentedCoursesSection() {
+    $("#presented-courses-section").toggle();
+    $("#event-organiser-section").toggleClass("border-lg-right");
 }
 
 $(document).ready( () =>{
