@@ -19,8 +19,9 @@ function fetchCourse(id) {
             drawMusicalInstrumentSection(course.musical_instrument);
         } else {
             // hide the section
-            $("#discover-instrument-section").addClass("d-none");
+            $("#discover-instrument-section").toggle();
             $("#teachers-section").addClass("pl-0");
+            $("#teachers-section").removeClass("pl-lg-4");
         }
     });
 }
