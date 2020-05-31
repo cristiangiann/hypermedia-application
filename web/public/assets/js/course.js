@@ -35,7 +35,7 @@ function drawTeachersSection(teachers) {
         $teacherItem.attr("href", teacherURL);
         $teacherItem.find("img").attr("src", teacherImgPath);
         $teacherItem.find("img").attr("alt", teacherNameSurname);
-        $teacherItem.find("h6").text(teacherNameSurname);
+        $teacherItem.find(".card-text").text(teacherNameSurname);
         $("#teachers").append($teacherItem);
     });
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/events.css">
 
@@ -23,32 +23,32 @@
             <!-- Event -->
             <div class="row">
                 <!-- Event image -->
-                <div class="col-auto col-lg-6 order-last order-lg-1 align-self-start mt-2">
+                <div class="col-auto col-lg-3 order-last order-lg-1 align-self-start mt-2">
                     <img src="" id="event-image" class="img-fluid" alt="event-image">
                 </div>
                 <!-- Event title and description -->
-                <div class="col-auto col-lg-6 float-lg-right order-1 order-lg-2">
-                    <h2 id="event-title"></h2>
+                <div class="col-auto col-lg-9 float-lg-right order-1 order-lg-2">
+                    <h1 id="event-title"></h1>
                     <div id="event-description"></div>
                 </div>
             </div>
             <!-- Event details -->
             <div class="row mt-lg-4">
-                <h4 class="col-12 mb-1">Details</h4>
+                <h3 class="col-12 mb-1">Details</h3>
                 <p id="event-details" class="col"></p>
             </div>
             <div class="row mt-3">
                 <!-- Event organiser section -->
                 <div class="container-fluid col-lg-6 order-2 order-lg-1 border-lg-right">
-                    <h4 class="row col-12">Event organiser</h4>
+                    <h3 class="row col-12">Event organiser</h3>
                     <div class="row col-auto">
                         <!-- Event organiser card -->
                         <!-- TODO: - by removing mx-sm-2 px-sm-2 you can center the card in smaller layouts (but some fixes are needed...) -->
-                        <a href="" id="event-organiser-link" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+                        <a href="" id="event-organiser-link" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
                             <div class="my-2 card border-0 bg-transparent">
                                 <img src="" id="event-organiser-img" class="card-img-top rounded-circle" alt="event-organiser-img">
                                 <div class="card-body p-0 text-center">
-                                    <h6 id="event-organiser-name" class="card-text nowrap"></h6>
+                                    <h5 id="event-organiser-name" class="card-text nowrap"></h5>
                                 </div>
                             </div>
                         </a>
@@ -56,7 +56,7 @@
                 </div>
                 <!-- Presented courses section -->
                 <div class="container-fluid col-lg-6 order-1 order-lg-2">
-                    <h4 class="row col-12">Presented courses</h4>
+                    <h3 class="row col-12">Presented courses</h3>
                     <div class="row col-auto" id="presented-courses">
                         
                     </div>
@@ -75,11 +75,11 @@
 
     <template id="presented-course-template">
         <!-- Presented courses card -->
-        <a href="" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+        <a href="" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
             <div class="my-2 card border-0 bg-transparent">
                 <img src="" class="card-img-top" alt="">
                 <div class="card-body p-0 text-center">
-                    <h6 class="card-text nowrap"></h6>
+                    <h5 class="card-text nowrap"></h5>
                 </div>
             </div>
         </a>

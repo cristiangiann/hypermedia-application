@@ -43,7 +43,7 @@ function getRelatedMusicalInstrumentsHTML(instruments) {
         $instrumentItem.attr("href", instrumentLink);
         $instrumentItem.find("img").attr("src", instrumentImgPath);
         $instrumentItem.find("img").attr("alt", instrumentName);
-        $instrumentItem.find("h6").text(instrumentName);
+        $instrumentItem.find(".card-text").text(instrumentName);
         console.log($instrumentItem);
         $("#related-instruments").append($instrumentItem);
     });

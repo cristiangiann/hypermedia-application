@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <title></title>
@@ -24,7 +24,7 @@
                 <!-- Instrument image -->
                 <div class="col-auto col-lg-5 mt-5 order-last order-lg-1 align-self-start">
                     <img src="" id="instrument-image" class="img-fluid mt-1" alt="">
-                    <h4 class="mt-5">Related musical instruments</h4>
+                    <h3 class="mt-5">Related musical instruments</h3>
                     <div class="row" id="related-instruments">
                         <!-- Related instruments row -->
                         <!-- TODO: - by removing mx-sm-2 px-sm-2 you can center the card in smaller layouts (but some fixes are needed...) -->
@@ -33,7 +33,7 @@
                 </div>
                 <!-- Instrument title, description and link to course -->
                 <div class="col-auto col-lg-7 float-lg-right order-1 order-lg-2">
-                    <h2 id="instrument-title" class="mb-2"></h2>
+                    <h1 id="instrument-title" class="mb-2"></h1>
                     <h4>Description</h4>
                     <p id="instrument-description"></p>
                     <h4>History</h4>
@@ -55,11 +55,11 @@
     <script src="../assets/js/musical-instrument.js"></script>
 
     <template id="related-instrument-template">
-        <a href="' + instrumentLink + '" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+        <a href="' + instrumentLink + '" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
             <div class="my-2 card border-0 bg-transparent">
                 <img src="' + instrumentImgPath + '" class="card-img-top img-fluid" alt="' + instrumentName + '">
                 <div class="card-body p-0 text-center">
-                    <h6 class="card-text nowrap">' + instrumentName + '</h6>
+                    <h5 class="card-text text-center nowrap">' + instrumentName + '</h5>
                 </div>
             </div>
         </a>

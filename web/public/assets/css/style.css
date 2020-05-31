@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    font-family: 'Helvetica Neue', 'Roboto', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     color: #071013;
     background: #F9F5EC;
     margin-bottom: 43px;
@@ -18,12 +18,13 @@ h1 {
     font-weight: 100;
 }
 
-h2, h3, h4, h5, h6, p {
+h2, h3, h4, h5, h6 {
     font-weight: 200;
 }
 
 p {
     margin-bottom: 0px !important;
+    font-weight: 300;
 }
 
 a {

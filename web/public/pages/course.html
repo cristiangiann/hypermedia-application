@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <title></title>
@@ -22,24 +22,24 @@
             <!-- Course -->
             <div class="row">
                 <!-- Course image -->
-                <div class="col-auto col-lg-6 order-last order-lg-1 align-self-start mt-2">
+                <div class="col-auto col-lg-4 order-last order-lg-1 align-self-start mt-2">
                     <img src="" id="course-image" class="img-fluid" alt="">
                 </div>
                 <!-- Course title and description -->
-                <div class="col-auto col-lg-6 float-lg-right order-1 order-lg-2">
-                    <h2 id="course-title"></h2>
+                <div class="col-auto col-lg-8 float-lg-right order-1 order-lg-2">
+                    <h1 id="course-title"></h1>
                     <div id="course-description"></div>
                 </div>
             </div>
             <!-- Course details -->
             <div class="row mt-lg-4">
-                <h4 class="col-12 mb-1">Details</h4>
+                <h3 class="col-12 mb-1">Details</h3>
                 <p id="course-details" class="col"></p>
             </div>
             <div class="row container-fluid mt-3">
                 <!-- Discover the instrument section -->
                 <div class="col-lg-6 order-2 order-lg-1 border-lg-right pl-0" id="discover-instrument-section">
-                    <h4 class="row col-12">Discover the instrument</h4>
+                    <h3 class="row col-12">Discover the instrument</h3>
                     <div class="row col-auto" id="instrument">
                         <!-- Instrument card -->
                         <!-- TODO: - by removing mx-sm-2 px-sm-2 you can center the card in smaller layouts (but some fixes are needed...) -->
@@ -48,7 +48,7 @@
                 </div>
                 <!-- Teachers section -->
                 <div class="col-lg-6 order-1 order-lg-2 pl-0 pl-lg-4" id="teachers-section">
-                    <h4 class="row col-12">Teachers</h4>
+                    <h3 class="row col-12">Teachers</h3>
                     <div class="row col-auto" id="teachers">
                         <!-- Teacher card -->
                         
@@ -67,22 +67,22 @@
     <script src="../assets/js/course.js"></script>
 
     <template id="teachers-template">
-        <a href="" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+        <a href="" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
             <div class="my-2 card border-0 bg-transparent">
                 <img src="" id="teacher-img" class="card-img-top rounded-circle" alt="">
                 <div class="card-body p-0 text-center">
-                    <h6 id="teacher-name" class="card-text nowrap"></h6>
+                    <h5 id="teacher-name" class="card-text nowrap"></h5>
                 </div>
             </div>
         </a>
     </template>
 
     <template id="musical-instrument-template">
-        <a href="" class="col-lg-2 col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
+        <a href="" class="col-md-3 col-sm-4 col-5 px-auto mx-auto mx-sm-2 px-sm-2 mb-2">
             <div class="my-2 card border-0 bg-transparent">
                 <img src="" id="instrument-img" class="card-img-top" alt="">
                 <div class="card-body p-0 text-center">
-                    <h6 id="instrument-name" class="card-text nowrap"></h6>
+                    <h5 id="instrument-name" class="card-text nowrap"></h5>
                 </div>
             </div>
         </a>

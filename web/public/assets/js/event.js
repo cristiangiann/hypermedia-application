@@ -30,7 +30,7 @@ function drawPresentedCourses(event) {
 
         $presentedCourseItem.attr("href", courseLink);
         $presentedCourseItem.find("img").attr("src", courseImgPath).attr("alt", course.name);
-        $presentedCourseItem.find("h6").text(course.name);
+        $presentedCourseItem.find(".card-text").text(course.name);
         $("#presented-courses").append($presentedCourseItem);
     });
 }

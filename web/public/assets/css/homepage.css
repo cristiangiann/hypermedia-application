@@ -1,5 +1,9 @@
-h2.card-title {
-    font-weight: 300;
+.card-title .card-subtitle .card-text {
+    font-weight: 300 !important;
+}
+
+.card-text {
+    max-width: 55%;
 }
 
 .carousel-badge {
@@ -21,8 +25,9 @@ h2.card-title {
     width: 10%;
 }
 
-.association-name-badge {
+#association-name-badge {
     background: #EEEEEE;
+    font-weight: 300;
 }
 
 button[type=association-badge] {
@@ -77,13 +82,12 @@ button[type=association-badge] {
         width: 55%;
         font-size: 1rem;
     }
-    h3.card-title {
+    h3.card-subtitle {
         width: 55%;
         margin-bottom: 1px;
         font-size: 0.75rem;
     }
     .card-text {
-        width: 55%;
         margin-top: 1px;
         font-size: 0.5rem;
     }
@@ -94,13 +98,12 @@ button[type=association-badge] {
         width: 55%;
         font-size: 1.5rem;
     }
-    h3.card-title {
+    h3.card-subtitle {
         width: 55%;
         font-size: 1.0rem;
         margin-bottom: 1px;
     }
     .card-text {
-        width: 55%;
         font-size: 0.75rem;
         margin-top: 1px;
     }
