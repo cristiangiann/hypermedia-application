@@ -26,3 +26,11 @@ li{
     width: 100%;
     height: 10px;
 }
+
+img{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
