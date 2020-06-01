@@ -29,7 +29,7 @@ module.exports.coursesIdGET = function coursesIdGET (req, res, next) {
         if(response.musical_instrument_id != null){
           MusicalInstrument.instrumentByIdGET(response.musical_instrument_id)
             .then(function(instrument) {
-              response['musical_instrument'] = UrlController.setSingleUrl(instrument);
+              response['musical_instrument'] = UrlController.setSingleUrl(instrument, 'instrument');
               utils.writeJson(res, response);
             })
         } else {

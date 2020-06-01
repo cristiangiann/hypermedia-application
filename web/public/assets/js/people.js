@@ -11,9 +11,8 @@ function fetchPeople() {
             let personNameSurname = person.name + " " + person.surname;
             let personImgPath = "../assets/imgs" + person.image_path;
             let personId = person.id;
-            let personLink = "person?id=" + personId.toString();
             let $personItem = $(template);
-            $personItem.attr("href", personLink);
+            $personItem.attr("href", person.url);
             $personItem.find("img").attr("src", personImgPath);
             $personItem.find(".card-text").text(personNameSurname);
             

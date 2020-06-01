@@ -14,7 +14,7 @@ function fetchEvent(id) {
         $("#event-title").html(event.name);
         $("#event-description").html(event.description);
         $("#event-details").text(eventDate.toDateString() + " at " + event.time.substring(0, 5));
-        $("#event-organiser-link").attr("href", "/person?id="+event.organiser.id.toString());
+        $("#event-organiser-link").attr("href",event.organiser.url);
         $("#event-organiser-img").attr("src", "../assets/imgs"+event.organiser.image_path);
         $("#event-organiser-name").text(event.organiser.name + " " + event.organiser.surname);
         if (event.presentedCourses.length) drawPresentedCourses(event);
@@ -26,10 +26,9 @@ function drawPresentedCourses(event) {
     let template = $("#presented-course-template").html();
     event.presentedCourses.forEach(course => {
         let $presentedCourseItem = $(template);
-        let courseLink = "/course?id=" + course.id.toString();
         let courseImgPath = "../assets/imgs" + course.image_path;
 
-        $presentedCourseItem.attr("href", courseLink);
+        $presentedCourseItem.attr("href", course.url);
         $presentedCourseItem.find("img").attr("src", courseImgPath).attr("alt", course.name);
         $presentedCourseItem.find(".card-text").text(course.name);
         $("#presented-courses").append($presentedCourseItem);

@@ -13,7 +13,6 @@ function fetchInstrument(id) {
         const instrumentHistory = instrument.history;
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
         const courseID = instrument.course.id;
-        const courseLink = courseID ? ('course?id=' + courseID.toString()) : ""
         const relatedInstruments = instrument.related_instruments;
         const $courseButton = $("#instrument-course-link");
 
@@ -26,7 +25,7 @@ function fetchInstrument(id) {
         $("#instrument-type").text(instrument.type);
         $("#instrument-region").text(instrument.region);
         if (courseID != null && courseID != undefined) {
-            $courseButton.attr("href", courseLink);
+            $courseButton.attr("href", instrument.course.url);
             $courseButton.toggle();
         }
         getRelatedMusicalInstrumentsHTML(relatedInstruments);
@@ -37,12 +36,11 @@ function getRelatedMusicalInstrumentsHTML(instruments) {
     let template = $("#related-instrument-template").html();
     
     instruments.forEach(instrument => {
-        const instrumentLink = "/musical-instrument?id=" + instrument.id.toString();
         const instrumentName = instrument.name;
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
 
         let $instrumentItem = $(template);
-        $instrumentItem.attr("href", instrumentLink);
+        $instrumentItem.attr("href", instrument.url);
         $instrumentItem.find("img").attr("src", instrumentImgPath);
         $instrumentItem.find("img").attr("alt", instrumentName);
         $instrumentItem.find(".card-text").text(instrumentName);

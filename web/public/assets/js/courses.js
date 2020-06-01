@@ -7,14 +7,13 @@ function fetchCourses() {
     // AJAX call
     $.get("/api/courses", (data) => {
         data.forEach( course => {
-            const courseURL = "/course?id=" + course.id.toString();
             const courseName = course.name;
             const courseImgPath = "../assets/imgs" + course.image_path;
 
             let template = $("#course-item-template").html();
             let $courseItem = $(template);
 
-            $courseItem.attr("href", courseURL);
+            $courseItem.attr("href", course.url);
             $courseItem.find("img").attr("src", courseImgPath);
             $courseItem.find("img").attr("alt", courseName);
             $courseItem.find(".card-text").text(courseName);

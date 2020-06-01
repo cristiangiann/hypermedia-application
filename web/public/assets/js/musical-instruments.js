@@ -32,7 +32,7 @@ function drawInstruments(type, region) {
     filteredArray.forEach( instrument => {
         let $row = $(template);
         let $img = $row.find("img")
-        $row.attr("href", "/musical-instrument?id="+instrument.id.toString());
+        $row.attr("href", instrument.url);
         $row.find(".card-text").text(instrument.name);
         $img.attr("src", "../assets/imgs" + instrument.image_path);
         $img.attr("alt", instrument.name);

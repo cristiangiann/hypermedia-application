@@ -26,12 +26,11 @@ function fetchPerson(id) {
 function getCoursesHTML(courses) {
     let template = $("#course-item-template").html();
     courses.forEach( course => {
-        let courseLink = "/course?id=" + course.id.toString();
         let courseImgPath = "../assets/imgs" + course.image_path;
         let courseName = course.name;
         let $courseItem = $(template);
 
-        $courseItem.find("a").attr("href", courseLink);
+        $courseItem.find("a").attr("href", course.url);
         $courseItem.find("img").attr("src", courseImgPath).attr("alt", "course image");
         $courseItem.find(".card-text").text(courseName);
 

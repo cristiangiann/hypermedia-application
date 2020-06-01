@@ -30,10 +30,9 @@ function drawTeachersSection(teachers) {
     let template = $("#teachers-template").html();
     teachers.forEach(teacher => {
         let $teacherItem = $(template);
-        const teacherURL = "/person?id=" + teacher.id.toString();
         const teacherImgPath = "../assets/imgs" + teacher.image_path;
         const teacherNameSurname = teacher.name + " " + teacher.surname;
-        $teacherItem.attr("href", teacherURL);
+        $teacherItem.attr("href", teacher.url);
         $teacherItem.find("img").attr("src", teacherImgPath);
         $teacherItem.find("img").attr("alt", teacherNameSurname);
         $teacherItem.find(".card-text").text(teacherNameSurname);
@@ -42,12 +41,11 @@ function drawTeachersSection(teachers) {
 }
 
 function drawMusicalInstrumentSection(instrument) {
-    const instrumentURL = "/musical-instrument?id=" + instrument.id.toString();
     const instrumentImgPath = "../assets/imgs" + instrument.image_path;
     
     let template = $("#musical-instrument-template").html();
     let $instrumentItem = $(template);
-    $instrumentItem.attr("href", instrumentURL);
+    $instrumentItem.attr("href", instrument.url);
     $instrumentItem.find("img").attr("src", instrumentImgPath);
     $instrumentItem.find("img").attr("alt", instrument.name);
     $instrumentItem.find("#instrument-name").text(instrument.name);
