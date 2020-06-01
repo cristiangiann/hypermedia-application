@@ -10,7 +10,7 @@ var UrlController = require('./UrlController');
 module.exports.coursesGET = function coursesGET (req, res, next) {
   Course.coursesGET()
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, UrlController.setMultipleUrl(response, 'course'));
     })
     .catch(function (response) {
       utils.writeJson(res, response);

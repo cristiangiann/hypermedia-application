@@ -19,7 +19,7 @@ module.exports.instrument_typesGET = function instrument_typesGET (req, res, nex
 module.exports.musical_instrumentsGET = function musical_instrumentsGET (req, res, next) {
   MusicalInstrument.musicalInstrumentsGET()
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, UrlController.setMultipleUrl(response, 'instrument'));
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500);

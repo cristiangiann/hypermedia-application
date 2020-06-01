@@ -10,7 +10,7 @@ var UrlController = require('./UrlController');
 module.exports.nextEventsGET = function eventsGET (req, res, next) {
   Event.nextEventsGET()
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, UrlController.setMultipleUrl(response, 'event'));
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500);
@@ -20,7 +20,7 @@ module.exports.nextEventsGET = function eventsGET (req, res, next) {
 module.exports.pastEventsGET = function eventsGET (req, res, next) {
   Event.pastEventsGET()
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, UrlController.setMultipleUrl(response, 'event'));
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500);
@@ -30,7 +30,7 @@ module.exports.pastEventsGET = function eventsGET (req, res, next) {
 module.exports.nextEventGET = function eventsGET (req, res, next) {
   Event.nextEventsGET()
     .then(function (response) {
-      utils.writeJson(res, response[0]);
+      utils.writeJson(res, UrlController.setSingleUrl(response[0], 'event'));
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500)

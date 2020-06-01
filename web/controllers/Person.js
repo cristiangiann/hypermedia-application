@@ -8,7 +8,7 @@ var UrlController = require('./UrlController');
 module.exports.peopleGET = function peopleGET (req, res, next) {
   Person.peopleGET()
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, UrlController.setMultipleUrl(response, 'person'));
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500);
