@@ -23,7 +23,6 @@ function fetchEvents() {
     ).done(hideMonths).then(function() {
         $(".event-row").hover(function() {
             $(this).find("a").css( "text-decoration", "underline" );
-            console.log("on");
         }, function() {
             $(this).find("a").css( "text-decoration", "none" );
         });
@@ -93,5 +92,9 @@ $(document).ready( () =>{
         let month = $("#month-select > option:selected").attr("value");
         drawNextEvents(month);
         drawPastEvents(month);
+    });
+
+    $("a[data-toggle=collapse]").click(function() {
+        $(this).find("svg.bi-chevron-right").toggleClass("expanded").toggleClass("unexpanded");
     });
 });
