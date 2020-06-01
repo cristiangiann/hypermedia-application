@@ -4,6 +4,8 @@ var utils = require('../utils/writer.js');
 var Event = require('../service/EventService');
 var Course = require('../service/CourseService');
 var Person = require('../service/PersonService');
+var UrlController = require('./UrlController');
+
 
 module.exports.nextEventsGET = function eventsGET (req, res, next) {
   Event.nextEventsGET()
@@ -43,10 +45,10 @@ module.exports.eventsIdGET = function eventsIdGET (req, res, next) {
     .then(function (responses) {
       if(responses[0]['id'] == id){
         var response = responses[0];
-        response['presentedCourses'] = responses[1];
+        response['presentedCourses'] = UrlController.setMultipleUrl(responses[1], 'course');
         Person.personByIdGET(response.organiser_id)
           .then(function(organiser) {
-            response['organiser'] = organiser;
+            response['organiser'] = UrlController.setSingleUrl(organiser, 'person');
             utils.writeJson(res, response);
             console.log(response);
           })

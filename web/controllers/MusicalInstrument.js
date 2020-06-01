@@ -3,6 +3,8 @@
 var utils = require('../utils/writer.js');
 var MusicalInstrument = require('../service/MusicalInstrumentService');
 var Course = require('../service/CourseService');
+var UrlController = require('./UrlController');
+
 
 module.exports.instrument_typesGET = function instrument_typesGET (req, res, next) {
   MusicalInstrument.instrument_typesGET()
@@ -32,10 +34,10 @@ module.exports.musical_instrumentsIdGET = function musical_instrumentsIdGET (req
     .then(function (responses) {
       if(responses[0]['id'] == id){
         var response = responses[0];
-        response['course'] = responses[1];
+        response['course'] = UrlController.setSingleUrl(responses[1], 'course');
         MusicalInstrument.relatedInstrumentGET(response.italian_region_id, response.instrument_type_id, id)
           .then(function(relatedInstruments) {
-            response['related_instruments'] = relatedInstruments;
+            response['related_instruments'] = UrlController.setMultipleUrl(relatedInstruments, 'instrument');
             utils.writeJson(res, response);
           })
       } else {

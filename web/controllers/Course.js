@@ -4,6 +4,8 @@ var utils = require('../utils/writer.js');
 var Course = require('../service/CourseService');
 var Person = require('../service/PersonService');
 var MusicalInstrument = require('../service/MusicalInstrumentService');
+var UrlController = require('./UrlController');
+
 
 module.exports.coursesGET = function coursesGET (req, res, next) {
   Course.coursesGET()
@@ -23,11 +25,11 @@ module.exports.coursesIdGET = function coursesIdGET (req, res, next) {
     .then(function (responses) {
       if(responses[0]['id'] == id){
         var response = responses[0];
-        response['teachers'] = responses[1];
+        response['teachers'] = UrlController.setMultipleUrl(responses[1], 'person');
         if(response.musical_instrument_id != null){
           MusicalInstrument.instrumentByIdGET(response.musical_instrument_id)
             .then(function(instrument) {
-              response['musical_instrument'] = instrument;
+              response['musical_instrument'] = UrlController.setSingleUrl(instrument);
               utils.writeJson(res, response);
             })
         } else {

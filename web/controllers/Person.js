@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var Person = require('../service/PersonService');
 var Course = require('../service/CourseService');
+var UrlController = require('./UrlController');
 
 module.exports.peopleGET = function peopleGET (req, res, next) {
   Person.peopleGET()
@@ -22,7 +23,7 @@ module.exports.peopleIdGET = function peopleIdGET (req, res, next) {
     .then(function (responses) {
       if(responses[0]['id'] == id){
         var response = responses[0];
-        response['courses'] = responses[1];
+        response['courses'] = UrlController.setMultipleUrl(responses[1], 'course');
         utils.writeJson(res, response);
       } else {
         utils.writeJson(res, responses[0], 404);
