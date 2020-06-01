@@ -249,10 +249,10 @@ paths:
       summary: "Send message"
       description: "Send a message to the association"
       operationId: "send_emailPOST"
-      produces:
-      - "application/json"
       consumes:
         - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
       parameters:
       - name: "email"
         in: "formData"
@@ -299,7 +299,8 @@ paths:
       tags:
       - "Musical instrument"
       summary: "List of Italian regions"
-      description: "Italian regions for which there exists at least an instrument and their identifiers"
+      description: "Italian regions for which there exists at least an instrument\
+        \ and their identifiers"
       operationId: "regionsGET"
       produces:
       - "application/json"
@@ -331,6 +332,9 @@ definitions:
       image_path:
         type: "string"
         example: "/people/pina_sinalefe.jpg"
+      url:
+        type: "string"
+        example: "/person?id=1"
     title: "Person Preview"
     description: "Basic information of a teacher of Lemon Peel association"
     example:
@@ -338,6 +342,7 @@ definitions:
       name: "Pina"
       surname: "Sinalefe"
       image_path: "/people/pina_sinalefe.jpg"
+      url: "/person?id=1"
   Person:
     type: "object"
     properties:
@@ -395,6 +400,7 @@ definitions:
       - id: 1
         image_path: "/courses/ocarina.jpg"
         name: "Ocarina course"
+        url: "/course?id=1"
   EventPreview:
     type: "object"
     properties:
@@ -429,6 +435,9 @@ definitions:
         type: "integer"
         format: "int64"
         example: 1
+      url:
+        type: "string"
+        example: "/event?id=1"
     title: "Event Preview"
     description: "Basic information about an event"
     example:
@@ -446,6 +455,7 @@ definitions:
         \ buffet with networking will be available for all the participants.</p>"
       id: 1
       time: "61200"
+      url: "/event?id=1"
   Event:
     type: "object"
     properties:
@@ -507,11 +517,13 @@ definitions:
       - id: 1
         name: "Ocarina course"
         image_path: "/courses/ocarina.jpg"
+        url: "/course?id=1"
       organiser:
         id: 1
         name: "Pina"
         surname: "Sinalefe"
         image_path: "/people/pina_sinalefe.jpg"
+        url: "/person?id=1"
   MusicalInstrumentPreview:
     type: "object"
     properties:
@@ -533,6 +545,9 @@ definitions:
         type: "integer"
         format: "int64"
         example: 5
+      url:
+        type: "string"
+        example: "/musical-instrument?id=1"
     title: "Musical Intrument Preview"
     description: "Basic information about an old italian musical instrument that is\
       \ relevant for Lemon Peel association"
@@ -542,6 +557,7 @@ definitions:
       name: "Ocarina"
       instrument_type_id: 1
       italian_region_id: 5
+      url: "musical-instrument?id=1"
   MusicalInstrument:
     type: "object"
     properties:
@@ -624,13 +640,16 @@ definitions:
       - id: 3
         name: "Piva"
         image_path: "/instruments/piva.jpg"
+        url: "/musical-instrument?id=3"
       - id: 8
         name: "Müsa"
         image_path: "/instruments/musa.jpg"
+        url: "/musical-instrument?id=8"
       course:
         id: 1
-        image_path: "/courses/Ocarina.jpg"
         name: "Ocarina course"
+        image_path: "/courses/Ocarina.jpg"
+        url: "/musical-instrument?id=1"
   CoursePreview:
     type: "object"
     properties:
@@ -644,12 +663,16 @@ definitions:
       image_path:
         type: "string"
         example: "/events/spring_courses_2020.jpg"
+      url:
+        type: "string"
+        example: "/course?id=1"
     title: "Course Preview"
     description: "Basic information about a course organised by Lemon Peel association"
     example:
       id: 1
-      image_path: "/courses/Oracina.jpg"
+      image_path: "/courses/ocarina.jpg"
       name: "Ocarina course"
+      url: "/course?id=1"
   Course:
     type: "object"
     properties:
@@ -710,10 +733,12 @@ definitions:
         image_path: "/people/pina_sinalefe.jpg"
         name: "Pina"
         surname: "Sinalefe"
+        url: "/person?id=1"
       musical_instrument:
         id: 1
         name: "Ocarina"
         image_path: "/instruments/ocarina.jpg"
+        url: "/musical-instrument?id=1"
   InstrumentType:
     type: "object"
     properties:
@@ -723,11 +748,11 @@ definitions:
         example: 1
       name:
         type: "string"
-        example: "Aerofoni labiali"
+        example: "Flutes"
     title: "Instrument Type"
     description: "Instrument Type"
     example:
-      name: "Aerofoni labiali"
+      name: "Flutes"
       id: 1
   ItalianRegion:
     type: "object"
