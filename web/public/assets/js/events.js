@@ -94,7 +94,7 @@ $(document).ready( () =>{
         drawPastEvents(month);
     });
 
-    $("a[data-toggle=collapse]").click(function() {
+    $("a[data-toggle=collapse]").bind('click dblclick', function() {
         $(this).find("svg.bi-chevron-right").toggleClass("expanded").toggleClass("unexpanded");
     });
 });
