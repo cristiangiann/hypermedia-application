@@ -4,17 +4,19 @@
 $(document).ready( () =>{
     const postURL = "/api/send-email";
     $("#contact-form").submit(function(event) {
-        const data = $("#contact-form").serialize();
-
         // Stop form from submitting normally
         event.preventDefault();
 
-        var jqxhr = $.post(postURL, data).done(onSuccess);
+        const data = $("#contact-form").serialize();
+
+        var jqxhr = $.post(postURL, data)
+        jqxhr.done(onSuccess);
     });
 });
 
-let onSuccess = function() {
-    $("#submit-button, #submit-success").fadeToggle().delay(2000).fadeToggle();
-    // reset
+let onSuccess = async function() {
+    $("#submit-button").toggleClass("btn-success custom-form-borders custom-btn").text("Sent");
     $("input, textarea").each(function() {$(this).val("")});
+    await new Promise(r => setTimeout(r, 1500));
+    $("#submit-button").toggleClass("btn-success custom-form-borders custom-btn").text("Submit");
 }
