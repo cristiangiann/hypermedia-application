@@ -1,5 +1,6 @@
 .card-title, .card-subtitle, .card-text {
     font-weight: 300 !important;
+    max-width: 55%;
 }
 
 .card-title {
