@@ -1,5 +1,13 @@
-.card-title .card-subtitle .card-text {
+.card-title, .card-subtitle, .card-text {
     font-weight: 300 !important;
+}
+
+.card-title {
+    margin-bottom: .5rem;
+}
+
+.card-subtitle {
+    margin-top: 0px;
 }
 
 .card-text {
@@ -58,22 +66,29 @@ button[type=association-badge] {
     z-index: 2;
 }
 
-@media (max-width: 1024px) {
-    .carousel-badge {
-        bottom: 90px;
+@media (max-width: 470px) {
+    #next-event-header.card-title {
+        margin-bottom: .2rem;
     }
-    .find-more-badge {
-        margin-top: 2.5rem;
+    .card-title {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        margin-bottom: .2rem;
     }
-    .carousel-badge .btn {
-        font-size: 0.75em;
+    .card-subtitle {
+        font-size: 0.6rem;
+        margin-top: 1.25rem !important;
+    }
+    .card-text {
+        font-size: 0.55rem
     }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 768px) {
     .card-img-overlay {
         padding-top: 4px;
         padding-bottom: 4px;
+        padding-left: 8px;
     }
     .card-title {
         margin-bottom: .25rem;
@@ -93,7 +108,7 @@ button[type=association-badge] {
     }
 }
 
-@media (min-width: 770px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 992px) {
     h2.card-title {
         width: 55%;
         font-size: 1.5rem;
@@ -106,5 +121,17 @@ button[type=association-badge] {
     .card-text {
         font-size: 0.75rem;
         margin-top: 1px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .carousel-badge {
+        bottom: 90px;
+    }
+    .find-more-badge {
+        margin-top: 2.5rem;
+    }
+    .carousel-badge .btn {
+        font-size: 0.75em;
     }
 }
