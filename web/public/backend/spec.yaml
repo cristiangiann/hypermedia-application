@@ -358,14 +358,14 @@ definitions:
         example: "Sinalefe"
       biography:
         type: "string"
-        example: "<p>Pina is a 27 years old cinema student, passionate about acting,\
+        example: "Pina is a 27 years old cinema student, passionate about acting,\
           \ singing and movies. Since she was 4, she’s been playing musical instruments\
           \ like the piano and acoustic guitar, while only in the last three years\
-          \ she found interest in old musical instruments from her region.</p>\n<p>Pina\
+          \ she found interest in old musical instruments from her region.\nPina\
           \ joined the Association in 2017 when she was curious on learning more about\
           \ the putipù founded in her grandma’s basement. Since then, she became first\
-          \ a student then a volountary, teaching music to beginners.</p>\n<p>Today\
-          \ Pina is our youngest teacher, bringing joy and happiness at every event.</p>"
+          \ a student then a volountary, teaching music to beginners.\nToday\
+          \ Pina is our youngest teacher, bringing joy and happiness at every event."
       telephone:
         type: "string"
         example: "02 679"
@@ -387,14 +387,14 @@ definitions:
       name: "Pina"
       telephone: "02 679"
       id: 1
-      biography: "<p>Pina is a 27 years old cinema student, passionate about acting,\
+      biography: "Pina is a 27 years old cinema student, passionate about acting,\
         \ singing and movies. Since she was 4, she’s been playing musical instruments\
         \ like the piano and acoustic guitar, while only in the last three years she\
-        \ found interest in old musical instruments from her region.</p>\n<p>Pina\
+        \ found interest in old musical instruments from her region.\nPina\
         \ joined the Association in 2017 when she was curious on learning more about\
         \ the putipù founded in her grandma’s basement. Since then, she became first\
-        \ a student then a volountary, teaching music to beginners.</p>\n<p>Today\
-        \ Pina is our youngest teacher, bringing joy and happiness at every event.</p>"
+        \ a student then a volountary, teaching music to beginners.\nToday\
+        \ Pina is our youngest teacher, bringing joy and happiness at every event."
       email: "pina-sinalefe1@tiscali.it"
       courses:
       - id: 1
@@ -419,15 +419,15 @@ definitions:
         example: "61200"
       description:
         type: "string"
-        example: "<p>Come visit us for the presentation of the new courses held the\
+        example: "Come visit us for the presentation of the new courses held the\
           \ following spring season! This year the Association has two new teachers\
-          \ who will introduce themselves and the courses they’ll teach.</p><p>Two\
+          \ who will introduce themselves and the courses they’ll teach. Two\
           \ new courses have been added to the already existing ones, related to,\
           \ respectively, the ocarina and putipù instruments. Join this event to learn\
-          \ more about them and their  related teaching activities.</p><p>Remember\
+          \ more about them and their  related teaching activities. Remember\
           \ that there’s no participation fee and anyone can attend this event. At\
           \ the end, a small buffet with networking will be available for all the\
-          \ participants.</p>"
+          \ participants."
       image_path:
         type: "string"
         example: "/events/spring_courses_2020.jpg"
@@ -445,14 +445,14 @@ definitions:
       image_path: "/events/spring_courses_2020.jpg"
       name: "Presentation of Spring Courses 2020"
       organiser_id: 1
-      description: "<p>Come visit us for the presentation of the new courses held\
+      description: "Come visit us for the presentation of the new courses held\
         \ the following spring season! This year the Association has two new teachers\
-        \ who will introduce themselves and the courses they’ll teach.</p><p>Two new\
+        \ who will introduce themselves and the courses they’ll teach. Two new\
         \ courses have been added to the already existing ones, related to, respectively,\
         \ the ocarina and putipù instruments. Join this event to learn more about\
-        \ them and their  related teaching activities.</p><p>Remember that there’\
+        \ them and their related teaching activities. Remember that there’\
         s no participation fee and anyone can attend this event. At the end, a small\
-        \ buffet with networking will be available for all the participants.</p>"
+        \ buffet with networking will be available for all the participants."
       id: 1
       time: "61200"
       url: "/event?id=1"
@@ -474,15 +474,15 @@ definitions:
         example: "61200"
       description:
         type: "string"
-        example: "<p>Come visit us for the presentation of the new courses held the\
+        example: "Come visit us for the presentation of the new courses held the\
           \ following spring season! This year the Association has two new teachers\
-          \ who will introduce themselves and the courses they’ll teach.</p><p>Two\
+          \ who will introduce themselves and the courses they’ll teach. Two\
           \ new courses have been added to the already existing ones, related to,\
           \ respectively, the ocarina and putipù instruments. Join this event to learn\
-          \ more about them and their  related teaching activities.</p><p>Remember\
+          \ more about them and their related teaching activities. Remember\
           \ that there’s no participation fee and anyone can attend this event. At\
           \ the end, a small buffet with networking will be available for all the\
-          \ participants.</p>"
+          \ participants."
       image_path:
         type: "string"
         example: "/events/spring_courses_2020.jpg"
@@ -503,14 +503,14 @@ definitions:
       image_path: "/events/spring_courses_2020.jpg"
       name: "Presentation of Spring Courses 2020"
       organiser_id: 1
-      description: "<p>Come visit us for the presentation of the new courses held\
+      description: "Come visit us for the presentation of the new courses held\
         \ the following spring season! This year the Association has two new teachers\
-        \ who will introduce themselves and the courses they’ll teach.</p><p>Two new\
+        \ who will introduce themselves and the courses they’ll teach. Two new\
         \ courses have been added to the already existing ones, related to, respectively,\
         \ the ocarina and putipù instruments. Join this event to learn more about\
-        \ them and their  related teaching activities.</p><p>Remember that there’\
+        \ them and their related teaching activities. Remember that there’\
         s no participation fee and anyone can attend this event. At the end, a small\
-        \ buffet with networking will be available for all the participants.</p>"
+        \ buffet with networking will be available for all the participants."
       id: 1
       time: "61200"
       presentedCourses:
@@ -688,15 +688,15 @@ definitions:
         example: "Every monday at 5PM"
       description:
         type: "string"
-        example: "<p>The ocarina is one of the easiest of all wind instruments to\
+        example: "The ocarina is one of the easiest of all wind instruments to\
           \ learn to play. In fact, getting a tone is as simple as blowing a whistle.\
           \ You may be familiar with the ocarina as an instrument through a fandom\
-          \ of Nintendo's Zelda games.</p><p>Every lesson will be based first on a\
+          \ of Nintendo's Zelda games. Every lesson will be based first on a\
           \ fingering chart on few songs and starts you out with a simple 'play by\
-          \ number' system that anyone can learn. </p><p>Numbers over the lyrics correspond\
+          \ number' system that anyone can learn. Numbers over the lyrics correspond\
           \ to fingerings on the chart. Once memorized the scale by numbers, it's\
           \ easy to play the songs, just add a little rhythm, and you'll be entertaining\
-          \ yourself in no time at all!</p>"
+          \ yourself in no time at all!"
       image_path:
         type: "string"
         example: "/events/spring_courses_2020.jpg"
@@ -716,15 +716,15 @@ definitions:
     example:
       image_path: "/events/spring_courses_2020.jpg"
       name: "Presentation of Spring Courses 2020"
-      description: "<p>The ocarina is one of the easiest of all wind instruments to\
+      description: "The ocarina is one of the easiest of all wind instruments to\
         \ learn to play. In fact, getting a tone is as simple as blowing a whistle.\
         \ You may be familiar with the ocarina as an instrument through a fandom of\
-        \ Nintendo's Zelda games.</p><p>Every lesson will be based first on a fingering\
+        \ Nintendo's Zelda games. Every lesson will be based first on a fingering\
         \ chart on few songs and starts you out with a simple 'play by number' system\
-        \ that anyone can learn. </p><p>Numbers over the lyrics correspond to fingerings\
+        \ that anyone can learn. Numbers over the lyrics correspond to fingerings\
         \ on the chart. Once memorized the scale by numbers, it's easy to play the\
         \ songs, just add a little rhythm, and you'll be entertaining yourself in\
-        \ no time at all!</p>"
+        \ no time at all!"
       id: 1
       musical_instrument_id: 1
       info: "Every monday at 5PM"
