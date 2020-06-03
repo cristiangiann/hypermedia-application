@@ -11,10 +11,12 @@ function fetchPerson(id) {
         // AJAX call
         $.get(getURL, (person) => {
             peopleMap.set(id, person);
-            sessionStorage.peopleMap = peopleMap;
+            sessionStorage.peopleMap = JSON.stringify(Array.from(peopleMap));
             drawPerson(person);
         });
-    } else drawPerson(person);
+    } else {
+        drawPerson(person);
+    }
 }
 
 function drawPerson(person) {
@@ -51,6 +53,7 @@ function getCoursesHTML(courses) {
 
 $(document).ready( () =>{
     if (peopleMap == null) peopleMap = new Map();
+    else peopleMap = new Map(JSON.parse(peopleMap));
     const params = new URLSearchParams(location.search);
     const key = 'id';
     if (params.has(key)) fetchPerson(params.get(key));

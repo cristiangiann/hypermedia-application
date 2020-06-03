@@ -12,7 +12,10 @@ function fetchCourses() {
             sessionStorage.courses = JSON.stringify(courses);
             drawCourses(courses);
         });
-    } else drawCourses(courses);
+    } else {
+        courses = JSON.parse(courses);
+        drawCourses(courses);
+    }
 }
 
 function drawCourses(data) {

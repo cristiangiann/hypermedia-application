@@ -12,7 +12,10 @@ function fetchPeople() {
             sessionStorage.people = JSON.stringify(people);
             drawPeople(people);
         });
-    } else drawPeople(people)
+    } else {
+        people = JSON.parse(people);
+        drawPeople(people);
+    }
 }
 
 function drawPeople(data) {
