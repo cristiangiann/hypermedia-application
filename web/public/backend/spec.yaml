@@ -62,6 +62,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        default: 1
       responses:
         "200":
           description: "People involved in the association"
@@ -146,6 +147,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        default: 1
       responses:
         "200":
           description: "Event organised by Lemon Peel association"
@@ -193,6 +195,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        default: 1
       responses:
         "200":
           description: "Musical intruments that are relevant for the association"
@@ -240,6 +243,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        default: 1
       responses:
         "200":
           description: "Musical course organised by the association"
