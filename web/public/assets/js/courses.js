@@ -10,9 +10,9 @@ function fetchCourses() {
         $.get("/api/courses", (data) => {
             courses = data;
             sessionStorage.courses = JSON.stringify(courses);
+            drawCourses(courses);
         });
-    }
-    drawCourses(courses);
+    } else drawCourses(courses);
 }
 
 function drawCourses(data) {

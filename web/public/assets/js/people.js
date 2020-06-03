@@ -5,14 +5,14 @@ let people = sessionStorage.people;
 
 // Fetching all people from APIs
 function fetchPeople() {
-    if (people == null) {
+    if (people == null || people == undefined) {
         // AJAX call
         $.get("/api/people", (data) => {
             people = data;
             sessionStorage.people = JSON.stringify(people);
+            drawPeople(people);
         });
-    }
-    drawPeople(people);
+    } else drawPeople(people)
 }
 
 function drawPeople(data) {

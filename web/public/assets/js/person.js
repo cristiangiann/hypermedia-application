@@ -12,9 +12,9 @@ function fetchPerson(id) {
         $.get(getURL, (person) => {
             peopleMap.set(id, person);
             sessionStorage.peopleMap = peopleMap;
+            drawPerson(person);
         });
-    }
-    drawPerson(person)
+    } else drawPerson(person);
 }
 
 function drawPerson(person) {

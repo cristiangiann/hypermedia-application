@@ -12,9 +12,9 @@ function fetchInstrument(id) {
         $.get(getURL, (instrument) => {
             instrumentsMap.set(id, instrument);
             sessionStorage.instrumentsMap = instrumentsMap;
+            drawInstrument(instrument);
         });
-    }
-    drawInstrument(instrument);
+    } else drawInstrument(instrument);
 }
 
 function drawInstrument(instrument) {
