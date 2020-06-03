@@ -11,7 +11,7 @@ function fetchInstrument(id) {
         // AJAX call
         $.get(getURL, (instrument) => {
             instrumentsMap.set(id, instrument);
-            sessionStorage.instrumentsMap = instrumentsMap;
+            sessionStorage.instrumentsMap = JSON.stringify(Array.from(instrumentsMap));
             drawInstrument(instrument);
         });
     } else drawInstrument(instrument);
@@ -60,6 +60,7 @@ function getRelatedMusicalInstrumentsHTML(instruments) {
 
 $(document).ready( () => {
     if (instrumentsMap == null) instrumentsMap = new Map();
+    else instrumentsMap = new Map(JSON.parse(instrumentsMap));
     const params = new URLSearchParams(location.search);
     const key = 'id';
     if (params.has(key)) fetchInstrument(params.get(key));
