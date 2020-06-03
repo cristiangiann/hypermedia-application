@@ -141,3 +141,9 @@ a.footer-social-button:hover {
         padding-right: 4px;
     }
 }
+
+@media (max-width: 470px) {
+    .navbar-brand{
+        margin-right: 0;
+    }
+}
