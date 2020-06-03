@@ -43,8 +43,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/PersonPreview"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Person"
   /people/{id}:
     get:
@@ -69,6 +69,8 @@ paths:
             $ref: "#/definitions/Person"
         "404":
           description: "Person with selected ID not found"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Person"
   /nextEvents:
     get:
@@ -87,8 +89,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/EventPreview"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Event"
   /pastEvents:
     get:
@@ -107,8 +109,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/EventPreview"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Event"
   /nextEvent:
     get:
@@ -125,8 +127,8 @@ paths:
           description: "Very next event organised by Lemon Peel association"
           schema:
             $ref: "#/definitions/EventPreview"
-        "404":
-          description: "Event with selected ID not found"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Event"
   /events/{id}:
     get:
@@ -151,6 +153,8 @@ paths:
             $ref: "#/definitions/Event"
         "404":
           description: "Event with selected ID not found"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Event"
   /musical-instruments:
     get:
@@ -169,8 +173,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/MusicalInstrumentPreview"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "MusicalInstrument"
   /musical-instruments/{id}:
     get:
@@ -196,6 +200,8 @@ paths:
             $ref: "#/definitions/MusicalInstrument"
         "404":
           description: "Musical instrument with selected ID not found"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "MusicalInstrument"
   /courses:
     get:
@@ -214,8 +220,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/CoursePreview"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Course"
   /courses/{id}:
     get:
@@ -241,6 +247,8 @@ paths:
             $ref: "#/definitions/Course"
         "404":
           description: "Course with selected ID not found"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Course"
   /send-email:
     post:
@@ -272,6 +280,10 @@ paths:
       responses:
         "204":
           description: "Message sent"
+        "400":
+          description: "Bad request"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "Contacts"
   /instrument-types:
     get:
@@ -291,8 +303,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/InstrumentType"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "MusicalInstrument"
   /regions:
     get:
@@ -312,8 +324,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/ItalianRegion"
-        "404":
-          description: "UNESPECTED ERROR"
+        "500":
+          description: "Internal server error"
       x-swagger-router-controller: "MusicalInstrument"
 definitions:
   PersonPreview:

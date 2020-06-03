@@ -13,7 +13,7 @@ module.exports.coursesGET = function coursesGET (req, res, next) {
       utils.writeJson(res, UrlController.setMultipleUrl(response, 'course'));
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
