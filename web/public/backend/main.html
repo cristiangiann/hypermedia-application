@@ -86,14 +86,14 @@
                                 while it's possibile to retrieve the data stored into the database only through API calls.
                             </p>
                             <p>
-                                The MySQL database, a db.m5.large instance created with Amazon RDS, is configured to be accessible only by the Ec2 machine for security reasons.
+                                The MySQL database, a db.t2.micro instance created with Amazon RDS, is configured to be accessible only by the Ec2 machine for security reasons.
                                 To retrieve or send data, the clients must ask what they need to the server that will query the database and send back the responses.
                             </p>
                             <p>
                                 The data with which the pages are filled are retrieved with AJAX calls to the NodeJS server,
                                 so that the HTML pages are not rendered server side but in the local machine of the user.
                             </p>
-                            <img src="./img/architecture.png" class="img-fluid" alt="Web architecture of Lemon Peel website">
+                            <img class="bodyImg" src="./img/architecture.png" class="img-fluid" alt="Web architecture of Lemon Peel website">
                         </div>
                         <div class="section">
                             <h4>3.2 - API</h4>
@@ -130,7 +130,7 @@
                             <div class="subSection">
                                 <h5>3.2.2 - OpenAPI Resource models</h5>
                                 <p>
-                                    The model introduced for data uses resources that correspond to relevant items for Lemon Peel association.
+                                    The models introduced for data use resources that correspond to relevant items for Lemon Peel association.
                                     For the first four entities, a second model has been introduced, called "preview" (Person preview, Event preview, ...),
                                     that contains name and image of a specific item, used to be incorporated in the pages that contain a link to them,
                                     so that the navigation is facilitated for the users. 
@@ -186,7 +186,7 @@
                             because of the 0:1 - 0:1 relation. Preview information (name and image) about teachers of that course are retrieved from the Person table
                             passing through the intermediate table that maps courses to people (due to 1:n - 1:n relation between them).
                         </p>
-                        <img src="./img/er_diagram.png" class="img-fluid" alt="ER Diagram of Lemon Peel database">
+                        <img class="bodyImg" src="./img/er_diagram.png" class="img-fluid" alt="ER Diagram of Lemon Peel database">
                     </div>
                     <div class="chapter">
                         <h3>4 - Implementation</h3>
@@ -224,7 +224,7 @@
                                 </li>
                                 <li>
                                     A relational database has been used for the data layer. The used technology is an RDS MySQL, provided by AWS,
-                                    and the interaction with it is permitted only from the web server IP for security reasons. The the database queries has been
+                                    and the interaction with it is permitted only from the web server IP for security reasons. The database queries have been
                                     managed with <i>knex</i> node module, that prevents SQL injections and allows minimal changes if a future decision
                                     will make replace the database.
                                 </li>
@@ -258,8 +258,8 @@
                                 Partial inspiration has been taken from Wired website that uses REST APIs to retrieve the latest news by category from the server.
                                 Even if Wired website is significantly different from Lemon Peel one, it has been useful to see how the data are structured
                                 in the response body and how they are used to compose a small part of the home page.
-                                In particular, information about the authors and the categories of the articles are ritrieved with the article data in their API response,
-                                their images links are included in the data and the content of the article contains html tags used in formatting.
+                                In particular, how information about the authors and about the categories of the articles are ritrieved together with the article data
+                                in its API response and how images links are included in the data.
                                 These information helped during the design process of Lemon Peel website.
                             </p>
                         </div>
@@ -274,10 +274,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6">
-                </div>
             </div>
             <div id="push"></div>
+            <footer class="container mt-4 mb-2" id="footer">
+                <hr class="body-hr my-0">
+                <div class="row align-items-center">
+                    <div class="col float-left mx-0 px-4 vertical-center" id="footer-left">
+                        <a class="navbar-brand" href="/">
+                            <img src="../assets/imgs/Logo/Logo.svg" class="img-fluid" alt="Lemon Peel logo" loading="lazy">
+                        </a>
+                        © Giannicola 2020
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 
@@ -285,6 +294,5 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="../assets/js/favicon.js"></script>
-    <script src="../assets/js/footer.js"></script>
 </body>
 </html>
