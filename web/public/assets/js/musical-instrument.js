@@ -19,8 +19,8 @@ function fetchInstrument(id) {
 
 function drawInstrument(instrument) {
     const instrumentName = instrument.name;
-    const instrumentDescription = instrument.description;
-    const instrumentHistory = instrument.history;
+    const instrumentDescriptionParagraphs = instrument.description.split("\\n");
+    const instrumentHistoryParagraphs = instrument.history.split("\\n");
     const instrumentImgPath = "../assets/imgs" + instrument.image_path;
     const courseID = instrument.course.id;
     const relatedInstruments = instrument.related_instruments;
@@ -30,8 +30,8 @@ function drawInstrument(instrument) {
     $("#instrument-title").text(instrumentName);
     $("#instrument-image").attr("src", instrumentImgPath);
     $("#instrument-image").attr("alt", instrumentName);
-    $("#instrument-description").html(instrumentDescription);
-    $("#instrument-history").html(instrumentHistory);
+    instrumentDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo("#instrument-description"));
+    instrumentHistoryParagraphs.forEach(par => $("<p></p>").text(par).appendTo("#instrument-history"));
     $("#instrument-type").text(instrument.type);
     $("#instrument-region").text(instrument.region);
     if (courseID != null && courseID != undefined) {

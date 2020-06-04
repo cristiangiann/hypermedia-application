@@ -7,11 +7,12 @@ function fetchCourse(id) {
     // AJAX call
     $.get(getURL, (course) => {
         const courseImgPath = "../assets/imgs" + course.image_path;
+        const courseDescriptionParagraphs = course.description.split("\\n");
 
         $("head > title").html(course.name + " - Lemon Peel Association");
         $("#course-title").html(course.name);
         $("#course-image").attr("src", courseImgPath);
-        $("#course-description").html(course.description);
+        courseDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo("#course-description"));
         $("#course-details").text(course.info);
         drawTeachersSection(course.teachers);
 

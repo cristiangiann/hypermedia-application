@@ -24,13 +24,14 @@ function drawPerson(person) {
     const personImgPath = "../assets/imgs" + person.image_path;
     const personTel = person.telephone;
     const personEmail = person.email;
-    const personBiography = person.biography;
+    const personBiographyParagraphs = person.biography.split("\\n");
+    console.log(personBiographyParagraphs)
 
     $("head > title").html(personNameSurname + " - Lemon Peel Association");
     $("#person-name").text(personNameSurname);
     $("#person-image").attr("src", personImgPath);
     $("#person-image").attr("alt", personNameSurname);
-    $("#person-bio").html(personBiography);
+    personBiographyParagraphs.forEach(par => $("<p></p>").text(par).appendTo("#person-bio"));
     $("#tel-number").text(personTel);
     $("#email-addr").text(personEmail);
     $("#courses-section").html(getCoursesHTML(person.courses));

@@ -8,11 +8,12 @@ function fetchEvent(id) {
     $.get(getURL, (event) => {
         const eventDate = new Date(event.date);
         const eventImgPath = "../assets/imgs" + event.image_path;
+        const eventDescriptionParagraphs = event.description.split("\\n")
 
         $("#event-image").attr("src", eventImgPath);
         $("head > title").html(event.name + " - Lemon Peel Association");
         $("#event-title").html(event.name);
-        $("#event-description").html(event.description);
+        eventDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo("#event-description"));
         $("#event-details").text(eventDate.toDateString() + " at " + event.time.substring(0, 5));
         $("#event-organiser-link").attr("href",event.organiser.url);
         $("#event-organiser-img").attr("src", "../assets/imgs"+event.organiser.image_path);

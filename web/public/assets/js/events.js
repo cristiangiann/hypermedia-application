@@ -51,7 +51,7 @@ function drawEvents(events, containerName) {
         let $eventItem = $(template);
         const eventName = event.name;
         const eventDate = event.date;
-        const eventDescription = event.description;
+        const eventDescriptionParagraphs = event.description.split("\\n");
         const eventImgPath = "../assets/imgs" + event.image_path;
 
         const dateStrings = eventDate.toDateString().split(' ');
@@ -64,7 +64,7 @@ function drawEvents(events, containerName) {
         $eventItem.find(".event-name h3").text(eventName);
         $eventItem.find(".event-date > h3").text(dateDay);
         $eventItem.find(".event-date > h6").text(dateMonth + " " + dateYear);
-        $eventItem.find(".event-description").html(eventDescription);
+        eventDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo(".event-description"));
 
         $(containerName).append($eventItem);
     });
