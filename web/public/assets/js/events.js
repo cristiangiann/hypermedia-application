@@ -64,7 +64,7 @@ function drawEvents(events, containerName) {
         $eventItem.find(".event-name h3").text(eventName);
         $eventItem.find(".event-date > h3").text(dateDay);
         $eventItem.find(".event-date > h6").text(dateMonth + " " + dateYear);
-        eventDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo(".event-description"));
+        eventDescriptionParagraphs.forEach(par => $("<p></p>").text(par).appendTo($eventItem.find(".event-description")));
 
         $(containerName).append($eventItem);
     });
