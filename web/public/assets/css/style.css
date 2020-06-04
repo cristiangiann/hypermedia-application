@@ -41,7 +41,7 @@ a:hover {
 }
 
 #back-button {
-    color: #5C9EAD;
+    color: #2574A9;
     font-size: 1.25rem;
 }
 
@@ -69,17 +69,17 @@ a:hover {
 
     font-size: 0.75rem;
     white-space: nowrap;
-    color: #326273;
+    color: #1C2A43;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #326273;
+    color: #1C2A43;
     font-size: 1.25rem;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .active > .nav-link {
-    color: #5C9EAD;
+    color: #2574A9;
 }
 
 a.footer-social-button:hover {
@@ -87,7 +87,7 @@ a.footer-social-button:hover {
 }
 
 .border-md-right {
-    border-right: 1px solid #326273;
+    border-right: 1px solid #1C2A43;
 }
 
 .border-lg-right {
@@ -102,14 +102,14 @@ a.footer-social-button:hover {
 
 .btn-info {
 	color: #fff;
-	background-color: #326273;
-	border-color: #326273;
+	background-color: #1C2A43;
+	border-color: #1C2A43;
 }
 
 .btn-info:hover {
 	color: #fff;
-	background-color: #5C9EAD;
-	border-color: #5C9EAD;
+	background-color: #2574A9;
+	border-color: #2574A9;
 }
 
 .custom-form-borders {
