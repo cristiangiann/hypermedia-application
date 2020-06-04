@@ -33,45 +33,68 @@
                 <div class="col-10">
                     <div class="chapter">
                         <h3>1 - General group information</h3>
-                        <ul>
-                            <li>Stefano Formicola<br>
-                                Personal code: 953554<br>
-                                Email: stefano.formicola@mail.polimi.it
-                            </li>
-                            <li>Cristian Giannetti<br>
-                                Personal code: 920387<br>
-                                Email: cristian.giannetti@mail.polimi.it
-                            </li>
-                        </ul>
+                        <p>
+                            <ul>
+                                <li>
+                                    <p>
+                                        Stefano Formicola<br>
+                                        Personal code: 953554<br>
+                                        Email: stefano.formicola@mail.polimi.it
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Cristian Giannetti<br>
+                                        Personal code: 920387<br>
+                                        Email: cristian.giannetti@mail.polimi.it
+                                    </p>
+                                </li>
+                            </ul>
+                        </p>
                     </div>
                     <div class="chapter">
                         <h3>2 - Links to other deliverables</h3>
-                            <ul>
-                                <li>D0 - Public address of web application:<br>
+                        <ul>
+                            <li>
+                                <p>
+                                    D0 - Public address of web application:<br>
                                     <a href="http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/">
-                                        http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/
+                                    http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/
                                     </a>
-                                </li>
-                                <li>D2 - OpenAPI specification of backend:<br>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    D2 - OpenAPI specification of backend:<br>
                                     <a href="http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/spec.yaml">
-                                        http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/spec.yaml
+                                    http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/spec.yaml
                                     </a>
-                                </li>
-                                <li>D3 - SwaggerUI page:<br>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    D3 - SwaggerUI page:<br>
                                     <a href="http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/swaggerui">
-                                        http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/swaggerui
+                                    http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/swaggerui
                                     </a>
-                                </li>
-                                <li>D4 - Source code:<br>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    D4 - Source code:<br>
                                     <a href="http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/app.zip">
-                                        http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/app.zip
+                                    http://ec2-15-161-138-118.eu-south-1.compute.amazonaws.com/backend/app.zip
                                     </a>
-                                </li>
-                                <li>D5 - Address of online source control repository:<br>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    D5 - Address of online source control repository:<br>
                                     <a href="https://github.com/cristiangiann/hypermedia-application">
-                                        https://github.com/cristiangiann/hypermedia-application
+                                    https://github.com/cristiangiann/hypermedia-application
                                     </a>
-                                </li>
+                                </p>
+                            </li>
                         </ul>
                     </div>
                     <div class="chapter">
@@ -99,33 +122,38 @@
                             <h4>3.2 - API</h4>
                             <div class="subSection">
                                 <h5>3.2.1 - REST compliance</h5>
-                                <p>
-                                    Checking online documentation about the REST principles, five main architectural constraints have been followed
-                                    to ensure the service to be considered REST:
-                                    <ul>
-                                        <li>
-                                            Every resource is retrievable from a unique URI and it contains a source to fetch related data,
-                                            in accordance with HATEOAS principles. All the resources are accessible through a HTTP GET request.
-                                        </li>
-                                        <li>
-                                            Client and server can be developed independently and evolve separately with no dependency from each other.
-                                        </li>
-                                        <li>
+                                <p>Checking online documentation about the REST principles, five main architectural constraints have been followed
+                                    to ensure the service to be considered REST:</p>
+                                <ul>
+                                    <li>
+                                        <p>Every resource is retrievable from a unique URI and it contains a source to fetch related data,
+                                            in accordance with HATEOAS principles. All the resources are accessible through a HTTP GET request.</p>
+                                    </li>
+                                    <li>
+                                        <p>Client and server can be developed independently and evolve separately with no dependency from each other.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
                                             Interaction between client and server is stateless. The server does not store any information about the previous
-                                            requests and it is able to properly respond to one only by checking it. The server does not need any history
-                                            of received requests.
-                                        </li>
-                                        <li>
+                                        requests and it is able to properly respond to one only by checking it. The server does not need any history
+                                        of received requests.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
                                             Resources are cacheable. It improves the performance both server and client side: the client does not need to wait
-                                            for a response and the server avoids wasting of computation.
-                                        </li>
-                                        <li>
+                                        for a response and the server avoids wasting of computation.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
                                             The application architecture is composed by three layers: presentation, application and data.
-                                            Each layer can interact only with the following one, in order to divide responsibility among them
-                                            and making them focused on specific tasks.
-                                        </li>
-                                    </ul>
-                                </p>
+                                        Each layer can interact only with the following one, in order to divide responsibility among them
+                                        and making them focused on specific tasks.
+                                        </p>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="subSection">
                                 <h5>3.2.2 - OpenAPI Resource models</h5>
@@ -135,41 +163,41 @@
                                     that contains name and image of a specific item, used to be incorporated in the pages that contain a link to them,
                                     so that the navigation is facilitated for the users. 
                                     The resources are the following:
-                                    <ul>
-                                        <li>
-                                            Person: a teacher of Lemon Peel. It contains name, biography, contact info, an image and the courses she presents.
-                                        </li>
-                                        <li>
-                                            Person Preview: basic information about a teacher.
-                                        </li>
-                                        <li>
-                                            Event: has a name, a description, date and time, an image, an organiser and the presented courses.
-                                        </li>
-                                        <li>
-                                            Event Preview: basic information about an event.
-                                        </li>
-                                        <li>
-                                            Musical Instrument: represents a traditional Italian musical instrument that is relevant for the association.
-                                            It has a name, a picture, a description, its history, an instrument type and a region where it has been invented.
-                                        </li>
-                                        <li>
-                                            Musical Instrument Preview: basic information about a musical instrument.
-                                        </li>
-                                        <li>
-                                            Course: a musical course organised by Lemon Peel. It has a name, information about when it is taught, a description,
-                                            an image, the instrument it is referring to (it may not exist) and the teachers who held the course.
-                                        </li>
-                                        <li>
-                                            Course Preview: basic information about a course.
-                                        </li>
-                                        <li>
-                                            Intrument Type: it represents a group of instrument. It links id to a name.
-                                        </li>
-                                        <li>
-                                            Italian Region: self explanatory. It has an id and a name.
-                                        </li>
-                                    </ul>
                                 </p>
+                                <ul>
+                                    <li>
+                                        <p>Person: a teacher of Lemon Peel. It contains name, biography, contact info, an image and the courses she presents.</p>
+                                    </li>
+                                    <li>
+                                        <p>Person Preview: basic information about a teacher.</p>
+                                    </li>
+                                    <li>
+                                        <p>Event: has a name, a description, date and time, an image, an organiser and the presented courses.</p>
+                                    </li>
+                                    <li>
+                                        <p>Event Preview: basic information about an event.</p>
+                                    </li>
+                                    <li>
+                                        <p>Musical Instrument: represents a traditional Italian musical instrument that is relevant for the association.
+                                            It has a name, a picture, a description, its history, an instrument type and a region where it has been invented.</p>
+                                    </li>
+                                    <li>
+                                        <p>Musical Instrument Preview: basic information about a musical instrument.</p>
+                                    </li>
+                                    <li>
+                                        <p>Course: a musical course organised by Lemon Peel. It has a name, information about when it is taught, a description,
+                                            an image, the instrument it is referring to (it may not exist) and the teachers who held the course.</p>
+                                    </li>
+                                    <li>
+                                        <p>Course Preview: basic information about a course.</p>
+                                    </li>
+                                    <li>
+                                        <p>Intrument Type: it represents a group of instrument. It links id to a name.</p>
+                                    </li>
+                                    <li>
+                                        <p>Italian Region: self explanatory. It has an id and a name.</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -207,26 +235,26 @@
                             <h4>4.2 - Discussion</h4>
                             <ul>
                                 <li>
-                                    Swagger helped in the control of the APIs specified with OpenAPI editor. It validates the requests made by the client
-                                    checking if they respect the specification described in the yaml file. The resposes of GET requests reflect the structure
-                                    of database entities and are enriched with linked objects when needed. The concept of <i>preview</i> helped to easily maintain
-                                    the focus on the structure of the response, avoiding continuous checks on its many fields.
-                                    The only POST request of the website, used to send a message, is controlled by Swagger that checks if all the needed parameters
-                                    have been set.
+                                    <p>Swagger helped in the control of the APIs specified with OpenAPI editor. It validates the requests made by the client
+                                        checking if they respect the specification described in the yaml file. The resposes of GET requests reflect the structure
+                                        of database entities and are enriched with linked objects when needed. The concept of <i>preview</i> helped to easily maintain
+                                        the focus on the structure of the response, avoiding continuous checks on its many fields.
+                                        The only POST request of the website, used to send a message, is controlled by Swagger that checks if all the needed parameters
+                                        have been set.</p>
                                 </li>
                                 <li>
-                                    To comply to REST specification, we divided static contents from data needed to fill the page sections.
-                                    The data are fetched with AJAX calls from the client; they are embedded in scripts among the static contents, retrieved
-                                    and executed in the client browser that makes a request to the server and waits a response to fill the page with the received data.
+                                    <p>To comply to REST specification, we divided static contents from data needed to fill the page sections.
+                                        The data are fetched with AJAX calls from the client; they are embedded in scripts among the static contents, retrieved
+                                        and executed in the client browser that makes a request to the server and waits a response to fill the page with the received data.</p>
                                 </li>
                                 <li>
-                                    No session state has been used for the website.
+                                    <p>No session state has been used for the website.</p>
                                 </li>
                                 <li>
-                                    A relational database has been used for the data layer. The used technology is an RDS MySQL, provided by AWS,
-                                    and the interaction with it is permitted only from the web server IP for security reasons. The database queries have been
-                                    managed with <i>knex</i> node module, that prevents SQL injections and allows minimal changes if a future decision
-                                    will make replace the database.
+                                    <p>A relational database has been used for the data layer. The used technology is an RDS MySQL, provided by AWS,
+                                        and the interaction with it is permitted only from the web server IP for security reasons. The database queries have been
+                                        managed with <i>knex</i> node module, that prevents SQL injections and allows minimal changes if a future decision
+                                        will make replace the database.</p>
                                 </li>
                             </ul>
                         </div>
@@ -265,12 +293,20 @@
                         </div>
                         <div class="section">
                             <h4>5.3 - Learning outcome</h4>
-                            During this project, Stefano Formicola learned a lot about how to play a putipù.<br><br>
-                            Cristian Giannetti has an small internship experience in web application, using Ruby on Rails and React,
-                            where he integrated some features to an existing application.
-                            He thinks that the most valuable outcome for him is creating a web application from scratch,
-                            following all the needed steps to transform ideas to a working prototype, and the configuration of cloud platforms for web development,
-                            that will be essentials for his next job.
+                            <p> 
+                                Stefano Formicola has an experience in UI/UX design and development of native iOS Apps. During this project he learnt how frontend 
+                                web development works, how to structure a webpage and how to style it through HTML5 and CSS3. Moreover, he learnt the Javascript
+                                programming language and its framework jQuery, which he used to manipulate the DOM of a page in order to display data coming from
+                                the backend.
+                            </p>
+                                <br>
+                            <p>
+                                Cristian Giannetti has an small internship experience in web application, using Ruby on Rails and React,
+                                where he integrated some features to an existing application.
+                                He thinks that the most valuable outcome for him is creating a web application from scratch,
+                                following all the needed steps to transform ideas to a working prototype, and the configuration of cloud platforms for web development,
+                                that will be essentials for his next job.
+                            </p>
                         </div>
                     </div>
                 </div>
