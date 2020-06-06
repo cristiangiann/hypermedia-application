@@ -1,6 +1,7 @@
 
-design-document/DD.pdf
-design-document/DD.synctex.gz
+*.pdf
+*.synctex.gz
+!deliverables/*
 node_modules/
 .swagger-codegen/
 .swagger-codegen-ignore
