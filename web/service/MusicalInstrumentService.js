@@ -26,6 +26,7 @@ exports.musicalInstrumentDbSetup = function(connection) {
  **/
 exports.instrument_typesGET = function() {
   return sqlDb(typeTableName)
+    .orderBy('name')
     .then(data => {
       console.log(data);
       return data;
@@ -41,6 +42,7 @@ exports.instrument_typesGET = function() {
 exports.musicalInstrumentsGET = function() {
   return sqlDb(instrumentTableName)
     .select('id', 'name', 'image_path', 'instrument_type_id', 'italian_region_id')
+    .orderBy('name')
     .then(data => {
       console.log(data);
       return data;
@@ -78,6 +80,7 @@ exports.regionsGET = function() {
     .join(instrumentTableName, 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
     .select('Italian_Region.id', 'Italian_Region.name')
     .distinct()
+    .orderBy('Italian_Region.name')
     .then(data => {
       console.log(data);
       return data;
@@ -118,6 +121,7 @@ exports.relatedInstrumentGET = function(regionId, typeId, instrumentId) {
     .orWhere('instrument_type_id', typeId)
     .whereNot('id', instrumentId)
     .select('id', 'name', 'image_path')
+    .orderBy('name')
     .then(data => {
       console.log(data);
       return data;

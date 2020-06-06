@@ -25,6 +25,7 @@ exports.courseDbSetup = function(connection) {
 exports.coursesGET = function() {
   return sqlDb(courseTable)
   .select('id', 'name', 'image_path')
+  .orderBy('name')
   .then(data => {
     console.log(data);
     return data;
@@ -77,7 +78,8 @@ exports.coursesByEventIdGET = function(eventId){
   return sqlDb('Course_Presentation')
     .where('event_id', eventId)
     .leftJoin('Course', 'Course.id', '=', 'course_id')
-    .select('id', 'name', 'image_path');
+    .select('id', 'name', 'image_path')
+    .orderBy('name');
 }
 
 /**
@@ -92,4 +94,5 @@ exports.coursesByPeopleIdGET = function(personId) {
     .where('person_id', personId)
     .leftJoin('Course', 'Course_Instructor.course_id', '=', 'Course.id')
     .select('Course.id', 'Course.image_path', 'Course.name')
+    .orderBy('Course.name');
 }
