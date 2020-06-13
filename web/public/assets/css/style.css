@@ -152,4 +152,7 @@ a.footer-social-button:hover {
     .navbar-brand{
         margin-right: 0;
     }
+    .card > * {
+        max-width: 137.5px;
+    }
 }

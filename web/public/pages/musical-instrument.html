@@ -30,7 +30,7 @@
                         <p>Region: <span id="instrument-region"></span></p>
                     </div>
                     <h3 class="mt-5">Related musical instruments</h3>
-                    <div class="row row-cols-1 row-cols-sm-3 pr-md-3" id="related-instruments">
+                    <div class="row row-cols-2 row-cols-sm-3 pr-md-3 justify-content-between justify-content-sm-start" id="related-instruments">
                         <!-- Related instruments row -->
                         
                     </div>  
@@ -59,14 +59,16 @@
     <script src="../assets/js/musical-instrument.js"></script>
 
     <template id="related-instrument-template">
-        <a href="' + instrumentLink + '" class="col mb-2">
-            <div class="my-2 card border-0 bg-transparent">
-                <img src="' + instrumentImgPath + '" class="card-img-top rounded-0 img-fluid" alt="' + instrumentName + '">
-                <div class="card-body p-0 text-center">
-                    <h5 class="card-text text-center nowrap">' + instrumentName + '</h5>
+        <div class="col mb-2">
+            <a href="">
+                <div class="col my-2 card border-0 bg-transparent">
+                    <img src="" class="card-img-top rounded-0 img-fluid" alt="">
+                    <div class="card-body p-0 text-center">
+                        <h5 class="card-text nowrap"></h5>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </template>
 </body>
 </html>

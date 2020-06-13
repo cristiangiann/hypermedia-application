@@ -49,11 +49,10 @@ function getRelatedMusicalInstrumentsHTML(instruments) {
         const instrumentImgPath = "../assets/imgs" + instrument.image_path;
 
         let $instrumentItem = $(template);
-        $instrumentItem.attr("href", instrument.url);
+        $instrumentItem.find("a").attr("href", instrument.url);
         $instrumentItem.find("img").attr("src", instrumentImgPath);
         $instrumentItem.find("img").attr("alt", instrumentName);
         $instrumentItem.find(".card-text").text(instrumentName);
-        console.log($instrumentItem);
         $("#related-instruments").append($instrumentItem);
     });
 }
