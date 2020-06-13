@@ -25,7 +25,6 @@ function drawPerson(person) {
     const personTel = person.telephone;
     const personEmail = person.email;
     const personBiographyParagraphs = person.biography.split("\\n");
-    console.log(personBiographyParagraphs)
 
     $("head > title").html(personNameSurname + " - Lemon Peel Association");
     $("#person-name").text(personNameSurname);

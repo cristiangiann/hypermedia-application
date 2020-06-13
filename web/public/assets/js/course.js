@@ -50,7 +50,6 @@ function drawMusicalInstrumentSection(instrument) {
     $instrumentItem.find("img").attr("src", instrumentImgPath);
     $instrumentItem.find("img").attr("alt", instrument.name);
     $instrumentItem.find("#instrument-name").text(instrument.name);
-    console.log($instrumentItem);
     $("#instrument").append($instrumentItem);
 }
 
