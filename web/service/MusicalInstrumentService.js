@@ -1,9 +1,9 @@
 'use strict';
 
 let sqlDb;
-var instrumentTableName = "Musical_Instrument";
-var typeTableName = "Instrument_Type";
-var regionTableName = "Italian_Region";
+var instrumentTableName = "lemonpeel\.musical_instrument";
+var typeTableName = "lemonpeel\.instrument_type";
+var regionTableName = "lemonpeel\.italian_region";
 
 exports.musicalInstrumentDbSetup = function(connection) {
   sqlDb = connection;
@@ -58,10 +58,10 @@ exports.musicalInstrumentsGET = function() {
  **/
 exports.completeMusicalInstrumentByIdGET = function(id) {
   return sqlDb(instrumentTableName)
-    .leftJoin('Italian_Region', 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
-    .leftJoin('Instrument_Type', 'Instrument_Type.id', '=', 'Musical_Instrument.instrument_type_id')
-    .select('Musical_Instrument.id', 'Musical_Instrument.name', 'description', 'history', 'image_path', 'instrument_type_id', 'italian_region_id', 'Instrument_Type.name as type', 'Italian_Region.name as region')
-    .where('Musical_Instrument.id', id)
+    .leftJoin('lemonpeel\.italian_region', 'lemonpeel\.italian_region.id', '=', 'lemonpeel\.musical_instrument.italian_region_id')
+    .leftJoin('lemonpeel\.instrument_type', 'lemonpeel\.instrument_type.id', '=', 'lemonpeel\.musical_instrument.instrument_type_id')
+    .select('lemonpeel\.musical_instrument.id', 'lemonpeel\.musical_instrument.name', 'description', 'history', 'image_path', 'instrument_type_id', 'italian_region_id', 'lemonpeel\.instrument_type.name as type', 'lemonpeel\.italian_region.name as region')
+    .where('lemonpeel\.musical_instrument.id', id)
     .then(data => {
       console.log(data);
       if(data.length == 0) return {};
@@ -77,10 +77,10 @@ exports.completeMusicalInstrumentByIdGET = function(id) {
  **/
 exports.regionsGET = function() {
   return sqlDb(regionTableName)
-    .join(instrumentTableName, 'Italian_Region.id', '=', 'Musical_Instrument.italian_region_id')
-    .select('Italian_Region.id', 'Italian_Region.name')
+    .join(instrumentTableName, 'lemonpeel\.italian_region.id', '=', 'lemonpeel\.musical_instrument.italian_region_id')
+    .select('lemonpeel\.italian_region.id', 'lemonpeel\.italian_region.name')
     .distinct()
-    .orderBy('Italian_Region.name')
+    .orderBy('lemonpeel\.italian_region.name')
     .then(data => {
       console.log(data);
       return data;

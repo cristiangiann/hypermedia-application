@@ -1,7 +1,7 @@
 'use strict';
 
 let sqlDb;
-var messageTable = "Message"
+var messageTable = "lemonpeel\.message"
 
 
 exports.contactsDbSetup = function(connection) {

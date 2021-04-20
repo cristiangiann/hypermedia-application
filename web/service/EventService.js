@@ -1,7 +1,7 @@
 'use strict';
 
 let sqlDb;
-var eventTable = "Event";
+var eventTable = "lemonpeel\.event";
 
 exports.eventDbSetup = function(connection) {
   sqlDb = connection;

@@ -1,7 +1,7 @@
 'use strict';
 
 let sqlDb;
-var personTable = "Person"
+var personTable = "lemonpeel\.person"
 
 exports.personDbSetup = function(connection) {
   sqlDb = connection;
@@ -40,8 +40,8 @@ exports.peopleGET = function() {
  **/
 exports.completePersonByIdGET = function(id) {
   return sqlDb(personTable)
-    .where('Person.id', id)
-    .select('Person.id', 'Person.name', 'Person.surname', 'Person.biography', 'Person.telephone', 'Person.email', 'Person.image_path')
+    .where('lemonpeel\.person.id', id)
+    .select('lemonpeel\.person.id', 'lemonpeel\.person.name', 'lemonpeel\.person.surname', 'lemonpeel\.person.biography', 'lemonpeel\.person.telephone', 'lemonpeel\.person.email', 'lemonpeel\.person.image_path')
     .then(results => {
       if(results.length == 0) return {};
       return results[0];
@@ -73,8 +73,8 @@ exports.personByIdGET = function(id) {
  * returns List
  **/
 exports.peopleByCourseIdGET = function(courseId) {
-  return sqlDb('Course_Instructor')
+  return sqlDb('lemonpeel\.course_instructor')
     .where('course_id', courseId)
-    .leftJoin('Person', 'Course_Instructor.person_id', '=', 'Person.id')
-    .select('Person.id', 'Person.image_path', 'Person.name', 'Person.surname')
+    .leftJoin('lemonpeel\.person', 'lemonpeel\.course_instructor.person_id', '=', 'lemonpeel\.person.id')
+    .select('lemonpeel\.person.id', 'lemonpeel\.person.image_path', 'lemonpeel\.person.name', 'lemonpeel\.person.surname')
 }

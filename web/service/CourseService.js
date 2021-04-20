@@ -1,7 +1,7 @@
 'use strict';
 
 let sqlDb;
-var courseTable = "Course";
+var courseTable = "lemonpeel\.course";
 
 exports.courseDbSetup = function(connection) {
   sqlDb = connection;
@@ -41,8 +41,8 @@ exports.coursesGET = function() {
  **/
 exports.completeCourseByIdGET = function(id) {
   return sqlDb(courseTable)
-    .select('Course.id', 'Course.name', 'Course.info', 'Course.description', 'Course.image_path', 'musical_instrument_id')
-    .where('Course.id', id)
+    .select('lemonpeel\.course.id', 'lemonpeel\.course.name', 'lemonpeel\.course.info', 'lemonpeel\.course.description', 'lemonpeel\.course.image_path', 'musical_instrument_id')
+    .where('lemonpeel\.course.id', id)
     .then(results => {
       if(results.length == 0) return {};
       return results[0];
@@ -57,7 +57,7 @@ exports.completeCourseByIdGET = function(id) {
  * returns Course
  **/
 exports.courseByInstrumentIdGET = function(instrumentId) {
-  return sqlDb('Course')
+  return sqlDb('lemonpeel\.course')
     .where('musical_instrument_id', instrumentId)
     .select('id', 'name', 'image_path')
     .then(data => {
@@ -75,9 +75,9 @@ exports.courseByInstrumentIdGET = function(instrumentId) {
  * returns Course
  **/
 exports.coursesByEventIdGET = function(eventId){
-  return sqlDb('Course_Presentation')
+  return sqlDb('lemonpeel\.course_presentation')
     .where('event_id', eventId)
-    .leftJoin('Course', 'Course.id', '=', 'course_id')
+    .leftJoin('lemonpeel\.course', 'lemonpeel\.course.id', '=', 'course_id')
     .select('id', 'name', 'image_path')
     .orderBy('name');
 }
@@ -90,9 +90,9 @@ exports.coursesByEventIdGET = function(eventId){
  * returns List
  **/
 exports.coursesByPeopleIdGET = function(personId) {
-  return sqlDb('Course_Instructor')
+  return sqlDb('lemonpeel\.course_instructor')
     .where('person_id', personId)
-    .leftJoin('Course', 'Course_Instructor.course_id', '=', 'Course.id')
-    .select('Course.id', 'Course.image_path', 'Course.name')
-    .orderBy('Course.name');
+    .leftJoin('lemonpeel\.course', 'lemonpeel\.course_instructor.course_id', '=', 'lemonpeel\.course.id')
+    .select('lemonpeel\.course.id', 'lemonpeel\.course.image_path', 'lemonpeel\.course.name')
+    .orderBy('lemonpeel\.course.name');
 }
